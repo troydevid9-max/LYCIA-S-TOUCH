@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services & Pricing – Lycia's Touch</title>
+<meta name="description" content="Explore all makeup services offered by Lycia's Touch — bridal, birthday glam, photoshoot, events, home service and makeup training in Lagos.">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/sections.css">
+<style>
+  .services-hero {
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--cream) 100%);
+    padding: 120px 80px 80px;
+    text-align: center;
+  }
+  .services-full-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding: 80px;
+  }
+  .service-full-card {
+    background: white;
+    border: 1.5px solid var(--light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .service-full-card:hover {
+    border-color: var(--rose-gold);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+  .service-full-card img {
+    width: 100%; height: 220px;
+    object-fit: cover; display: block;
+    transition: transform 0.5s;
+  }
+  .service-full-card:hover img { transform: scale(1.05); }
+  .service-full-body { padding: 28px; }
+  .service-full-icon { font-size: 28px; margin-bottom: 12px; }
+  .service-full-name {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 600; margin-bottom: 10px;
+  }
+  .service-full-desc { font-size: 13.5px; color: var(--mid); line-height: 1.8; margin-bottom: 18px; }
+  .service-includes { margin-bottom: 20px; }
+  .service-includes-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); margin-bottom: 10px; }
+  .service-includes li { font-size: 12.5px; color: var(--mid); margin-bottom: 6px; display: flex; gap: 8px; }
+  .service-includes li::before { content: '✓'; color: var(--rose-gold); font-weight: 700; flex-shrink: 0; }
+  .service-price-row { display: flex; align-items: center; justify-content: space-between; }
+  .service-from { font-size: 13px; font-weight: 800; color: var(--rose-gold); }
+  @media (max-width: 900px) {
+    .services-hero { padding: 100px 24px 60px; }
+    .services-full-grid { grid-template-columns: 1fr; padding: 40px 24px; }
+  }
+  @media (max-width: 600px) {
+    .services-full-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <span>Professional Makeup Artist</span><span>Bridal Specialist</span>
+    <span>Home Service Available</span><span>Makeup Training Available</span>
+    <span>Professional Makeup Artist</span><span>Bridal Specialist</span>
+    <span>Home Service Available</span><span>Makeup Training Available</span>
+  </div>
+</div>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">
+    <span class="nav-logo-main">Lycia's<span>/</span></span>
+    <span class="nav-logo-sub">Touch · Luxury Beauty</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="../index.html#portfolio">Portfolio</a></li>
+    <li><a href="../index.html#testimonials">Testimonials</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Appointment</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="../index.html#portfolio">Portfolio</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="../index.html#calendar" class="btn btn-primary">📅 Book Now</a>
+</div>
+
+<div class="services-hero">
+  <span class="eyebrow" style="display:block;">What I Offer</span>
+  <h1 class="section-title reveal" style="margin-bottom:14px;">My Services & Pricing</h1>
+  <p class="section-sub reveal" style="margin:0 auto 32px;">Every service is tailored to make you look and feel your absolute best.</p>
+  <a href="../index.html#calendar" class="btn btn-primary btn-lg reveal">📅 Book Any Service</a>
+</div>
+
+<div class="services-full-grid" id="services-full">
+  <div class="service-full-card reveal">
+    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&auto=format&fit=crop" alt="Bridal Makeup">
+    <div class="service-full-body">
+      <div class="service-full-icon">💍</div>
+      <div class="service-full-name">Bridal Makeup</div>
+      <div class="service-full-desc">Look absolutely breathtaking on your most special day. Lycia creates a timeless, long-lasting bridal look tailored perfectly to your features, dress, and wedding theme.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>Full face glam with primer & setting spray</li>
+          <li>Long-lasting formula (12+ hours)</li>
+          <li>Skin prep & hydration</li>
+          <li>False lashes included</li>
+          <li>Touch-up kit for the day</li>
+          <li>Optional trial session available</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦60,000</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-full-card reveal delay-1">
+    <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=600&q=80&auto=format&fit=crop" alt="Birthday Glam">
+    <div class="service-full-body">
+      <div class="service-full-icon">🎂</div>
+      <div class="service-full-name">Birthday Glam</div>
+      <div class="service-full-desc">Make your birthday extra special and unforgettable. Whether you want a bold glam or a soft natural look, Lycia will have you looking like the queen you are.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>Custom birthday glam look</li>
+          <li>Full face application</li>
+          <li>Lash application</li>
+          <li>Skin prep & setting</li>
+          <li>Photo-ready finish</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦25,000</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-full-card reveal delay-2">
+    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop" alt="Photoshoot Makeup">
+    <div class="service-full-body">
+      <div class="service-full-icon">📸</div>
+      <div class="service-full-name">Photoshoot Makeup</div>
+      <div class="service-full-desc">Flawless, camera-ready looks designed to photograph beautifully under any lighting. Perfect for content creators, models, and brand shoots.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>HD & camera-ready makeup</li>
+          <li>Multiple look changes available</li>
+          <li>On-set touch-ups</li>
+          <li>Full consultation beforehand</li>
+          <li>Works with any lighting setup</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦30,000</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-full-card reveal">
+    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80&auto=format&fit=crop" alt="Event Makeup">
+    <div class="service-full-body">
+      <div class="service-full-icon">🎉</div>
+      <div class="service-full-name">Event Makeup</div>
+      <div class="service-full-desc">Perfect for parties, dinners, owanbes, galas, and every special occasion. Look stunning and feel confident at every event you attend.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>Custom event look</li>
+          <li>Long-lasting formula</li>
+          <li>Lash application</li>
+          <li>Skin prep & blending</li>
+          <li>Setting spray finish</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦20,000</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-full-card reveal delay-1">
+    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80&auto=format&fit=crop" alt="Home Service">
+    <div class="service-full-body">
+      <div class="service-full-icon">🏠</div>
+      <div class="service-full-name">Home Service</div>
+      <div class="service-full-desc">I come to you — anywhere in Lagos! No travel stress, no rushing. Relax in the comfort of your home while Lycia brings the glam studio to your doorstep.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>Travel to your location</li>
+          <li>Full professional kit brought along</li>
+          <li>All services available at home</li>
+          <li>Covers Lagos & environs</li>
+          <li>Travel fee may apply by distance</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦10,000 (travel fee)</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-full-card reveal delay-2">
+    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80&auto=format&fit=crop" alt="Makeup Training">
+    <div class="service-full-body">
+      <div class="service-full-icon">🎓</div>
+      <div class="service-full-name">Makeup Training</div>
+      <div class="service-full-desc">Learn the art of professional makeup from Lycia herself. From beginner basics to advanced techniques — start your beauty career today with certified training.</div>
+      <div class="service-includes">
+        <div class="service-includes-title">What's Included</div>
+        <ul>
+          <li>Beginner, intermediate & advanced levels</li>
+          <li>Hands-on practical sessions</li>
+          <li>Professional kit guidance</li>
+          <li>Business setup mentorship</li>
+          <li>Certificate upon completion</li>
+        </ul>
+      </div>
+      <div class="service-price-row">
+        <div class="service-from">FROM ₦50,000</div>
+        <a href="../index.html#calendar" class="btn btn-primary btn-sm">Enroll Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Banner -->
+<div class="booking-banner" style="margin:0;">
+  <div>
+    <h2>Not Sure Which Service?</h2>
+    <p>Book a free beauty consultation via WhatsApp and Lycia will recommend the perfect service for you.</p>
+    <a href="https://wa.me/2348123456789?text=Hi Lycia! I need help choosing the right service for my occasion." class="btn btn-whatsapp btn-lg">💬 Free Consultation on WhatsApp</a>
+  </div>
+  <div class="booking-banner-img">
+    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80&auto=format&fit=crop" alt="Consultation">
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-wrap">Lycia's<span>/</span>Touch</div>
+      <p class="footer-desc">Professional makeup artistry in Lagos, Nigeria.</p>
+      <div class="footer-socials">
+        <a href="#" class="ft-social">📸</a><a href="#" class="ft-social">👤</a>
+        <a href="#" class="ft-social">🎵</a><a href="#" class="ft-social">▶</a>
+      </div>
+    </div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="../index.html#portfolio">Portfolio</a></li><li><a href="../index.html#contact">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Bridal Makeup</a></li><li><a href="#">Birthday Glam</a></li><li><a href="#">Photoshoot</a></li><li><a href="#">Home Service</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><div class="footer-contact-row"><i>📞</i> +234 812 345 6789</div><div class="footer-contact-row"><i>✉️</i> hello@lyciastouch.com</div><div class="footer-contact-row"><i>📍</i> Lagos, Nigeria</div></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 Lycia's Touch. All Rights Reserved.</div>
+    <button class="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</footer>
+
+<a href="https://wa.me/2348123456789" class="whatsapp-fab">💬</a>
+
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>

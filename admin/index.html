@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – Lycia's Touch</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════ -->
+<div id="adminLogin" class="admin-login">
+  <div class="login-card">
+    <div class="login-logo">Lycia's<span>/</span>Touch</div>
+    <div class="login-sub">Admin Dashboard</div>
+    <h2 class="login-title">Welcome Back 👋</h2>
+    <p class="login-desc">Enter your admin password to access the dashboard.</p>
+    <form class="login-form" id="loginForm">
+      <div class="login-group">
+        <label>Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter admin password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">🔓 Access Dashboard</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
+    <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.25);text-align:center;">
+      <a href="../index.html" style="color:rgba(217,140,154,0.6);text-decoration:none;">← Back to Website</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════════ -->
+<div id="adminDashboard" class="admin-layout" style="display:none;">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">Lycia's<span>/</span>Touch</div>
+      <div class="sidebar-sub">Admin Dashboard</div>
+      <div class="sidebar-badge">✨ Beauty Management</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <div class="sidebar-link active" data-page="dashboard">
+        <span class="icon">📊</span><span>Dashboard</span>
+      </div>
+
+      <div class="sidebar-section-label">Bookings</div>
+      <div class="sidebar-link" data-page="bookings">
+        <span class="icon">📅</span><span>All Bookings</span>
+        <span class="sidebar-badge-count" id="pendingCount">0</span>
+      </div>
+      <div class="sidebar-link" data-page="calendar">
+        <span class="icon">🗓</span><span>Calendar View</span>
+      </div>
+      <div class="sidebar-link" data-page="intake">
+        <span class="icon">💄</span><span>Intake Forms</span>
+      </div>
+
+      <div class="sidebar-section-label">Content</div>
+      <div class="sidebar-link" data-page="portfolio">
+        <span class="icon">🖼</span><span>Portfolio</span>
+      </div>
+      <div class="sidebar-link" data-page="reels">
+        <span class="icon">🎬</span><span>Reels / Videos</span>
+      </div>
+      <div class="sidebar-link" data-page="testimonials">
+        <span class="icon">⭐</span><span>Testimonials</span>
+      </div>
+
+      <div class="sidebar-section-label">Communication</div>
+      <div class="sidebar-link" data-page="whatsapp">
+        <span class="icon">💬</span><span>WhatsApp Templates</span>
+      </div>
+      <div class="sidebar-link" data-page="newsletter">
+        <span class="icon">📧</span><span>Newsletter</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" id="logoutBtn">🚪 <span>Logout</span></button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <!-- Top Bar -->
+    <div class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <button id="sidebarToggle" style="display:none;background:none;border:none;color:var(--admin-text);font-size:20px;cursor:pointer;">☰</button>
+        <div class="topbar-title">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <a href="../index.html" target="_blank" style="font-size:12px;color:var(--admin-muted);text-decoration:none;border:1px solid var(--admin-border);padding:8px 14px;border-radius:8px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--admin-border)'">🌐 View Site</a>
+        <div class="topbar-notif">🔔<div class="notif-dot"></div></div>
+        <div class="admin-avatar">L</div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- ════════ DASHBOARD PAGE ════════ -->
+      <div class="admin-page active" id="page-dashboard">
+        <div style="margin-bottom:28px;">
+          <h1 style="font-size:24px;font-weight:800;margin-bottom:4px;">Good day, Lycia! 👋</h1>
+          <p style="font-size:14px;color:var(--admin-muted);">Here's what's happening with your business today.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-rose">📅</div><div class="stat-card-change change-up">↑ New</div></div>
+            <div class="stat-card-num" id="statTotalBookings">—</div>
+            <div class="stat-card-label">Total Bookings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-yellow">⏳</div><div class="stat-card-change" style="color:var(--yellow);">Pending</div></div>
+            <div class="stat-card-num" id="statPending">—</div>
+            <div class="stat-card-label">Pending Bookings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-green">✅</div><div class="stat-card-change change-up">Active</div></div>
+            <div class="stat-card-num" id="statConfirmed">—</div>
+            <div class="stat-card-label">Confirmed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-blue">⭐</div><div class="stat-card-change change-up">Live</div></div>
+            <div class="stat-card-num" id="statTestimonials">—</div>
+            <div class="stat-card-label">Testimonials</div>
+          </div>
+        </div>
+        <div class="stats-row" style="grid-template-columns:1fr 1fr;margin-top:0;">
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-rose">📸</div></div>
+            <div class="stat-card-num" id="statPortfolio">—</div>
+            <div class="stat-card-label">Portfolio Images</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon icon-gold">📧</div></div>
+            <div class="stat-card-num" id="statNewsletter">—</div>
+            <div class="stat-card-label">Newsletter Subscribers</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Recent Bookings</div>
+            <button class="admin-btn admin-btn-secondary" onclick="document.querySelector('[data-page=bookings]').click()">View All →</button>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Client</th><th>Service</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="recentBookingsTbody"><tr><td colspan="5" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════════ BOOKINGS PAGE ════════ -->
+      <div class="admin-page" id="page-bookings">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">All Bookings</h1><p style="font-size:13px;color:var(--admin-muted);">Manage and update all appointment bookings.</p></div>
+        </div>
+        <div class="admin-table-wrap">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Booking Requests</div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Client</th><th>Phone</th><th>Service</th><th>Date / Time</th><th>Location</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="bookingsTbody"><tr><td colspan="8" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ CALENDAR PAGE ════════ -->
+      <div class="admin-page" id="page-calendar">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Calendar View</h1><p style="font-size:13px;color:var(--admin-muted);">View bookings by date and manage your schedule.</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title" id="adminCalTitle">Loading...</div>
+              <div style="display:flex;gap:8px;">
+                <button class="admin-btn admin-btn-secondary" id="adminCalPrev">‹</button>
+                <button class="admin-btn admin-btn-secondary" id="adminCalNext">›</button>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:10px;">
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">S</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">M</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">T</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">W</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">T</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">F</div>
+              <div style="font-size:10px;font-weight:700;color:var(--admin-muted);padding:6px;">S</div>
+            </div>
+            <div class="admin-cal-grid" id="adminCalGrid"></div>
+            <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--admin-muted);"><div style="width:10px;height:10px;border-radius:50%;background:rgba(217,140,154,0.2);border:1.5px solid var(--rose);"></div>Available</div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--admin-muted);"><div style="width:10px;height:10px;border-radius:50%;background:rgba(217,140,154,0.25);"></div>Booked</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Bookings for: <span id="adminCalSelectedDate" style="color:var(--rose);">Select a date</span></div>
+            </div>
+            <div id="dayBookingsWrap" style="color:var(--admin-muted);font-size:13px;text-align:center;padding:20px;">Click a date to view bookings</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ INTAKE FORMS PAGE ════════ -->
+      <div class="admin-page" id="page-intake">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Client Intake Forms</h1><p style="font-size:13px;color:var(--admin-muted);">Review client beauty details submitted before appointments.</p></div>
+        <div class="admin-table-wrap">
+          <div class="admin-table-header"><div class="admin-table-title">Submitted Intake Forms</div></div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Client</th><th>Phone</th><th>Occasion</th><th>Look Type</th><th>Skin Tone</th><th>Allergies</th><th>Inspo Photos</th><th>Actions</th></tr></thead>
+              <tbody id="intakeTbody"><tr><td colspan="8" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ PORTFOLIO PAGE ════════ -->
+      <div class="admin-page" id="page-portfolio">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Portfolio Manager</h1><p style="font-size:13px;color:var(--admin-muted);">Upload, manage, and organize your portfolio images.</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:24px;align-items:start;">
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">Add New Image</div></div>
+            <form id="addPortfolioForm">
+              <div class="admin-form-group">
+                <label>Image Title</label>
+                <input type="text" id="portfolioTitle" placeholder="e.g. Bridal Glam 2025">
+              </div>
+              <div class="admin-form-group">
+                <label>Category</label>
+                <select id="portfolioCategory">
+                  <option value="all">All</option>
+                  <option value="bridal">Bridal</option>
+                  <option value="glam">Birthday Glam</option>
+                  <option value="photoshoot">Photoshoot</option>
+                  <option value="events">Events</option>
+                  <option value="training">Training</option>
+                </select>
+              </div>
+              <div class="admin-form-group">
+                <label>Display Order</label>
+                <input type="number" id="portfolioOrder" placeholder="0" value="0" min="0">
+              </div>
+              <div class="upload-zone" id="portfolioUploadZone">
+                <input type="file" id="portfolioFileInput" accept="image/*">
+                <div class="upload-icon">🖼</div>
+                <div class="upload-title">Upload Image</div>
+                <div class="upload-desc">Click or drag to upload · JPG, PNG, WebP</div>
+              </div>
+              <button type="submit" class="admin-btn admin-btn-primary admin-btn-lg" id="addPortfolioBtn" style="width:100%;margin-top:16px;justify-content:center;">➕ Add Image</button>
+            </form>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">Portfolio Images</div></div>
+            <div class="media-grid" id="portfolioAdminGrid">
+              <div style="color:var(--admin-muted);text-align:center;padding:32px;grid-column:1/-1;">Loading portfolio...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ REELS PAGE ════════ -->
+      <div class="admin-page" id="page-reels">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Reels & Videos</h1><p style="font-size:13px;color:var(--admin-muted);">Manage video reels shown on the website (up to 9 reels).</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:24px;align-items:start;">
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">Add New Reel</div></div>
+            <form id="addReelForm">
+              <div class="admin-form-group">
+                <label>Reel Title</label>
+                <input type="text" id="reelTitle" placeholder="e.g. Bridal Transformation" required>
+              </div>
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label>Category</label>
+                  <select id="reelCategory">
+                    <option>Bridal</option><option>Birthday Glam</option><option>Photoshoot</option>
+                    <option>Events</option><option>Tutorial</option><option>Training</option><option>Everyday</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label>Display Order (1–9)</label>
+                  <input type="number" id="reelOrder" placeholder="1" value="1" min="1" max="9">
+                </div>
+              </div>
+              <div class="admin-form-group">
+                <label>YouTube / Vimeo URL (optional)</label>
+                <input type="url" id="reelYoutubeUrl" placeholder="https://youtu.be/... or leave blank to upload file">
+              </div>
+              <div style="font-size:11px;color:var(--admin-muted);margin:-10px 0 14px;font-weight:600;">— OR upload a video file below —</div>
+              <div class="admin-form-group">
+                <label>Video File</label>
+                <div class="upload-zone" id="reelVideoZone" style="padding:20px;">
+                  <input type="file" id="reelVideoInput" accept="video/*">
+                  <div style="font-size:24px;margin-bottom:6px;">🎬</div>
+                  <div style="font-size:13px;font-weight:600;margin-bottom:3px;">Upload Video</div>
+                  <div style="font-size:11px;color:var(--admin-muted);">MP4, MOV, WebM</div>
+                </div>
+                <div id="reelVideoName" style="font-size:11px;color:var(--rose);margin-top:6px;"></div>
+              </div>
+              <div class="admin-form-group">
+                <label>Thumbnail Image</label>
+                <div class="upload-zone" id="reelThumbZone" style="padding:20px;">
+                  <input type="file" id="reelThumbInput" accept="image/*">
+                  <img id="reelThumbPreview" src="" alt="" style="display:none;width:100%;height:80px;object-fit:cover;border-radius:8px;margin-bottom:8px;">
+                  <div style="font-size:24px;margin-bottom:6px;">🖼</div>
+                  <div style="font-size:13px;font-weight:600;margin-bottom:3px;">Upload Thumbnail</div>
+                  <div style="font-size:11px;color:var(--admin-muted);">JPG, PNG, WebP</div>
+                </div>
+                <div id="reelThumbName" style="font-size:11px;color:var(--rose);margin-top:6px;"></div>
+              </div>
+              <button type="submit" class="admin-btn admin-btn-primary admin-btn-lg" id="addReelBtn" style="width:100%;justify-content:center;">➕ Add Reel</button>
+            </form>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">Current Reels (max 9)</div></div>
+            <div class="media-grid" id="reelsAdminGrid">
+              <div style="color:var(--admin-muted);text-align:center;padding:32px;grid-column:1/-1;">Loading reels...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ TESTIMONIALS PAGE ════════ -->
+      <div class="admin-page" id="page-testimonials">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Testimonials</h1><p style="font-size:13px;color:var(--admin-muted);">Approve, manage, and moderate client reviews.</p></div>
+        <div class="admin-table-wrap">
+          <div class="admin-table-header"><div class="admin-table-title">Submitted Reviews</div></div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Name</th><th>Role</th><th>Service</th><th>Rating</th><th>Review</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="testimonialsTbody"><tr><td colspan="7" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ WHATSAPP PAGE ════════ -->
+      <div class="admin-page" id="page-whatsapp">
+        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">WhatsApp Templates</h1><p style="font-size:13px;color:var(--admin-muted);">Pre-built message templates for quick client communication.</p></div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">📅 Booking Confirmation</div></div>
+            <div class="wa-template-card">
+              <textarea rows="8">Hi {{clientName}}! 🌸
+
+Your appointment with Lycia's Touch has been *confirmed*!
+
+📅 Date: {{date}}
+⏰ Time: {{time}}
+💄 Service: {{service}}
+
+Please arrive 10 minutes early. A 50% deposit of {{deposit}} is required.
+
+Looking forward to making you look amazing! ✨ — Lycia 💋</textarea>
+              <div class="wa-variables">
+                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
+                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
+                <button class="wa-var" onclick="insertVar(this,'time')">{{time}}</button>
+                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
+                <button class="wa-var" onclick="insertVar(this,'deposit')">{{deposit}}</button>
+              </div>
+            </div>
+            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">⏰ Appointment Reminder</div></div>
+            <div class="wa-template-card">
+              <textarea rows="8">Hi {{clientName}}! 💕
+
+Just a friendly reminder — your appointment is *tomorrow*!
+
+📅 Date: {{date}}
+⏰ Time: {{time}}
+💄 Service: {{service}}
+
+Please come with a clean face. Bring inspo photos if you have any! 📸
+
+See you soon! ✨ — Lycia</textarea>
+              <div class="wa-variables">
+                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
+                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
+                <button class="wa-var" onclick="insertVar(this,'time')">{{time}}</button>
+                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
+              </div>
+            </div>
+            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">💖 Post-Session Follow-Up</div></div>
+            <div class="wa-template-card">
+              <textarea rows="8">Hi {{clientName}}! 🌸
+
+It was such a pleasure having you at Lycia's Touch! I hope you're still getting compliments 😄✨
+
+I'd love to hear your feedback! Could you leave a quick review?
+
+Also, don't forget to tag me in your photos! 📸
+Instagram: @lyciastouch
+
+Thank you so much! — Lycia 💋</textarea>
+              <div class="wa-variables">
+                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
+              </div>
+            </div>
+            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><div class="panel-title">👥 Group Booking Quote</div></div>
+            <div class="wa-template-card">
+              <textarea rows="8">Hi {{clientName}}! 💕
+
+Thank you for your group booking inquiry!
+
+👥 People: {{people}}
+💄 Service: {{service}}
+📅 Date: {{date}}
+📍 Location: {{location}}
+💰 Total Estimate: {{totalPrice}}
+
+Deposit of 50% required to confirm.
+
+I'm excited to glam your squad! ✨ — Lycia 💋</textarea>
+              <div class="wa-variables">
+                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
+                <button class="wa-var" onclick="insertVar(this,'people')">{{people}}</button>
+                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
+                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
+                <button class="wa-var" onclick="insertVar(this,'totalPrice')">{{totalPrice}}</button>
+              </div>
+            </div>
+            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ NEWSLETTER PAGE ════════ -->
+      <div class="admin-page" id="page-newsletter">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">Newsletter Subscribers</h1><p style="font-size:13px;color:var(--admin-muted);">Manage your email list. Total: <strong id="statNewsletter2">0</strong> subscribers.</p></div>
+          <button class="admin-btn admin-btn-primary" id="exportNewsletterBtn">📥 Export CSV</button>
+        </div>
+        <div class="admin-table-wrap">
+          <div class="admin-table-header"><div class="admin-table-title">Email Subscribers</div></div>
+          <table class="admin-table">
+            <thead><tr><th>#</th><th>Email Address</th><th>Date Subscribed</th><th>Action</th></tr></thead>
+            <tbody id="newsletterTbody"><tr><td colspan="4" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end admin-content -->
+  </main>
+</div><!-- end admin-layout -->
+
+<script>
+  // WhatsApp template helper (admin-specific)
+  function insertVar(btn, varName) {
+    const textarea = btn.closest('.wa-template-card').querySelector('textarea');
+    const pos = textarea.selectionStart;
+    const val = textarea.value;
+    textarea.value = val.slice(0, pos) + `{{${varName}}}` + val.slice(pos);
+    textarea.focus();
+  }
+  function sendAdminWa(btn) {
+    const msg = btn.closest('.panel').querySelector('textarea').value;
+    window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+  // Mobile sidebar toggle visibility
+  if (window.innerWidth < 768) {
+    const t = document.getElementById('sidebarToggle');
+    if (t) t.style.display = 'block';
+  }
+</script>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

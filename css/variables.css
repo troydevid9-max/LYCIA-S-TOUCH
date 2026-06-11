@@ -1,0 +1,257 @@
+/* ============================================================
+   css/variables.css – Design Tokens & Global Resets
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --rose-gold:   #D98C9A;
+  --rose-dark:   #c97080;
+  --soft-pink:   #F8E9EB;
+  --cream:       #FFF8F5;
+  --gold:        #C9A35B;
+  --gold-light:  #e8c97a;
+  --charcoal:    #222222;
+  --dark:        #1a1a1a;
+  --mid:         #666666;
+  --light:       #f0e8e8;
+  --white:       #ffffff;
+  --green:       #25D366;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-hero:    'Playfair Display', serif;
+  --font-body:    'Poppins', sans-serif;
+  --font-ui:      'Inter', sans-serif;
+
+  --shadow-sm:  0 2px 12px rgba(217,140,154,0.1);
+  --shadow-md:  0 8px 32px rgba(217,140,154,0.15);
+  --shadow-lg:  0 16px 56px rgba(217,140,154,0.2);
+  --shadow-dark: 0 8px 32px rgba(0,0,0,0.15);
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+
+  --transition: all 0.3s ease;
+  --transition-slow: all 0.6s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: var(--font-body); }
+input, select, textarea { font-family: var(--font-body); }
+
+/* ── Scroll Progress Bar ── */
+#scrollProgress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--rose-gold), var(--gold));
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ── WhatsApp FAB ── */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 58px; height: 58px;
+  background: var(--green);
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: white;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+  z-index: 990;
+  transition: var(--transition);
+  text-decoration: none;
+}
+.whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(37,211,102,0.55); }
+
+/* ── Shared Button Styles ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px;
+  border-radius: var(--radius-full);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-primary   { background: var(--rose-gold); color: white; border-color: var(--rose-gold); }
+.btn-primary:hover { background: transparent; color: var(--rose-gold); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-secondary { background: transparent; color: var(--charcoal); border-color: rgba(34,34,34,0.3); }
+.btn-secondary:hover { border-color: var(--rose-gold); color: var(--rose-gold); transform: translateY(-2px); }
+.btn-outline-white { background: transparent; color: white; border-color: white; }
+.btn-outline-white:hover { background: white; color: var(--rose-gold); }
+.btn-gold { background: var(--gold); color: white; border-color: var(--gold); }
+.btn-gold:hover { background: transparent; color: var(--gold); }
+.btn-dark { background: var(--dark); color: white; border-color: var(--dark); }
+.btn-dark:hover { background: transparent; color: var(--dark); }
+.btn-whatsapp { background: white; color: var(--rose-gold); border-color: white; }
+.btn-whatsapp:hover { background: transparent; color: white; }
+.btn-sm { padding: 9px 20px; font-size: 11px; }
+.btn-lg { padding: 16px 36px; font-size: 13px; }
+
+/* ── Section Eyebrow ── */
+.eyebrow {
+  display: block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 12px;
+}
+.eyebrow-gold { color: var(--gold); }
+
+/* ── Section Headings ── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 600; line-height: 1.2;
+  color: var(--charcoal);
+}
+.section-title-white { color: white; }
+.section-sub {
+  font-size: 14px; color: var(--mid);
+  line-height: 1.8; margin-top: 12px;
+  max-width: 560px;
+}
+
+/* ── Reveal Animations ── */
+.reveal        { opacity: 0; transform: translateY(28px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left   { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right  { opacity: 0; transform: translateX(28px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-scale  { opacity: 0; transform: scale(0.94);       transition: opacity 0.6s ease, transform 0.6s ease; }
+.revealed      { opacity: 1; transform: none !important; }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ── Modal Base ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(8px);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 800px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform 0.3s;
+  position: relative;
+}
+.modal-overlay.open .modal-box { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--soft-pink);
+  border: none; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--charcoal); cursor: pointer; z-index: 10;
+  transition: var(--transition);
+}
+.modal-close:hover { background: var(--rose-gold); color: white; }
+
+/* ── Form Shared ── */
+.form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.form-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 13px 16px;
+  border: 1.5px solid var(--light);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px; font-family: var(--font-body);
+  background: var(--cream); color: var(--charcoal);
+  outline: none; transition: border-color 0.2s;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--rose-gold); background: white; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ── Toast Notification ── */
+.toast {
+  position: fixed; bottom: 100px; right: 28px;
+  background: var(--dark); color: white;
+  padding: 14px 22px; border-radius: var(--radius-md);
+  font-size: 13px; font-weight: 500;
+  box-shadow: var(--shadow-dark);
+  z-index: 9999; opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  max-width: 300px;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { border-left: 4px solid #4CAF50; }
+.toast.error   { border-left: 4px solid #f44336; }
+.toast.info    { border-left: 4px solid var(--rose-gold); }
+
+/* ── Loading Spinner ── */
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--soft-pink);
+  border-top-color: var(--rose-gold);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 20px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Skeleton Loader ── */
+.skeleton {
+  background: linear-gradient(90deg, #f0e8e8 25%, #fce8e8 50%, #f0e8e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* ── Social Sidebar ── */
+.social-sidebar {
+  position: fixed; left: 20px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 18px;
+  z-index: 900;
+}
+.social-sidebar a {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(217,140,154,0.3);
+  font-size: 15px; color: var(--mid);
+  transition: var(--transition);
+  text-decoration: none;
+}
+.social-sidebar a:hover { border-color: var(--rose-gold); color: var(--rose-gold); background: var(--soft-pink); }
+
+@media (max-width: 900px) {
+  .social-sidebar { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}

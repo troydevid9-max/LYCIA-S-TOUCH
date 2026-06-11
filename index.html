@@ -3,1964 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lycia's Touch – Beauty Crafted to Perfection</title>
+    <title>
+      Lycia's Touch – Beauty Crafted to Perfection | Lagos Makeup Artist
+    </title>
     <meta
       name="description"
-      content="Professional makeup artistry for weddings, birthdays, photoshoots, and special occasions. Based in Lagos, Nigeria."
+      content="Professional makeup artistry for weddings, birthdays, photoshoots, and special occasions in Lagos, Nigeria. Book Lycia today."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
+    <meta
+      property="og:title"
+      content="Lycia's Touch – Beauty Crafted to Perfection"
     />
-    <style>
-      :root {
-        --rose-gold: #d98c9a;
-        --soft-pink: #f8e9eb;
-        --cream: #fff8f5;
-        --gold: #c9a35b;
-        --gold-light: #e8c97a;
-        --charcoal: #222222;
-        --dark: #1a1a1a;
-        --mid: #555555;
-        --light-gray: #f0e8e8;
-        --white: #ffffff;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Poppins", sans-serif;
-        background: var(--cream);
-        color: var(--charcoal);
-        overflow-x: hidden;
-      }
-      img {
-        max-width: 100%;
-        display: block;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      ul {
-        list-style: none;
-      }
-
-      /* Announcement Bar */
-      .announcement-bar {
-        background: var(--rose-gold);
-        color: white;
-        text-align: center;
-        padding: 8px 20px;
-        font-size: 12px;
-        font-family: "Poppins", sans-serif;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        overflow: hidden;
-        position: relative;
-      }
-      .announcement-track {
-        display: flex;
-        gap: 80px;
-        animation: marquee 22s linear infinite;
-        white-space: nowrap;
-        width: max-content;
-      }
-      .announcement-track span::before {
-        content: "✦  ";
-      }
-      @keyframes marquee {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      /* NAV */
-      nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: rgba(255, 248, 245, 0.92);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(217, 140, 154, 0.15);
-        padding: 0 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 70px;
-        transition: box-shadow 0.3s;
-      }
-      nav.scrolled {
-        box-shadow: 0 4px 30px rgba(217, 140, 154, 0.12);
-      }
-      .nav-logo {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 28px;
-        font-style: italic;
-        font-weight: 600;
-        color: var(--charcoal);
-        line-height: 1;
-      }
-      .nav-logo span {
-        color: var(--rose-gold);
-      }
-      .nav-logo .logo-sub {
-        font-size: 9px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        font-style: normal;
-        font-weight: 400;
-        color: var(--gold);
-        display: block;
-        margin-top: -2px;
-        font-family: "Poppins", sans-serif;
-      }
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        align-items: center;
-      }
-      .nav-links a {
-        font-size: 12.5px;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        color: var(--charcoal);
-        transition: color 0.2s;
-        text-transform: uppercase;
-      }
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--rose-gold);
-      }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      .btn-book-nav {
-        background: var(--rose-gold);
-        color: white;
-        padding: 10px 22px;
-        border-radius: 30px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s;
-        border: 2px solid var(--rose-gold);
-      }
-      .btn-book-nav:hover {
-        background: transparent;
-        color: var(--rose-gold);
-      }
-      .cart-icon {
-        font-size: 20px;
-        cursor: pointer;
-        color: var(--charcoal);
-        position: relative;
-      }
-      .cart-badge {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background: var(--rose-gold);
-        color: white;
-        font-size: 9px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-      }
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        z-index: 1100;
-      }
-      .hamburger span {
-        width: 25px;
-        height: 2px;
-        background: var(--charcoal);
-        transition: all 0.3s;
-        display: block;
-      }
-      .hamburger.open span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      .hamburger.open span:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger.open span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
-
-      /* Mobile Menu */
-      .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 248, 245, 0.97);
-        z-index: 999;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        backdrop-filter: blur(20px);
-      }
-      .mobile-menu.open {
-        display: flex;
-      }
-      .mobile-menu a {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 32px;
-        font-weight: 500;
-        color: var(--charcoal);
-        transition: color 0.2s;
-      }
-      .mobile-menu a:hover {
-        color: var(--rose-gold);
-      }
-      .mobile-menu .btn-book-nav {
-        font-size: 14px;
-        padding: 14px 36px;
-      }
-
-      /* Social Sidebar */
-      .social-sidebar {
-        position: fixed;
-        left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        z-index: 900;
-      }
-      .social-sidebar a {
-        font-size: 15px;
-        color: var(--mid);
-        transition: color 0.2s;
-      }
-      .social-sidebar a:hover {
-        color: var(--rose-gold);
-      }
-
-      /* HERO */
-      .hero {
-        position: relative;
-        min-height: 90vh;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        background: linear-gradient(
-          105deg,
-          #fff0f2 0%,
-          #fff8f5 60%,
-          #fce8d0 100%
-        );
-      }
-      .hero-bg {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 58%;
-        height: 100%;
-        overflow: hidden;
-      }
-      .hero-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        transform: scale(1.05);
-        animation: heroZoom 12s ease-in-out infinite alternate;
-      }
-      @keyframes heroZoom {
-        from {
-          transform: scale(1.05);
-        }
-        to {
-          transform: scale(1.12);
-        }
-      }
-      .hero-bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to right,
-          #fff8f5 0%,
-          rgba(255, 248, 245, 0.3) 40%,
-          transparent 100%
-        );
-        z-index: 1;
-      }
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        padding: 80px 40px 80px 80px;
-        max-width: 600px;
-      }
-      .hero-eyebrow {
-        font-size: 12px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: var(--gold);
-        font-weight: 500;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .hero-eyebrow::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--gold);
-        max-width: 60px;
-        opacity: 0.5;
-      }
-      .hero-title {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(52px, 7vw, 86px);
-        font-weight: 700;
-        line-height: 1.05;
-        color: var(--charcoal);
-        margin-bottom: 8px;
-      }
-      .hero-title-line1 {
-        font-size: clamp(14px, 2vw, 22px);
-        font-family: "Cormorant Garamond", serif;
-        font-weight: 300;
-        letter-spacing: 6px;
-        text-transform: uppercase;
-        color: var(--mid);
-        display: block;
-        margin-bottom: 6px;
-      }
-      .hero-title-line1 .be {
-        color: var(--rose-gold);
-        font-weight: 600;
-      }
-      .hero-desc {
-        font-size: 15px;
-        color: var(--mid);
-        line-height: 1.8;
-        margin: 20px 0 36px;
-        max-width: 420px;
-        font-weight: 300;
-      }
-      .hero-btns {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-      .btn-primary {
-        background: var(--rose-gold);
-        color: white;
-        padding: 14px 30px;
-        border-radius: 40px;
-        font-size: 12.5px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        border: 2px solid var(--rose-gold);
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .btn-primary:hover {
-        background: transparent;
-        color: var(--rose-gold);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(217, 140, 154, 0.3);
-      }
-      .btn-secondary {
-        background: transparent;
-        color: var(--charcoal);
-        padding: 14px 30px;
-        border-radius: 40px;
-        font-size: 12.5px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        border: 2px solid rgba(34, 34, 34, 0.3);
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .btn-secondary:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-        transform: translateY(-2px);
-      }
-      .hero-trust-bar {
-        display: flex;
-        gap: 32px;
-        margin-top: 48px;
-        padding-top: 36px;
-        border-top: 1px solid rgba(217, 140, 154, 0.2);
-      }
-      .trust-item {
-        text-align: center;
-      }
-      .trust-icon {
-        font-size: 22px;
-        color: var(--rose-gold);
-        margin-bottom: 6px;
-      }
-      .trust-label {
-        font-size: 10px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--mid);
-        font-weight: 500;
-      }
-      .hero-play {
-        position: absolute;
-        right: 40px;
-        bottom: 50px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        z-index: 3;
-        cursor: pointer;
-      }
-      .play-btn {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: white;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        color: var(--rose-gold);
-        transition: all 0.3s;
-        flex-shrink: 0;
-      }
-      .play-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 12px 40px rgba(217, 140, 154, 0.3);
-      }
-      .play-label {
-        font-size: 10px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--charcoal);
-        font-weight: 600;
-        line-height: 1.5;
-      }
-      .hero-deco {
-        position: absolute;
-        z-index: 2;
-        pointer-events: none;
-      }
-      .hero-deco.sparkle1 {
-        top: 15%;
-        right: 38%;
-        font-size: 16px;
-        color: var(--gold);
-        animation: float 4s ease-in-out infinite;
-      }
-      .hero-deco.sparkle2 {
-        top: 55%;
-        right: 55%;
-        font-size: 12px;
-        color: var(--rose-gold);
-        animation: float 5s ease-in-out infinite 1s;
-      }
-      .hero-deco.heart {
-        top: 30%;
-        left: 42%;
-        font-size: 18px;
-        color: var(--rose-gold);
-        opacity: 0.6;
-        animation: float 6s ease-in-out infinite 2s;
-      }
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      /* PREVIEW SECTION (About + Services + Portfolio) */
-      .preview-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        background: white;
-      }
-      .preview-about {
-        padding: 60px 40px;
-        background: #fdf5f6;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .section-eyebrow {
-        font-size: 10px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--rose-gold);
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      .preview-about h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 38px;
-        font-weight: 600;
-        line-height: 1.2;
-        color: var(--charcoal);
-        margin-bottom: 16px;
-      }
-      .preview-about h2 span {
-        color: var(--rose-gold);
-        font-style: italic;
-      }
-      .preview-about p {
-        font-size: 13.5px;
-        color: var(--mid);
-        line-height: 1.8;
-        margin-bottom: 20px;
-      }
-      .about-creds {
-        margin-bottom: 24px;
-      }
-      .cred-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 12.5px;
-        color: var(--charcoal);
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-      .cred-icon {
-        color: var(--rose-gold);
-        font-size: 14px;
-      }
-      .about-portrait-wrap {
-        float: right;
-        width: 140px;
-        margin: 0 0 16px 20px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 12px 40px rgba(217, 140, 154, 0.2);
-      }
-      .about-portrait-wrap img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        object-position: top;
-      }
-      .btn-outline {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 11px 22px;
-        border: 1.5px solid var(--charcoal);
-        border-radius: 40px;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        color: var(--charcoal);
-        transition: all 0.3s;
-        cursor: pointer;
-        width: fit-content;
-      }
-      .btn-outline:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-      }
-
-      /* Services Preview */
-      .preview-services {
-        padding: 60px 36px;
-        border-left: 1px solid #f0e8e8;
-        border-right: 1px solid #f0e8e8;
-      }
-      .preview-services-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 24px;
-      }
-      .preview-services-header h3 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 22px;
-        font-weight: 600;
-      }
-      .view-all {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--rose-gold);
-        transition: opacity 0.2s;
-      }
-      .view-all:hover {
-        opacity: 0.7;
-      }
-      .services-grid-small {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 12px;
-      }
-      .service-card-small {
-        background: var(--cream);
-        border: 1px solid #f0e8e8;
-        border-radius: 12px;
-        padding: 18px 14px;
-        text-align: center;
-        transition: all 0.3s;
-        cursor: pointer;
-      }
-      .service-card-small:hover {
-        border-color: var(--rose-gold);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(217, 140, 154, 0.15);
-      }
-      .svc-icon {
-        font-size: 22px;
-        color: var(--rose-gold);
-        margin-bottom: 8px;
-      }
-      .svc-name {
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--charcoal);
-        margin-bottom: 4px;
-      }
-      .svc-desc {
-        font-size: 10px;
-        color: var(--mid);
-        line-height: 1.5;
-        margin-bottom: 8px;
-      }
-      .svc-price {
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--rose-gold);
-      }
-
-      /* Portfolio Preview */
-      .preview-portfolio {
-        padding: 60px 36px;
-        background: white;
-      }
-      .preview-portfolio-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-      }
-      .preview-portfolio-header h3 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 22px;
-        font-weight: 600;
-      }
-      .portfolio-grid-small {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 8px;
-      }
-      .portfolio-thumb {
-        aspect-ratio: 1;
-        background: var(--soft-pink);
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        position: relative;
-      }
-      .portfolio-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s;
-      }
-      .portfolio-thumb:hover img {
-        transform: scale(1.08);
-      }
-      .portfolio-thumb-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(217, 140, 154, 0);
-        transition: background 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .portfolio-thumb:hover .portfolio-thumb-overlay {
-        background: rgba(217, 140, 154, 0.3);
-      }
-
-      /* BOOKING BANNER */
-      .booking-banner {
-        background: linear-gradient(135deg, var(--rose-gold) 0%, #c97080 100%);
-        color: white;
-        padding: 60px 80px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-      }
-      .booking-left h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 38px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-      .booking-left p {
-        font-size: 14px;
-        opacity: 0.9;
-        font-weight: 300;
-        margin-bottom: 32px;
-      }
-      .booking-steps {
-        display: flex;
-        gap: 0;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 32px;
-      }
-      .booking-step {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 6px;
-      }
-      .booking-step-icon {
-        font-size: 22px;
-      }
-      .booking-step-label {
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-      .booking-arrow {
-        font-size: 14px;
-        opacity: 0.6;
-        margin: 0 4px;
-      }
-      .btn-whatsapp {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: white;
-        color: var(--rose-gold);
-        padding: 14px 28px;
-        border-radius: 40px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        transition: all 0.3s;
-        cursor: pointer;
-        border: 2px solid white;
-      }
-      .btn-whatsapp:hover {
-        background: transparent;
-        color: white;
-      }
-
-      /* STATS */
-      .stats-section {
-        background: var(--dark);
-        color: white;
-        padding: 60px 80px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 40px;
-        text-align: center;
-      }
-      .stat-item {
-      }
-      .stat-icon {
-        font-size: 28px;
-        color: var(--rose-gold);
-        margin-bottom: 12px;
-      }
-      .stat-number {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 52px;
-        font-weight: 700;
-        color: white;
-        line-height: 1;
-        margin-bottom: 6px;
-      }
-      .stat-suffix {
-        color: var(--rose-gold);
-      }
-      .stat-label {
-        font-size: 12px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
-        font-weight: 500;
-      }
-
-      /* TESTIMONIALS */
-      .testimonials-section {
-        padding: 100px 80px;
-        background: var(--cream);
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      }
-      .testimonials-label {
-        font-size: 10px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--rose-gold);
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      .testimonials-title {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 44px;
-        font-weight: 600;
-        margin-bottom: 40px;
-        line-height: 1.2;
-      }
-      .testimonial-card {
-        background: white;
-        border-radius: 16px;
-        padding: 36px;
-        box-shadow: 0 8px 40px rgba(217, 140, 154, 0.1);
-        position: relative;
-        display: none;
-      }
-      .testimonial-card.active {
-        display: block;
-      }
-      .testimonial-quote {
-        font-size: 64px;
-        color: var(--rose-gold);
-        font-family: "Cormorant Garamond", serif;
-        line-height: 0.5;
-        margin-bottom: 20px;
-        opacity: 0.4;
-      }
-      .testimonial-text {
-        font-size: 15px;
-        color: var(--charcoal);
-        line-height: 1.8;
-        font-style: italic;
-        margin-bottom: 24px;
-        font-family: "Cormorant Garamond", serif;
-        font-weight: 500;
-        font-size: 17px;
-      }
-      .testimonial-author {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .author-avatar {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: var(--soft-pink);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        overflow: hidden;
-      }
-      .author-name {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--charcoal);
-      }
-      .author-role {
-        font-size: 12px;
-        color: var(--mid);
-      }
-      .testimonial-stars {
-        color: var(--gold);
-        font-size: 14px;
-        margin-bottom: 4px;
-      }
-      .testimonial-dots {
-        display: flex;
-        gap: 8px;
-        margin-top: 24px;
-      }
-      .testi-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(217, 140, 154, 0.3);
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .testi-dot.active {
-        background: var(--rose-gold);
-        width: 24px;
-        border-radius: 4px;
-      }
-      .testimonials-right {
-        position: relative;
-      }
-      .testimonials-right img {
-        border-radius: 20px;
-        width: 100%;
-        height: 460px;
-        object-fit: cover;
-        object-position: top;
-      }
-      .testi-badge {
-        position: absolute;
-        bottom: 30px;
-        left: -30px;
-        background: white;
-        border-radius: 14px;
-        padding: 18px 24px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .testi-badge-icon {
-        font-size: 28px;
-        color: var(--rose-gold);
-      }
-      .testi-badge-text {
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--charcoal);
-      }
-      .testi-badge-sub {
-        font-size: 11px;
-        color: var(--mid);
-      }
-
-      /* INSTAGRAM */
-      .instagram-section {
-        padding: 80px;
-        background: white;
-      }
-      .instagram-header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin-bottom: 32px;
-      }
-      .instagram-header h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 36px;
-        font-weight: 600;
-      }
-      .instagram-handle {
-        font-size: 13px;
-        color: var(--rose-gold);
-        font-weight: 600;
-        margin-top: 4px;
-      }
-      .instagram-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 10px;
-        margin-bottom: 32px;
-      }
-      .insta-thumb {
-        aspect-ratio: 1;
-        background: var(--soft-pink);
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        position: relative;
-      }
-      .insta-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s;
-      }
-      .insta-thumb:hover img {
-        transform: scale(1.1);
-      }
-      .insta-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(217, 140, 154, 0);
-        transition: background 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        color: white;
-      }
-      .insta-thumb:hover .insta-overlay {
-        background: rgba(217, 140, 154, 0.5);
-      }
-      .btn-follow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        border: 1.5px solid var(--charcoal);
-        padding: 11px 24px;
-        border-radius: 40px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s;
-      }
-      .btn-follow:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-      }
-
-      /* WHY SECTION */
-      .why-section {
-        background: var(--dark);
-        padding: 80px;
-        color: white;
-      }
-      .why-header {
-        text-align: center;
-        margin-bottom: 56px;
-      }
-      .why-header h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 42px;
-        font-weight: 600;
-      }
-      .why-header p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.6);
-        margin-top: 10px;
-      }
-      .why-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 28px;
-      }
-      .why-card {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(217, 140, 154, 0.15);
-        border-radius: 14px;
-        padding: 30px 22px;
-        text-align: center;
-        transition: all 0.3s;
-      }
-      .why-card:hover {
-        background: rgba(217, 140, 154, 0.08);
-        border-color: var(--rose-gold);
-        transform: translateY(-4px);
-      }
-      .why-icon {
-        font-size: 28px;
-        color: var(--rose-gold);
-        margin-bottom: 14px;
-      }
-      .why-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--rose-gold);
-        margin-bottom: 8px;
-      }
-      .why-desc {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.7;
-      }
-
-      /* FAQ */
-      .faq-section {
-        padding: 100px 80px;
-        background: var(--cream);
-        display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        gap: 80px;
-        align-items: start;
-      }
-      .faq-left h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 44px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        line-height: 1.2;
-      }
-      .faq-left p {
-        font-size: 14px;
-        color: var(--mid);
-        line-height: 1.8;
-        margin-bottom: 32px;
-      }
-      .faq-img {
-        border-radius: 16px;
-        overflow: hidden;
-        margin-top: 32px;
-      }
-      .faq-img img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        object-position: top;
-      }
-      .faq-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-      }
-      .faq-item {
-        border-bottom: 1px solid rgba(217, 140, 154, 0.2);
-        overflow: hidden;
-      }
-      .faq-question {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 22px 0;
-        cursor: pointer;
-        font-size: 14.5px;
-        font-weight: 600;
-        color: var(--charcoal);
-        transition: color 0.2s;
-      }
-      .faq-question:hover {
-        color: var(--rose-gold);
-      }
-      .faq-toggle {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(217, 140, 154, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        color: var(--rose-gold);
-        flex-shrink: 0;
-        transition: all 0.3s;
-      }
-      .faq-item.open .faq-toggle {
-        transform: rotate(45deg);
-        background: var(--rose-gold);
-        color: white;
-        border-color: var(--rose-gold);
-      }
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        font-size: 13.5px;
-        color: var(--mid);
-        line-height: 1.8;
-        transition:
-          max-height 0.4s ease,
-          padding 0.3s;
-        padding: 0 0;
-      }
-      .faq-item.open .faq-answer {
-        max-height: 200px;
-        padding-bottom: 20px;
-      }
-
-      /* TRAINING */
-      .training-section {
-        background: linear-gradient(135deg, #1a0a0d 0%, var(--dark) 100%);
-        padding: 100px 80px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-        color: white;
-      }
-      .training-left {
-      }
-      .training-eyebrow {
-        font-size: 10px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--gold);
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      .training-left h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 46px;
-        font-weight: 600;
-        line-height: 1.2;
-        margin-bottom: 16px;
-      }
-      .training-left p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.8;
-        margin-bottom: 36px;
-      }
-      .training-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .training-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(201, 163, 91, 0.2);
-        border-radius: 12px;
-        padding: 20px 22px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        transition: all 0.3s;
-      }
-      .training-card:hover {
-        border-color: var(--gold);
-        background: rgba(201, 163, 91, 0.08);
-      }
-      .training-card-icon {
-        font-size: 24px;
-        color: var(--gold);
-        flex-shrink: 0;
-      }
-      .training-card-title {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
-      .training-card-desc {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
-      }
-      .training-right {
-        position: relative;
-      }
-      .training-right img {
-        border-radius: 20px;
-        width: 100%;
-        height: 480px;
-        object-fit: cover;
-        object-position: top;
-      }
-      .training-badge {
-        position: absolute;
-        top: 30px;
-        right: -20px;
-        background: var(--gold);
-        color: white;
-        border-radius: 12px;
-        padding: 16px 20px;
-        text-align: center;
-        font-weight: 700;
-      }
-      .training-badge-number {
-        font-size: 32px;
-        font-family: "Cormorant Garamond", serif;
-      }
-      .training-badge-text {
-        font-size: 10px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-
-      /* CONTACT */
-      .contact-section {
-        padding: 100px 80px;
-        background: white;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: start;
-      }
-      .contact-left {
-      }
-      .contact-eyebrow {
-        font-size: 10px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--rose-gold);
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      .contact-left h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 44px;
-        font-weight: 600;
-        line-height: 1.2;
-        margin-bottom: 20px;
-      }
-      .contact-left p {
-        font-size: 14px;
-        color: var(--mid);
-        line-height: 1.8;
-        margin-bottom: 36px;
-      }
-      .contact-info-list {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        margin-bottom: 36px;
-      }
-      .contact-info-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-      }
-      .contact-info-icon {
-        width: 42px;
-        height: 42px;
-        background: var(--soft-pink);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        color: var(--rose-gold);
-        flex-shrink: 0;
-      }
-      .contact-info-label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--mid);
-        font-weight: 600;
-      }
-      .contact-info-value {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--charcoal);
-        margin-top: 2px;
-      }
-      .social-links {
-        display: flex;
-        gap: 12px;
-      }
-      .social-link {
-        width: 40px;
-        height: 40px;
-        border: 1.5px solid rgba(217, 140, 154, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        color: var(--mid);
-        transition: all 0.3s;
-      }
-      .social-link:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-        background: var(--soft-pink);
-      }
-      .contact-map {
-        background: #f0e8e8;
-        border-radius: 16px;
-        overflow: hidden;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 24px;
-        font-size: 14px;
-        color: var(--mid);
-      }
-      .contact-right {
-      }
-      .contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .form-group label {
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--charcoal);
-      }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 14px 18px;
-        border: 1.5px solid #e8d8da;
-        border-radius: 10px;
-        font-size: 13.5px;
-        font-family: "Poppins", sans-serif;
-        background: var(--cream);
-        color: var(--charcoal);
-        outline: none;
-        transition: border-color 0.2s;
-        resize: none;
-      }
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
-        border-color: var(--rose-gold);
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .newsletter-box {
-        background: var(--soft-pink);
-        border-radius: 16px;
-        padding: 36px;
-        margin-top: 24px;
-      }
-      .newsletter-box h4 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-      .newsletter-box p {
-        font-size: 13px;
-        color: var(--mid);
-        margin-bottom: 20px;
-      }
-      .newsletter-input {
-        display: flex;
-        gap: 8px;
-      }
-      .newsletter-input input {
-        flex: 1;
-        padding: 12px 18px;
-        border: 1.5px solid rgba(217, 140, 154, 0.3);
-        border-radius: 40px;
-        font-size: 13px;
-        background: white;
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .newsletter-input input:focus {
-        border-color: var(--rose-gold);
-      }
-      .btn-subscribe {
-        background: var(--rose-gold);
-        color: white;
-        padding: 12px 22px;
-        border-radius: 40px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s;
-        white-space: nowrap;
-      }
-      .btn-subscribe:hover {
-        background: #c97080;
-      }
-
-      /* FOOTER */
-      footer {
-        background: var(--dark);
-        color: white;
-        padding: 80px 80px 40px;
-      }
-      .footer-top {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1.5fr;
-        gap: 48px;
-        padding-bottom: 60px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        margin-bottom: 40px;
-      }
-      .footer-brand {
-      }
-      .footer-logo {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 32px;
-        font-style: italic;
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      .footer-logo span {
-        color: var(--rose-gold);
-      }
-      .footer-desc {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.8;
-        margin-bottom: 20px;
-      }
-      .footer-socials {
-        display: flex;
-        gap: 12px;
-      }
-      .footer-social {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.6);
-        transition: all 0.3s;
-      }
-      .footer-social:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-        background: rgba(217, 140, 154, 0.1);
-      }
-      .footer-col h5 {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 20px;
-      }
-      .footer-col ul {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .footer-col ul li a {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.55);
-        transition: color 0.2s;
-      }
-      .footer-col ul li a:hover {
-        color: var(--rose-gold);
-      }
-      .footer-contact-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.55);
-        margin-bottom: 12px;
-      }
-      .footer-contact-item i {
-        color: var(--rose-gold);
-        margin-top: 2px;
-        font-size: 14px;
-      }
-      .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.4);
-      }
-      .footer-bottom a {
-        color: var(--rose-gold);
-      }
-      .scroll-top {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.6);
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 14px;
-      }
-      .scroll-top:hover {
-        border-color: var(--rose-gold);
-        color: var(--rose-gold);
-      }
-
-      /* WhatsApp FAB */
-      .whatsapp-fab {
-        position: fixed;
-        bottom: 28px;
-        right: 28px;
-        width: 56px;
-        height: 56px;
-        background: #25d366;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 26px;
-        color: white;
-        box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-        cursor: pointer;
-        z-index: 999;
-        transition: all 0.3s;
-        text-decoration: none;
-      }
-      .whatsapp-fab:hover {
-        transform: scale(1.1);
-        box-shadow: 0 10px 32px rgba(37, 211, 102, 0.5);
-      }
-
-      /* Scroll Progress */
-      .scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        background: linear-gradient(to right, var(--rose-gold), var(--gold));
-        width: 0%;
-        z-index: 1001;
-        transition: width 0.1s;
-      }
-
-      /* Reveal animations */
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-      .reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal-left {
-        opacity: 0;
-        transform: translateX(-30px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-      .reveal-left.revealed {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .reveal-right {
-        opacity: 0;
-        transform: translateX(30px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-      .reveal-right.revealed {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      /* Portfolio full section */
-      .portfolio-section {
-        padding: 100px 80px;
-        background: var(--cream);
-      }
-      .portfolio-header {
-        text-align: center;
-        margin-bottom: 48px;
-      }
-      .portfolio-header h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 46px;
-        font-weight: 600;
-        margin-bottom: 12px;
-      }
-      .portfolio-header p {
-        font-size: 14px;
-        color: var(--mid);
-      }
-      .portfolio-filters {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 40px;
-      }
-      .filter-btn {
-        padding: 9px 22px;
-        border-radius: 40px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        border: 1.5px solid rgba(217, 140, 154, 0.3);
-        background: transparent;
-        color: var(--mid);
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .filter-btn.active,
-      .filter-btn:hover {
-        background: var(--rose-gold);
-        color: white;
-        border-color: var(--rose-gold);
-      }
-      .portfolio-masonry {
-        columns: 4;
-        column-gap: 14px;
-      }
-      .masonry-item {
-        break-inside: avoid;
-        margin-bottom: 14px;
-        border-radius: 12px;
-        overflow: hidden;
-        cursor: pointer;
-        position: relative;
-      }
-      .masonry-item img {
-        width: 100%;
-        display: block;
-        transition: transform 0.5s;
-      }
-      .masonry-item:hover img {
-        transform: scale(1.05);
-      }
-      .masonry-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(217, 140, 154, 0.6) 0%,
-          transparent 60%
-        );
-        opacity: 0;
-        transition: opacity 0.3s;
-        display: flex;
-        align-items: flex-end;
-        padding: 16px;
-      }
-      .masonry-item:hover .masonry-overlay {
-        opacity: 1;
-      }
-      .masonry-overlay span {
-        color: white;
-        font-size: 12px;
-        font-weight: 600;
-      }
-      .portfolio-cta {
-        text-align: center;
-        margin-top: 48px;
-      }
-
-      /* PLACEHOLDER IMAGES (beautiful color gradients for demo) */
-      .img-placeholder {
-        background: linear-gradient(
-          135deg,
-          #e8bcc0 0%,
-          #d4829a 50%,
-          #c06080 100%
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 24px;
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 1100px) {
-        .preview-section {
-          grid-template-columns: 1fr;
-        }
-        .preview-about,
-        .preview-services,
-        .preview-portfolio {
-          border: none;
-          border-top: 1px solid #f0e8e8;
-        }
-        .services-grid-small {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .portfolio-masonry {
-          columns: 3;
-        }
-        .stats-section {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .why-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .footer-top {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      @media (max-width: 900px) {
-        nav {
-          padding: 0 20px;
-        }
-        .nav-links {
-          display: none;
-        }
-        .hamburger {
-          display: flex;
-        }
-        .social-sidebar {
-          display: none;
-        }
-        .hero-content {
-          padding: 60px 24px;
-          max-width: 100%;
-        }
-        .hero-bg {
-          width: 100%;
-          opacity: 0.25;
-        }
-        .hero-play {
-          display: none;
-        }
-        .hero {
-          min-height: 100vh;
-        }
-        .booking-banner {
-          grid-template-columns: 1fr;
-          padding: 50px 24px;
-          gap: 32px;
-        }
-        .testimonials-section {
-          grid-template-columns: 1fr;
-          padding: 60px 24px;
-          gap: 40px;
-        }
-        .testimonials-right {
-          display: none;
-        }
-        .instagram-section {
-          padding: 60px 24px;
-        }
-        .instagram-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .faq-section {
-          grid-template-columns: 1fr;
-          padding: 60px 24px;
-          gap: 40px;
-        }
-        .training-section {
-          grid-template-columns: 1fr;
-          padding: 60px 24px;
-          gap: 40px;
-        }
-        .training-right {
-          display: none;
-        }
-        .contact-section {
-          grid-template-columns: 1fr;
-          padding: 60px 24px;
-          gap: 40px;
-        }
-        .portfolio-section {
-          padding: 60px 24px;
-        }
-        .portfolio-masonry {
-          columns: 2;
-        }
-        .why-section {
-          padding: 60px 24px;
-        }
-        .why-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .stats-section {
-          padding: 50px 24px;
-          grid-template-columns: repeat(2, 1fr);
-        }
-        footer {
-          padding: 60px 24px 30px;
-        }
-        .footer-top {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
-        .footer-bottom {
-          flex-direction: column;
-          gap: 12px;
-          text-align: center;
-        }
-        .preview-services,
-        .preview-about,
-        .preview-portfolio {
-          padding: 40px 24px;
-        }
-        .services-grid-small {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .hero-trust-bar {
-          gap: 16px;
-          flex-wrap: wrap;
-        }
-      }
-      @media (max-width: 600px) {
-        .instagram-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .portfolio-masonry {
-          columns: 2;
-        }
-        .hero-title {
-          font-size: 44px;
-        }
-        .why-grid {
-          grid-template-columns: 1fr;
-        }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-        .preview-services,
-        .preview-about {
-          padding: 32px 20px;
-        }
-      }
-    </style>
+    <meta
+      property="og:description"
+      content="Professional makeup artistry for weddings, birthdays, photoshoots, and special occasions."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/sections.css" />
   </head>
   <body>
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+    <div id="scrollProgress"></div>
 
-    <!-- Announcement Bar -->
+    <!-- ── Announcement Bar ── -->
     <div class="announcement-bar">
-      <div class="announcement-track" id="announcementTrack">
-        <span>Professional Makeup Artist</span>
-        <span>Bridal Specialist</span>
-        <span>Home Service Available</span>
-        <span>Makeup Training Available</span>
-        <span>Lagos, Nigeria</span>
-        <span>Book via WhatsApp</span>
-        <span>Professional Makeup Artist</span>
-        <span>Bridal Specialist</span>
-        <span>Home Service Available</span>
-        <span>Makeup Training Available</span>
-        <span>Lagos, Nigeria</span>
-        <span>Book via WhatsApp</span>
+      <div class="announcement-track">
+        <span>Professional Makeup Artist</span><span>Bridal Specialist</span>
+        <span>Home Service Available</span
+        ><span>Makeup Training Available</span> <span>Abuja, Nigeria</span
+        ><span>Book via WhatsApp</span> <span>Professional Makeup Artist</span
+        ><span>Bridal Specialist</span> <span>Home Service Available</span
+        ><span>Makeup Training Available</span> <span>Abuja, Nigeria</span
+        ><span>Book via WhatsApp</span>
       </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- ── Navigation ── -->
     <nav id="mainNav">
-      <a href="#" class="nav-logo"
-        >Lycia's<span>/</span><br /><span class="logo-sub">Touch</span></a
-      >
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-main">Lycia's<span>/</span></span>
+        <span class="nav-logo-sub">Touch · Luxury Beauty</span>
+      </a>
       <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
@@ -1968,10 +54,8 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <a href="#contact" class="btn-book-nav">Book Appointment</a>
-        <div class="cart-icon" style="position: relative">
-          🛒<span class="cart-badge">2</span>
-        </div>
+        <a href="#calendar" class="btn btn-primary btn-sm">Book Appointment</a>
+        <div class="cart-wrap">🛒<span class="cart-badge">2</span></div>
         <div class="hamburger" id="hamburger">
           <span></span><span></span><span></span>
         </div>
@@ -1980,18 +64,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#" onclick="closeMobileMenu()">Home</a>
-      <a href="#about" onclick="closeMobileMenu()">About</a>
-      <a href="#services" onclick="closeMobileMenu()">Services</a>
-      <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
-      <a href="#testimonials" onclick="closeMobileMenu()">Testimonials</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-      <a
-        href="https://wa.me/2348123456789"
-        class="btn-book-nav"
-        onclick="closeMobileMenu()"
-        >📅 Book Appointment</a
-      >
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#reels">Reels</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+      <a href="#calendar" class="btn btn-primary">📅 Book Appointment</a>
     </div>
 
     <!-- Social Sidebar -->
@@ -1999,25 +79,27 @@
       <a href="#" title="Instagram">📸</a>
       <a href="#" title="Facebook">👤</a>
       <a href="#" title="TikTok">🎵</a>
-      <a href="#" title="WhatsApp">💬</a>
+      <a href="https://wa.me/2348123456789" title="WhatsApp">💬</a>
     </div>
 
-    <!-- Hero -->
+    <!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
     <section class="hero" id="home">
       <div class="hero-bg">
         <img
-          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=80&auto=format&fit=crop"
-          alt="Professional makeup artistry"
+          src="/images\WhatsApp Image 2026-06-10 at 8.39.55 PM (2).jpeg"
+          alt="Lycia applying professional makeup"
           loading="eager"
         />
       </div>
-      <div class="hero-deco sparkle1">✦</div>
-      <div class="hero-deco sparkle2">✧</div>
-      <div class="hero-deco heart">♡</div>
+      <div class="hero-deco s1">✦</div>
+      <div class="hero-deco s2">✧</div>
+      <div class="hero-deco h1">♡</div>
       <div class="hero-content">
-        <div class="hero-eyebrow">Lagos, Nigeria · Since 2019</div>
+        <div class="hero-eyebrow">Abuja, Nigeria · Est. 2020</div>
         <h1 class="hero-title">
-          <span class="hero-title-line1"
+          <span class="hero-title-top"
             ><span class="be">Be</span>auty Crafted To</span
           >
           Perfection
@@ -2027,12 +109,14 @@
           events and every special occasion.
         </p>
         <div class="hero-btns">
-          <a href="https://wa.me/2348123456789" class="btn-primary"
+          <a href="#calendar" class="btn btn-primary btn-lg"
             >📅 Book Appointment</a
           >
-          <a href="#portfolio" class="btn-secondary">🖼 View Portfolio</a>
+          <a href="#portfolio" class="btn btn-secondary btn-lg"
+            >🖼 View Portfolio</a
+          >
         </div>
-        <div class="hero-trust-bar">
+        <div class="hero-trust">
           <div class="trust-item">
             <div class="trust-icon">✨</div>
             <div class="trust-label">Professional<br />Service</div>
@@ -2057,24 +141,31 @@
       </div>
     </section>
 
-    <!-- Preview Section: About + Services + Portfolio -->
-    <div class="preview-section" id="about">
-      <!-- About Preview -->
-      <div class="preview-about reveal-left">
-        <div class="section-eyebrow">About Me</div>
-        <div style="overflow: hidden">
-          <div class="about-portrait-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80&auto=format&fit=crop"
-              alt="Lycia - Professional Makeup Artist"
-            />
-          </div>
-          <h2>Hi, I'm <span>Lycia</span> ♡</h2>
-          <p>
-            I'm a professional makeup artist passionate about enhancing natural
-            beauty and making you look and feel your best for every occasion.
-          </p>
+    <!-- ════════════════════════════════════════════
+     ABOUT + SERVICES + PORTFOLIO PREVIEW
+════════════════════════════════════════════ -->
+    <div class="preview-grid" id="about">
+      <!-- About -->
+      <div class="preview-cell reveal-left">
+        <span class="eyebrow">About Me</span>
+        <div class="about-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80&auto=format&fit=crop"
+            alt="Lycia – Professional Makeup Artist"
+          />
         </div>
+        <h2 class="about-name">Hi, I'm <span>Lycia</span> ♡</h2>
+        <p
+          style="
+            font-size: 13.5px;
+            color: var(--mid);
+            line-height: 1.85;
+            margin-bottom: 18px;
+          "
+        >
+          I'm a professional makeup artist passionate about enhancing natural
+          beauty and making you look and feel your best for every occasion.
+        </p>
         <div class="about-creds">
           <div class="cred-item">
             <span class="cred-icon">✓</span> Certified Professional Makeup
@@ -2088,184 +179,195 @@
             Makeup
           </div>
         </div>
-        <a href="#contact" class="btn-outline">👤 More About Me</a>
+        <a href="#contact" class="btn btn-dark btn-sm">👤 More About Me</a>
       </div>
 
-      <!-- Services Preview -->
-      <div class="preview-services reveal" id="services">
-        <div class="preview-services-header">
-          <div>
-            <div class="section-eyebrow">My Services</div>
-            <h3
-              style="
-                font-family: &quot;Cormorant Garamond&quot;, serif;
-                font-size: 22px;
-                font-weight: 600;
-              "
-            >
-              What I Offer
-            </h3>
-          </div>
-          <a href="#services" class="view-all">View All →</a>
+      <!-- Services -->
+      <div class="preview-cell reveal" id="services">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+          "
+        >
+          <span class="eyebrow" style="margin: 0">My Services</span>
+          <a
+            href="#services-full"
+            class="view-all"
+            style="
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              color: var(--rose-gold);
+            "
+            >View All →</a
+          >
         </div>
-        <div class="services-grid-small">
-          <div class="service-card-small">
-            <div class="svc-icon">💍</div>
-            <div class="svc-name">Bridal Makeup</div>
-            <div class="svc-desc">Look breathtaking on your special day.</div>
-            <div class="svc-price">FROM ₦60,000</div>
-          </div>
-          <div class="service-card-small">
-            <div class="svc-icon">🎂</div>
-            <div class="svc-name">Birthday Glam</div>
-            <div class="svc-desc">
-              Make your day extra special &amp; unforgettable.
+        <h3
+          style="
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 22px;
+          "
+        >
+          What I Offer
+        </h3>
+        <div class="services-mini">
+          <div class="svc-card">
+            <div class="svc-card-icon">💍</div>
+            <div class="svc-card-name">Bridal Makeup</div>
+            <div class="svc-card-desc">
+              Look breathtaking on your special day.
             </div>
-            <div class="svc-price">FROM ₦25,000</div>
+            <div class="svc-card-price">FROM ₦60,000</div>
           </div>
-          <div class="service-card-small">
-            <div class="svc-icon">📸</div>
-            <div class="svc-name">Photoshoot Makeup</div>
-            <div class="svc-desc">Flawless looks for your perfect shots.</div>
-            <div class="svc-price">FROM ₦30,000</div>
+          <div class="svc-card">
+            <div class="svc-card-icon">🎂</div>
+            <div class="svc-card-name">Birthday Glam</div>
+            <div class="svc-card-desc">Make your day extra special.</div>
+            <div class="svc-card-price">FROM ₦25,000</div>
           </div>
-          <div class="service-card-small">
-            <div class="svc-icon">🎉</div>
-            <div class="svc-name">Event Makeup</div>
-            <div class="svc-desc">
-              Perfect for parties, dinners &amp; events.
-            </div>
-            <div class="svc-price">FROM ₦20,000</div>
+          <div class="svc-card">
+            <div class="svc-card-icon">📸</div>
+            <div class="svc-card-name">Photoshoot</div>
+            <div class="svc-card-desc">Flawless looks for perfect shots.</div>
+            <div class="svc-card-price">FROM ₦30,000</div>
           </div>
-          <div class="service-card-small">
-            <div class="svc-icon">🏠</div>
-            <div class="svc-name">Home Service</div>
-            <div class="svc-desc">I come to you for your convenience.</div>
-            <div class="svc-price">FROM ₦10,000</div>
+          <div class="svc-card">
+            <div class="svc-card-icon">🎉</div>
+            <div class="svc-card-name">Event Makeup</div>
+            <div class="svc-card-desc">Perfect for parties &amp; dinners.</div>
+            <div class="svc-card-price">FROM ₦20,000</div>
           </div>
-          <div class="service-card-small">
-            <div class="svc-icon">🎓</div>
-            <div class="svc-name">Makeup Training</div>
-            <div class="svc-desc">Learn skills and start your own journey.</div>
-            <div class="svc-price">FROM ₦50,000</div>
+          <div class="svc-card">
+            <div class="svc-card-icon">🏠</div>
+            <div class="svc-card-name">Home Service</div>
+            <div class="svc-card-desc">I come to you, anywhere.</div>
+            <div class="svc-card-price">FROM ₦10,000</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-card-icon">🎓</div>
+            <div class="svc-card-name">Training</div>
+            <div class="svc-card-desc">Learn &amp; start your journey.</div>
+            <div class="svc-card-price">FROM ₦50,000</div>
           </div>
         </div>
       </div>
 
-      <!-- Portfolio Highlights Preview -->
-      <div class="preview-portfolio reveal-right">
-        <div class="preview-portfolio-header">
-          <div>
-            <div class="section-eyebrow">Portfolio Highlights</div>
-            <h3
-              style="
-                font-family: &quot;Cormorant Garamond&quot;, serif;
-                font-size: 22px;
-                font-weight: 600;
-              "
-            >
-              Recent Work
-            </h3>
-          </div>
-          <a href="#portfolio" class="view-all">View All →</a>
+      <!-- Portfolio Preview -->
+      <div class="preview-cell reveal-right">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+          "
+        >
+          <span class="eyebrow" style="margin: 0">Portfolio Highlights</span>
+          <a
+            href="#portfolio"
+            class="view-all"
+            style="
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              color: var(--rose-gold);
+            "
+            >View All →</a
+          >
         </div>
-        <div class="portfolio-grid-small">
-          <div class="portfolio-thumb">
-            <img
-              src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=300&q=80&auto=format&fit=crop"
-              alt="Bridal makeup"
-            />
-            <div class="portfolio-thumb-overlay">🔍</div>
+        <h3
+          style="
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 22px;
+          "
+        >
+          Recent Work
+        </h3>
+        <div class="portfolio-mini">
+          <div class="port-thumb">
+            <img src="./images/IMG_1338.JPG.jpeg" alt="Bridal" />
+            <div class="port-thumb-ov"></div>
           </div>
-          <div class="portfolio-thumb">
-            <img
-              src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=300&q=80&auto=format&fit=crop"
-              alt="Glam makeup"
-            />
-            <div class="portfolio-thumb-overlay">🔍</div>
+          <div class="port-thumb">
+            <img src="./images/IMG_1684.JPG.jpeg" alt="Glam" />
+            <div class="port-thumb-ov"></div>
           </div>
-          <div class="portfolio-thumb">
-            <img
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=300&q=80&auto=format&fit=crop"
-              alt="Photoshoot makeup"
-            />
-            <div class="portfolio-thumb-overlay">🔍</div>
+          <div class="port-thumb">
+            <img src="./images/IMG_1697.JPG.jpeg" alt="Photo" />
+            <div class="port-thumb-ov"></div>
           </div>
-          <div class="portfolio-thumb">
-            <img
-              src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=300&q=80&auto=format&fit=crop"
-              alt="Event makeup"
-            />
-            <div class="portfolio-thumb-overlay">🔍</div>
+          <div class="port-thumb">
+            <img src="./images/IMG_1699.JPG.jpeg" alt="Event" />
+            <div class="port-thumb-ov"></div>
           </div>
-          <div class="portfolio-thumb">
-            <img
-              src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=300&q=80&auto=format&fit=crop"
-              alt="Beauty work"
-            />
-            <div class="portfolio-thumb-overlay">🔍</div>
+          <div class="port-thumb">
+            <img src="./images/IMG_1340.JPG (1).jpeg" alt="Beauty" />
+            <div class="port-thumb-ov"></div>
           </div>
-          <div class="portfolio-thumb">
+          <div class="port-thumb">
             <img
-              src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300&q=80&auto=format&fit=crop"
-              alt="Makeup work"
+              src="./images/WhatsApp Image 2026-06-10 at 8.39.55 PM.jpeg"
+              alt="Work"
             />
-            <div class="portfolio-thumb-overlay">🔍</div>
+            <div class="port-thumb-ov"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Booking Banner -->
+    <!-- ════════════════════════════════════════════
+     BOOKING BANNER
+════════════════════════════════════════════ -->
     <div class="booking-banner reveal">
-      <div class="booking-left">
+      <div>
         <h2>Book Your Appointment</h2>
         <p>Let's bring out the best version of you.</p>
         <div class="booking-steps">
-          <div class="booking-step">
-            <div class="booking-step-icon">🛍</div>
-            <div class="booking-step-label">Choose<br />Service</div>
+          <div class="bk-step">
+            <div class="bk-step-icon">🛍</div>
+            <div class="bk-step-label">Choose<br />Service</div>
           </div>
-          <div class="booking-arrow">›</div>
-          <div class="booking-step">
-            <div class="booking-step-icon">📅</div>
-            <div class="booking-step-label">Pick Date<br />&amp; Time</div>
+          <div class="bk-arrow">›</div>
+          <div class="bk-step">
+            <div class="bk-step-icon">📅</div>
+            <div class="bk-step-label">Pick Date<br />&amp; Time</div>
           </div>
-          <div class="booking-arrow">›</div>
-          <div class="booking-step">
-            <div class="booking-step-icon">✅</div>
-            <div class="booking-step-label">Confirm<br />&amp; Relax</div>
+          <div class="bk-arrow">›</div>
+          <div class="bk-step">
+            <div class="bk-step-icon">✅</div>
+            <div class="bk-step-label">Confirm<br />&amp; Relax</div>
           </div>
-          <div class="booking-arrow">›</div>
-          <div class="booking-step">
-            <div class="booking-step-icon">✨</div>
-            <div class="booking-step-label">Glam<br />Time!</div>
+          <div class="bk-arrow">›</div>
+          <div class="bk-step">
+            <div class="bk-step-icon">✨</div>
+            <div class="bk-step-label">Glam<br />Time!</div>
           </div>
         </div>
         <a
           href="https://wa.me/2348123456789?text=Hi Lycia! I'd like to book an appointment."
-          class="btn-whatsapp"
+          class="btn btn-whatsapp btn-lg"
           >💬 Book Now on WhatsApp</a
         >
       </div>
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop"
-          alt="Beauty booking"
-          style="
-            border-radius: 16px;
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            opacity: 0.8;
-          "
-        />
+      <div class="booking-banner-img">
+        <img src="./images/IMG_1683.JPG.jpeg" alt="Booking" />
       </div>
     </div>
 
-    <!-- Stats -->
+    <!-- ════════════════════════════════════════════
+     STATS
+════════════════════════════════════════════ -->
     <div class="stats-section">
-      <div class="stat-item reveal">
+      <div class="reveal">
         <div class="stat-icon">👥</div>
         <div class="stat-number">
           <span class="counter" data-target="300">0</span
@@ -2273,7 +375,7 @@
         </div>
         <div class="stat-label">Happy Clients</div>
       </div>
-      <div class="stat-item reveal">
+      <div class="reveal delay-1">
         <div class="stat-icon">⏳</div>
         <div class="stat-number">
           <span class="counter" data-target="5">0</span
@@ -2281,7 +383,7 @@
         </div>
         <div class="stat-label">Years Experience</div>
       </div>
-      <div class="stat-item reveal">
+      <div class="reveal delay-2">
         <div class="stat-icon">💖</div>
         <div class="stat-number">
           <span class="counter" data-target="100">0</span
@@ -2289,7 +391,7 @@
         </div>
         <div class="stat-label">Client Satisfaction</div>
       </div>
-      <div class="stat-item reveal">
+      <div class="reveal delay-3">
         <div class="stat-icon">🎊</div>
         <div class="stat-number">
           <span class="counter" data-target="50">0</span
@@ -2299,310 +401,657 @@
       </div>
     </div>
 
-    <!-- Portfolio Full Section -->
+    <!-- ════════════════════════════════════════════
+     BEFORE / AFTER SLIDER
+════════════════════════════════════════════ -->
+    <section class="ba-section">
+      <div class="ba-header reveal">
+        <span class="eyebrow" style="display: block; text-align: center"
+          >Transformations</span
+        >
+        <h2 class="section-title" style="text-align: center">
+          Before &amp; After
+        </h2>
+        <p class="section-sub" style="text-align: center; margin: 0 auto">
+          Drag the slider to see the transformation. Every face, a masterpiece.
+        </p>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-card reveal delay-1">
+          <div class="ba-card-inner">
+            <div class="ba-after">
+              <img
+                src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&auto=format&fit=crop"
+                alt="After"
+              />
+            </div>
+            <div class="ba-before">
+              <img
+                src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80&auto=format&fit=crop"
+                alt="Before"
+              />
+            </div>
+            <div class="ba-divider"><div class="ba-handle">⟺</div></div>
+            <div class="ba-label ba-label-before">Before</div>
+            <div class="ba-label ba-label-after">After</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-2">
+          <div class="ba-card-inner">
+            <div class="ba-after">
+              <img
+                src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=600&q=80&auto=format&fit=crop"
+                alt="After"
+              />
+            </div>
+            <div class="ba-before">
+              <img
+                src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80&auto=format&fit=crop"
+                alt="Before"
+              />
+            </div>
+            <div class="ba-divider"><div class="ba-handle">⟺</div></div>
+            <div class="ba-label ba-label-before">Before</div>
+            <div class="ba-label ba-label-after">After</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-3">
+          <div class="ba-card-inner">
+            <div class="ba-after">
+              <img
+                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop"
+                alt="After"
+              />
+            </div>
+            <div class="ba-before">
+              <img
+                src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&q=80&auto=format&fit=crop"
+                alt="Before"
+              />
+            </div>
+            <div class="ba-divider"><div class="ba-handle">⟺</div></div>
+            <div class="ba-label ba-label-before">Before</div>
+            <div class="ba-label ba-label-after">After</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     PORTFOLIO GALLERY
+════════════════════════════════════════════ -->
     <section class="portfolio-section" id="portfolio">
       <div class="portfolio-header reveal">
-        <div
-          class="section-eyebrow"
-          style="display: block; text-align: center; margin-bottom: 10px"
-        >
-          My Work
-        </div>
-        <h2>Portfolio Gallery</h2>
-        <p>
+        <span class="eyebrow" style="display: block">My Work</span>
+        <h2 class="section-title">Portfolio Gallery</h2>
+        <p class="section-sub" style="margin: 0 auto">
           Every face tells a story. Here's a glimpse of the beauty I've crafted.
         </p>
       </div>
       <div class="portfolio-filters reveal">
-        <button
-          class="filter-btn active"
-          onclick="filterPortfolio(this, 'all')"
-        >
-          All
-        </button>
-        <button class="filter-btn" onclick="filterPortfolio(this, 'bridal')">
-          Bridal
-        </button>
-        <button class="filter-btn" onclick="filterPortfolio(this, 'glam')">
-          Birthday Glam
-        </button>
-        <button
-          class="filter-btn"
-          onclick="filterPortfolio(this, 'photoshoot')"
-        >
-          Photoshoot
-        </button>
-        <button class="filter-btn" onclick="filterPortfolio(this, 'events')">
-          Events
-        </button>
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="bridal">Bridal</button>
+        <button class="filter-btn" data-cat="glam">Birthday Glam</button>
+        <button class="filter-btn" data-cat="photoshoot">Photoshoot</button>
+        <button class="filter-btn" data-cat="events">Events</button>
+        <button class="filter-btn" data-cat="training">Training</button>
       </div>
-      <div class="portfolio-masonry" id="portfolioGrid">
-        <div class="masonry-item" data-category="bridal">
-          <img
-            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80&auto=format&fit=crop"
-            alt="Bridal Makeup"
-          />
-          <div class="masonry-overlay"><span>Bridal Glam</span></div>
+      <div class="masonry" id="portfolioGrid">
+        <div class="masonry-item reveal" data-category="bridal">
+          <img src="./images/IMG_1700.JPG.jpeg" alt="Bridal" />
+          <div class="masonry-ov"><span>Bridal Glam</span></div>
         </div>
-        <div class="masonry-item" data-category="glam">
-          <img
-            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&q=80&auto=format&fit=crop&h=600"
-            alt="Birthday Glam"
-          />
-          <div class="masonry-overlay"><span>Birthday Glam</span></div>
+        <div class="masonry-item reveal delay-1" data-category="glam">
+          <img src="./images/IMG_1687.JPG.jpeg" alt="Glam" />
+          <div class="masonry-ov"><span>Birthday Glam</span></div>
         </div>
-        <div class="masonry-item" data-category="photoshoot">
-          <img
-            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80&auto=format&fit=crop"
-            alt="Photoshoot Makeup"
-          />
-          <div class="masonry-overlay"><span>Photoshoot Look</span></div>
+        <div class="masonry-item reveal delay-2" data-category="photoshoot">
+          <img src="./images/IMG_1340.JPG.jpeg" alt="Photo" />
+          <div class="masonry-ov"><span>Photoshoot Look</span></div>
         </div>
-        <div class="masonry-item" data-category="events">
-          <img
-            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80&auto=format&fit=crop"
-            alt="Event Makeup"
-          />
-          <div class="masonry-overlay"><span>Event Glam</span></div>
+        <div class="masonry-item reveal delay-3" data-category="events">
+          <img src="./images/IMG_1683.JPG.jpeg" alt="Event" />
+          <div class="masonry-ov"><span>Event Glam</span></div>
         </div>
-        <div class="masonry-item" data-category="bridal">
-          <img
-            src="https://images.unsplash.com/photo-1511232873-5b1be7f9b3c6?w=500&q=80&auto=format&fit=crop&h=700"
-            alt="Bridal"
-          />
-          <div class="masonry-overlay"><span>Bridal Beauty</span></div>
+        <div class="masonry-item reveal" data-category="bridal">
+          <img src="./images/IMG_1688.JPG.jpeg" alt="Bridal" />
+          <div class="masonry-ov"><span>Bridal Beauty</span></div>
         </div>
-        <div class="masonry-item" data-category="glam">
-          <img
-            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=500&q=80&auto=format&fit=crop"
-            alt="Glam Makeup"
-          />
-          <div class="masonry-overlay"><span>Glam Goddess</span></div>
+        <div class="masonry-item reveal delay-1" data-category="glam">
+          <img src="./images/IMG_1693.JPG.jpeg" alt="Glam" />
+          <div class="masonry-ov"><span>Glam Goddess</span></div>
         </div>
-        <div class="masonry-item" data-category="photoshoot">
+        <div class="masonry-item reveal delay-2" data-category="photoshoot">
           <img
-            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80&auto=format&fit=crop&h=500"
-            alt="Makeup Products"
+            src="./images/WhatsApp Image 2026-06-10 at 8.39.54 PM.jpeg"
+            alt="Studio"
           />
-          <div class="masonry-overlay"><span>Studio Look</span></div>
+          <div class="masonry-ov"><span>Studio Look</span></div>
         </div>
-        <div class="masonry-item" data-category="events">
-          <img
-            src="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=500&q=80&auto=format&fit=crop&h=650"
-            alt="Evening Look"
-          />
-          <div class="masonry-overlay"><span>Evening Glam</span></div>
+        <div class="masonry-item reveal delay-3" data-category="events">
+          <img src="./images/IMG_1340.JPG (1).jpeg" alt="Evening" />
+          <div class="masonry-ov"><span>Evening Glam</span></div>
         </div>
-        <div class="masonry-item" data-category="bridal">
-          <img
-            src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&q=80&auto=format&fit=crop"
-            alt="Bridal Party"
-          />
-          <div class="masonry-overlay"><span>Bridal Party</span></div>
+        <div class="masonry-item reveal" data-category="training">
+          <img src="./images/IMG_1687.JPG.jpeg" alt="Training" />
+          <div class="masonry-ov"><span>Training Session</span></div>
         </div>
-        <div class="masonry-item" data-category="glam">
+        <div class="masonry-item reveal delay-1" data-category="glam">
           <img
-            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&q=80&auto=format&fit=crop&h=580"
-            alt="Glam Look"
+            src="./images/WhatsApp Image 2026-06-10 at 8.39.55 PM (2).jpeg"
+            alt="Glam"
           />
-          <div class="masonry-overlay"><span>Glam Vibes</span></div>
+          <div class="masonry-ov"><span>Glam Vibes</span></div>
         </div>
-        <div class="masonry-item" data-category="photoshoot">
-          <img
-            src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&q=80&auto=format&fit=crop"
-            alt="Fashion Look"
-          />
-          <div class="masonry-overlay"><span>Editorial</span></div>
+        <div class="masonry-item reveal delay-2" data-category="bridal">
+          <img src="./images/IMG_1340.JPG (1).jpeg" alt="Bridal" />
+          <div class="masonry-ov"><span>Bridal Editorial</span></div>
         </div>
-        <div class="masonry-item" data-category="events">
-          <img
-            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80&auto=format&fit=crop&h=700"
-            alt="Party Glam"
-          />
-          <div class="masonry-overlay"><span>Party Ready</span></div>
+        <div class="masonry-item reveal delay-3" data-category="events">
+          <img src="./images/IMG_1687.JPG.jpeg" alt="Party" />
+          <div class="masonry-ov"><span>Party Ready</span></div>
         </div>
       </div>
-      <div class="portfolio-cta reveal">
-        <a href="#contact" class="btn-primary" style="display: inline-flex"
-          >🖼 View Full Portfolio</a
+      <div style="text-align: center; margin-top: 48px" class="reveal">
+        <a href="#contact" class="btn btn-primary btn-lg"
+          >🖼 Commission a Look</a
         >
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials-section" id="testimonials">
-      <div class="testimonials-left">
-        <div class="testimonials-label">Client Love</div>
-        <h2 class="testimonials-title reveal">
-          What My Clients<br />Say About Me
-        </h2>
-        <div id="testimonialContainer">
-          <div class="testimonial-card active">
-            <div class="testimonial-quote">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              Lycia is hands down the best! She made me feel so beautiful on my
-              wedding day. The makeup lasted all day and the compliments didn't
-              stop!
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">👩🏾</div>
-              <div>
-                <div class="author-name">Amarachi B.</div>
-                <div class="author-role">Bride · Lagos</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              The most talented makeup artist in Lagos! She understood exactly
-              the look I wanted for my birthday shoot. I felt like an absolute
-              queen!
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">👩🏽</div>
-              <div>
-                <div class="author-name">Chidinma O.</div>
-                <div class="author-role">Birthday Client · Abuja</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              I booked Lycia for my brand photoshoot and she nailed it!
-              Professional, punctual, and incredibly skilled. Will definitely
-              book again!
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">👩🏿</div>
-              <div>
-                <div class="author-name">Folake A.</div>
-                <div class="author-role">Content Creator · Lagos</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              Lycia's training program is exceptional! I went from zero
-              knowledge to confidently doing professional makeup. Best
-              investment I've ever made.
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">🧑🏾</div>
-              <div>
-                <div class="author-name">Ngozi M.</div>
-                <div class="author-role">Makeup Student · Lagos</div>
-              </div>
-            </div>
+    <!-- ════════════════════════════════════════════
+     VIDEO / REELS
+════════════════════════════════════════════ -->
+    <section class="reels-section" id="reels">
+      <div class="reels-header reveal">
+        <div>
+          <span class="eyebrow eyebrow-gold">Behind the Scenes</span>
+          <h2 class="section-title section-title-white">Beauty in Motion</h2>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.55);
+              font-size: 14px;
+              margin-top: 8px;
+            "
+          >
+            Watch the artistry come alive. Tap any reel to play.
+          </p>
+        </div>
+        <a
+          href="https://instagram.com/lyciastouch"
+          target="_blank"
+          class="btn btn-outline-white btn-sm"
+          >📸 Follow on Instagram</a
+        >
+      </div>
+      <div class="reels-grid" id="reelsGrid">
+        <!-- Static demo reels – replaced dynamically from Firestore -->
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Bridal Transformation"
+          data-thumb="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 1"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Bridal Transformation</div>
+            <div class="reel-cat">Bridal</div>
           </div>
         </div>
-        <div class="testimonial-dots">
-          <div class="testi-dot active" onclick="goToTestimonial(0)"></div>
-          <div class="testi-dot" onclick="goToTestimonial(1)"></div>
-          <div class="testi-dot" onclick="goToTestimonial(2)"></div>
-          <div class="testi-dot" onclick="goToTestimonial(3)"></div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Birthday Glam Session"
+          data-thumb="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 2"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Birthday Glam Session</div>
+            <div class="reel-cat">Birthday Glam</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Photoshoot Ready"
+          data-thumb="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 3"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Photoshoot Ready</div>
+            <div class="reel-cat">Photoshoot</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video="reels\WhatsApp Video 2026-06-11 at 8.50.18 AM.mp4"
+          data-title="Evening Glam Look"
+          data-thumb="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="./images/IMG_1698.JPG.jpeg"
+            alt="Reel 4"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Evening Glam Look</div>
+            <div class="reel-cat">Events</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Full Glam Tutorial"
+          data-thumb="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 5"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Full Glam Tutorial</div>
+            <div class="reel-cat">Tutorial</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Training Class Highlight"
+          data-thumb="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 6"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Training Class Highlight</div>
+            <div class="reel-cat">Training</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Natural Glam"
+          data-thumb="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 7"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Natural Glam</div>
+            <div class="reel-cat">Everyday</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Bridal Party"
+          data-thumb="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 8"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Bridal Party</div>
+            <div class="reel-cat">Bridal</div>
+          </div>
+        </div>
+        <div
+          class="reel-card"
+          data-video=""
+          data-title="Smoky Eye Tutorial"
+          data-thumb="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&q=80&auto=format&fit=crop"
+        >
+          <img
+            class="reel-thumb"
+            src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&q=80&auto=format&fit=crop"
+            alt="Reel 9"
+          />
+          <div class="reel-overlay">
+            <div class="reel-play">▶</div>
+            <div class="reel-title">Smoky Eye Tutorial</div>
+            <div class="reel-cat">Tutorial</div>
+          </div>
         </div>
       </div>
-      <div class="testimonials-right reveal-right">
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     LOOKBOOK
+════════════════════════════════════════════ -->
+    <section class="lookbook-section" id="lookbook">
+      <div class="lookbook-header reveal">
+        <span class="eyebrow" style="display: block">Inspiration</span>
+        <h2 class="section-title">Look Book</h2>
+        <p class="section-sub" style="margin: 0 auto">
+          Browse curated makeup looks for every occasion and skin tone.
+        </p>
+      </div>
+      <div class="lookbook-categories reveal">
+        <button class="lk-cat-btn active" data-cat="all">All Looks</button>
+        <button class="lk-cat-btn" data-cat="bridal">Bridal</button>
+        <button class="lk-cat-btn" data-cat="glam">Full Glam</button>
+        <button class="lk-cat-btn" data-cat="natural">Natural Beauty</button>
+        <button class="lk-cat-btn" data-cat="editorial">Editorial</button>
+        <button class="lk-cat-btn" data-cat="evening">Evening</button>
+      </div>
+      <div class="lookbook-grid">
+        <div class="look-card reveal" data-category="bridal">
+          <img
+            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80&auto=format&fit=crop"
+            alt="Bridal Look"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Classic Bridal</div>
+            <div class="look-cat">Bridal</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-1" data-category="glam">
+          <img
+            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&q=80&auto=format&fit=crop"
+            alt="Full Glam"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Full Glam Queen</div>
+            <div class="look-cat">Full Glam</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-2" data-category="natural">
+          <img
+            src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&q=80&auto=format&fit=crop"
+            alt="Natural"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Natural Glow</div>
+            <div class="look-cat">Natural Beauty</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-3" data-category="editorial">
+          <img
+            src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&q=80&auto=format&fit=crop"
+            alt="Editorial"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Editorial Edge</div>
+            <div class="look-cat">Editorial</div>
+          </div>
+        </div>
+        <div class="look-card reveal" data-category="evening">
+          <img
+            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80&auto=format&fit=crop"
+            alt="Evening"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Evening Allure</div>
+            <div class="look-cat">Evening</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-1" data-category="glam">
+          <img
+            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&q=80&auto=format&fit=crop"
+            alt="Glam"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Glam Goddess</div>
+            <div class="look-cat">Full Glam</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-2" data-category="bridal">
+          <img
+            src="https://images.unsplash.com/photo-1511232873-5b1be7f9b3c6?w=500&q=80&auto=format&fit=crop"
+            alt="Bridal"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Bridal Elegance</div>
+            <div class="look-cat">Bridal</div>
+          </div>
+        </div>
+        <div class="look-card reveal delay-3" data-category="editorial">
+          <img
+            src="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=500&q=80&auto=format&fit=crop"
+            alt="Editorial"
+          />
+          <div class="look-card-info">
+            <div class="look-name">Bold &amp; Beautiful</div>
+            <div class="look-cat">Editorial</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="testimonials-left">
+        <span class="eyebrow">Client Love</span>
+        <h2 class="section-title reveal" style="margin-bottom: 32px">
+          What My Clients<br />Say About Me
+        </h2>
+        <div id="testimonialContainer"></div>
+        <div class="testi-dots" id="testiDots"></div>
+      </div>
+      <div class="testi-right reveal-right">
         <img
           src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop"
-          alt="Lycia's Touch Beauty"
+          alt="Happy clients"
         />
         <div class="testi-badge">
           <div class="testi-badge-icon">⭐</div>
           <div>
-            <div class="testi-badge-text">5.0 Rating</div>
+            <div class="testi-badge-title">5.0 Rating</div>
             <div class="testi-badge-sub">300+ Happy Clients</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Instagram Section -->
-    <section class="instagram-section">
-      <div class="instagram-header reveal">
-        <div>
-          <div
+    <!-- ════════════════════════════════════════════
+     TESTIMONIAL SUBMISSION
+════════════════════════════════════════════ -->
+    <section class="testi-submit-section">
+      <div class="testi-submit-grid">
+        <div class="testi-submit-left reveal-left">
+          <span class="eyebrow">Share Your Experience</span>
+          <h2 class="section-title" style="margin-bottom: 16px">
+            Leave a Review
+          </h2>
+          <p
             style="
-              font-size: 11px;
-              letter-spacing: 2px;
-              text-transform: uppercase;
-              color: var(--rose-gold);
-              font-weight: 600;
-              margin-bottom: 8px;
+              font-size: 14px;
+              color: var(--mid);
+              line-height: 1.8;
+              margin-bottom: 28px;
             "
           >
-            Follow My Work
+            Had an amazing experience with Lycia's Touch? Share your story and
+            help other clients discover the magic of professional beauty
+            artistry.
+          </p>
+          <img
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80&auto=format&fit=crop"
+            alt="Beauty"
+            style="
+              border-radius: var(--radius-lg);
+              width: 100%;
+              height: 240px;
+              object-fit: cover;
+            "
+          />
+        </div>
+        <div class="reveal-right">
+          <div
+            style="
+              background: var(--soft-pink);
+              border-radius: var(--radius-xl);
+              padding: 44px;
+            "
+          >
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 26px;
+                font-weight: 600;
+                margin-bottom: 24px;
+              "
+            >
+              Your Review ✨
+            </h3>
+            <form id="testimonialForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Your Name</label
+                  ><input
+                    type="text"
+                    name="name"
+                    placeholder="e.g. Amara O."
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Your Role</label
+                  ><input
+                    type="text"
+                    name="role"
+                    placeholder="e.g. Bride · Lagos"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Service You Used</label>
+                <select name="service" required>
+                  <option value="">Select a service...</option>
+                  <option>Bridal Makeup</option>
+                  <option>Birthday Glam</option>
+                  <option>Photoshoot Makeup</option>
+                  <option>Event Makeup</option>
+                  <option>Home Service</option>
+                  <option>Makeup Training</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Your Rating</label>
+                <div class="star-picker">
+                  <button type="button" class="star-btn active">★</button>
+                  <button type="button" class="star-btn active">★</button>
+                  <button type="button" class="star-btn active">★</button>
+                  <button type="button" class="star-btn active">★</button>
+                  <button type="button" class="star-btn active">★</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Your Review</label>
+                <textarea
+                  name="review"
+                  rows="4"
+                  placeholder="Tell us about your experience..."
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg"
+                style="width: 100%; justify-content: center"
+              >
+                ⭐ Submit Review
+              </button>
+            </form>
           </div>
-          <h2>On Instagram</h2>
-          <div class="instagram-handle">@lyciastouch</div>
-        </div>
-        <a href="https://instagram.com/lyciastouch" class="btn-follow"
-          >📸 Follow</a
-        >
-      </div>
-      <div class="instagram-grid reveal">
-        <div class="insta-thumb">
-          <img
-            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop"
-            alt="Instagram post"
-          />
-          <div class="insta-overlay">📸</div>
-        </div>
-        <div class="insta-thumb">
-          <img
-            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=400&q=80&auto=format&fit=crop"
-            alt="Instagram post"
-          />
-          <div class="insta-overlay">📸</div>
-        </div>
-        <div class="insta-thumb">
-          <img
-            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80&auto=format&fit=crop"
-            alt="Instagram post"
-          />
-          <div class="insta-overlay">📸</div>
-        </div>
-        <div class="insta-thumb">
-          <img
-            src="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=400&q=80&auto=format&fit=crop"
-            alt="Instagram post"
-          />
-          <div class="insta-overlay">📸</div>
-        </div>
-        <div class="insta-thumb">
-          <img
-            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&q=80&auto=format&fit=crop"
-            alt="Instagram post"
-          />
-          <div class="insta-overlay">📸</div>
         </div>
       </div>
     </section>
 
-    <!-- Why Choose Lycia's Touch -->
-    <section class="why-section">
-      <div class="why-header reveal">
-        <div
-          style="
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--rose-gold);
-            font-weight: 600;
-            margin-bottom: 10px;
-          "
-        >
-          Why Choose Me
+    <!-- ════════════════════════════════════════════
+     INSTAGRAM
+════════════════════════════════════════════ -->
+    <section class="instagram-section">
+      <div class="insta-header reveal">
+        <div>
+          <span class="eyebrow">Follow My Work</span>
+          <h2 class="section-title">On Instagram</h2>
+          <div class="insta-handle">@lyciastouch</div>
         </div>
-        <h2>Why Clients Choose<br />Lycia's Touch</h2>
-        <p>Everything you deserve in a professional makeup artist</p>
+        <a
+          href="https://instagram.com/lyciastouch"
+          target="_blank"
+          class="btn btn-secondary btn-sm"
+          >📸 Follow</a
+        >
+      </div>
+      <div class="insta-grid reveal">
+        <div class="insta-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop"
+            alt="Instagram"
+          />
+          <div class="insta-ov">📸</div>
+        </div>
+        <div class="insta-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=400&q=80&auto=format&fit=crop"
+            alt="Instagram"
+          />
+          <div class="insta-ov">📸</div>
+        </div>
+        <div class="insta-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80&auto=format&fit=crop"
+            alt="Instagram"
+          />
+          <div class="insta-ov">📸</div>
+        </div>
+        <div class="insta-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1549236177-f9b0031b2849?w=400&q=80&auto=format&fit=crop"
+            alt="Instagram"
+          />
+          <div class="insta-ov">📸</div>
+        </div>
+        <div class="insta-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&q=80&auto=format&fit=crop"
+            alt="Instagram"
+          />
+          <div class="insta-ov">📸</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     WHY CHOOSE LYCIA
+════════════════════════════════════════════ -->
+    <section class="why-section">
+      <div style="text-align: center" class="reveal">
+        <span class="eyebrow" style="display: block">Why Choose Me</span>
+        <h2 class="section-title section-title-white">
+          Why Clients Choose<br />Lycia's Touch
+        </h2>
       </div>
       <div class="why-grid">
         <div class="why-card reveal">
@@ -2613,23 +1062,23 @@
             treatment from start to finish.
           </div>
         </div>
-        <div class="why-card reveal">
+        <div class="why-card reveal delay-1">
           <div class="why-icon">💎</div>
           <div class="why-title">Quality Products</div>
           <div class="why-desc">
-            High-end &amp; skin-friendly products. I use only the best luxury
-            makeup brands.
+            High-end &amp; skin-friendly products. Only the best luxury makeup
+            brands used on your skin.
           </div>
         </div>
-        <div class="why-card reveal">
+        <div class="why-card reveal delay-2">
           <div class="why-icon">🏠</div>
-          <div class="why-title">Home Service Available</div>
+          <div class="why-title">Home Service</div>
           <div class="why-desc">
-            I come to you, anywhere. No need to travel — I bring the glam to
-            your doorstep.
+            I come to you, anywhere in Lagos. No travel stress — I bring the
+            glam to your doorstep.
           </div>
         </div>
-        <div class="why-card reveal">
+        <div class="why-card reveal delay-3">
           <div class="why-icon">👩🏾‍🎨</div>
           <div class="why-title">Experienced Artist</div>
           <div class="why-desc">
@@ -2637,26 +1086,589 @@
             stunning transformations.
           </div>
         </div>
-        <div class="why-card reveal">
+        <div class="why-card reveal delay-4">
           <div class="why-icon">💰</div>
           <div class="why-title">Affordable Luxury</div>
           <div class="why-desc">
-            Premium looks at fair prices. Beauty shouldn't break the bank — and
-            with me, it won't.
+            Premium looks at fair prices. Real beauty shouldn't break the bank —
+            and with me, it won't.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Makeup Training Section -->
-    <section class="training-section">
+    <!-- ════════════════════════════════════════════
+     AVAILABILITY CALENDAR
+════════════════════════════════════════════ -->
+    <section class="calendar-section" id="calendar">
+      <div style="text-align: center; margin-bottom: 56px" class="reveal">
+        <span class="eyebrow" style="display: block"
+          >Schedule Your Session</span
+        >
+        <h2 class="section-title">Check Availability</h2>
+        <p class="section-sub" style="margin: 0 auto">
+          Pick your preferred date and time slot. Bookings are confirmed via
+          WhatsApp.
+        </p>
+      </div>
+      <div class="calendar-wrap">
+        <div>
+          <div class="cal-widget reveal-left">
+            <div class="cal-header">
+              <button class="cal-nav-btn" id="calPrev">‹</button>
+              <div class="cal-title" id="calTitle">June 2025</div>
+              <button class="cal-nav-btn" id="calNext">›</button>
+            </div>
+            <div class="cal-days-header">
+              <div class="cal-day-name">Sun</div>
+              <div class="cal-day-name">Mon</div>
+              <div class="cal-day-name">Tue</div>
+              <div class="cal-day-name">Wed</div>
+              <div class="cal-day-name">Thu</div>
+              <div class="cal-day-name">Fri</div>
+              <div class="cal-day-name">Sat</div>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="cal-legend">
+              <div class="cal-legend-item">
+                <div class="legend-dot available"></div>
+                Available
+              </div>
+              <div class="cal-legend-item">
+                <div class="legend-dot booked"></div>
+                Booked
+              </div>
+              <div class="cal-legend-item">
+                <div class="legend-dot selected"></div>
+                Selected
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cal-booking-form reveal-right">
+          <h3>Book Your Session</h3>
+          <p>Select a date then choose your preferred time slot below.</p>
+          <div
+            class="selected-date-display"
+            id="selectedDateDisplay"
+            style="display: none"
+          >
+            No date selected
+          </div>
+          <div class="form-group"><label>Available Time Slots</label></div>
+          <div class="time-slots">
+            <div class="time-slot" data-time="8:00 AM">8:00 AM</div>
+            <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
+            <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+            <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+            <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+            <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
+            <div class="time-slot" data-time="2:00 PM">2:00 PM</div>
+            <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
+            <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
+          </div>
+          <form id="calBookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label
+                ><input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>WhatsApp Number</label
+                ><input
+                  type="tel"
+                  name="phone"
+                  placeholder="+234 XXX XXX XXXX"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service</label>
+              <select name="service" required>
+                <option value="">Select service...</option>
+                <option>Bridal Makeup – From ₦60,000</option>
+                <option>Birthday Glam – From ₦25,000</option>
+                <option>Photoshoot Makeup – From ₦30,000</option>
+                <option>Event Makeup – From ₦20,000</option>
+                <option>Home Service – From ₦10,000</option>
+                <option>Makeup Training – From ₦50,000</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Location / Address</label
+              ><input
+                type="text"
+                name="location"
+                placeholder="Your address or area in Lagos"
+              />
+            </div>
+            <div class="form-group">
+              <label>Additional Notes</label
+              ><textarea
+                name="notes"
+                rows="3"
+                placeholder="Any special requests, inspo photos, etc."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              style="width: 100%; justify-content: center"
+            >
+              📅 Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     CLIENT INTAKE FORM
+════════════════════════════════════════════ -->
+    <section class="intake-section" id="intake">
+      <div style="text-align: center; margin-bottom: 56px" class="reveal">
+        <span class="eyebrow" style="display: block">Before Your Session</span>
+        <h2 class="section-title">Client Intake Form</h2>
+        <p class="section-sub" style="margin: 0 auto">
+          Help Lycia prepare the perfect look for you by filling in your beauty
+          details.
+        </p>
+      </div>
+      <div class="intake-grid">
+        <div class="intake-left reveal-left">
+          <p
+            style="
+              font-size: 14px;
+              color: var(--mid);
+              line-height: 1.85;
+              margin-bottom: 32px;
+            "
+          >
+            Your intake form helps Lycia understand your skin, preferences, and
+            vision before your appointment — ensuring a flawless, personalized
+            result every time.
+          </p>
+          <div class="intake-features">
+            <div class="intake-feature">
+              <div class="intake-feature-icon">💄</div>
+              <div>
+                <div class="intake-feature-title">Personalized Look</div>
+                <div class="intake-feature-desc">
+                  Your details help Lycia tailor the exact look to complement
+                  your features.
+                </div>
+              </div>
+            </div>
+            <div class="intake-feature">
+              <div class="intake-feature-icon">🌿</div>
+              <div>
+                <div class="intake-feature-title">Allergy Safety</div>
+                <div class="intake-feature-desc">
+                  Sharing sensitivities ensures only safe, skin-friendly
+                  products are used on you.
+                </div>
+              </div>
+            </div>
+            <div class="intake-feature">
+              <div class="intake-feature-icon">📸</div>
+              <div>
+                <div class="intake-feature-title">Inspiration Reference</div>
+                <div class="intake-feature-desc">
+                  Upload your inspo photos so Lycia can perfectly match your
+                  vision.
+                </div>
+              </div>
+            </div>
+            <div class="intake-feature">
+              <div class="intake-feature-icon">⏰</div>
+              <div>
+                <div class="intake-feature-title">Saves Time</div>
+                <div class="intake-feature-desc">
+                  Pre-session details mean less consultation time and more glam
+                  time!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div
+            style="
+              background: var(--soft-pink);
+              border-radius: var(--radius-xl);
+              padding: 44px;
+            "
+          >
+            <form id="intakeForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name</label
+                  ><input
+                    type="text"
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>WhatsApp Number</label
+                  ><input
+                    type="tel"
+                    name="phone"
+                    placeholder="+234 XXX XXX XXXX"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label
+                ><input
+                  type="email"
+                  name="email"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div class="form-group">
+                <label>Service / Occasion</label>
+                <select name="occasion" required>
+                  <option value="">What's the occasion?</option>
+                  <option>Wedding / Bridal</option>
+                  <option>Birthday Party</option>
+                  <option>Photoshoot</option>
+                  <option>Corporate Event</option>
+                  <option>Date Night</option>
+                  <option>Graduation</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Preferred Look Style</label>
+                <select name="lookType">
+                  <option value="">Select look type...</option>
+                  <option>Natural / No-Makeup Makeup</option>
+                  <option>Full Glam</option>
+                  <option>Bridal Classic</option>
+                  <option>Editorial / Bold</option>
+                  <option>Soft Glam</option>
+                  <option>Evening / Smoky</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Skin Tone</label>
+                <div class="skin-tone-picker">
+                  <div
+                    class="skin-tone"
+                    data-tone="#f5d5c0"
+                    style="background: #f5d5c0"
+                    title="Fair"
+                  ></div>
+                  <div
+                    class="skin-tone"
+                    data-tone="#e8b895"
+                    style="background: #e8b895"
+                    title="Light"
+                  ></div>
+                  <div
+                    class="skin-tone"
+                    data-tone="#d4956a"
+                    style="background: #d4956a"
+                    title="Medium"
+                  ></div>
+                  <div
+                    class="skin-tone"
+                    data-tone="#b87048"
+                    style="background: #b87048"
+                    title="Tan"
+                  ></div>
+                  <div
+                    class="skin-tone"
+                    data-tone="#8b4a2a"
+                    style="background: #8b4a2a"
+                    title="Dark"
+                  ></div>
+                  <div
+                    class="skin-tone"
+                    data-tone="#5a2d0c"
+                    style="background: #5a2d0c"
+                    title="Deep"
+                  ></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Allergies / Skin Sensitivities</label
+                ><textarea
+                  name="allergies"
+                  rows="2"
+                  placeholder="e.g. sensitive to fragrance, latex allergy, acne-prone skin..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Skin Concerns</label
+                ><textarea
+                  name="concerns"
+                  rows="2"
+                  placeholder="e.g. hyperpigmentation, dark circles, oily T-zone..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Booking Reference (if you have one)</label>
+                <input
+                  type="text"
+                  name="bookingId"
+                  placeholder="e.g. LT-2025-001 (optional)"
+                />
+              </div>
+              <div class="form-group">
+                <label>Inspiration Photos (up to 4)</label>
+                <div class="inspo-upload" id="inspoUploadZone">
+                  <input
+                    type="file"
+                    id="inspoUpload"
+                    accept="image/*"
+                    multiple
+                  />
+                  <div style="font-size: 32px; margin-bottom: 8px">📸</div>
+                  <div
+                    style="
+                      font-size: 14px;
+                      font-weight: 600;
+                      color: var(--charcoal);
+                      margin-bottom: 4px;
+                    "
+                  >
+                    Upload Inspo Photos
+                  </div>
+                  <div style="font-size: 12px; color: var(--mid)">
+                    Click or drag photos here · Max 4 images
+                  </div>
+                </div>
+                <div class="inspo-preview" id="inspoPreview"></div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg"
+                style="width: 100%; justify-content: center"
+              >
+                💄 Submit Intake Form
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     GROUP BOOKING
+════════════════════════════════════════════ -->
+    <section class="group-booking-section" id="group-booking">
+      <div style="text-align: center; margin-bottom: 56px" class="reveal">
+        <span class="eyebrow" style="display: block">For Your Squad</span>
+        <h2 class="section-title">Group Booking</h2>
+        <p class="section-sub" style="margin: 0 auto">
+          Planning a wedding party, girls' trip, or corporate event? Book Lycia
+          for your whole group!
+        </p>
+      </div>
+      <div class="group-grid">
+        <div class="group-left reveal-left">
+          <span class="eyebrow">Choose Your Package</span>
+          <h3
+            style="
+              font-family: var(--font-display);
+              font-size: 32px;
+              font-weight: 600;
+              margin-bottom: 8px;
+            "
+          >
+            Group Packages
+          </h3>
+          <p
+            style="
+              font-size: 14px;
+              color: var(--mid);
+              line-height: 1.8;
+              margin-bottom: 4px;
+            "
+          >
+            Perfect for bridal parties, birthdays, and corporate events. All
+            packages include premium products and on-site service.
+          </p>
+          <div class="group-packages">
+            <div class="group-pkg" data-package="Bridal Party">
+              <div class="group-pkg-icon">💍</div>
+              <div class="group-pkg-name">Bridal Party</div>
+              <div class="group-pkg-desc">
+                Full glam for bride + bridesmaids. Includes trials available.
+              </div>
+              <div class="group-pkg-price">FROM ₦40,000/person</div>
+            </div>
+            <div class="group-pkg" data-package="Birthday Glam Party">
+              <div class="group-pkg-icon">🎂</div>
+              <div class="group-pkg-name">Birthday Glam Party</div>
+              <div class="group-pkg-desc">
+                Fabulous looks for birthday queens &amp; their crew.
+              </div>
+              <div class="group-pkg-price">FROM ₦20,000/person</div>
+            </div>
+            <div class="group-pkg" data-package="Corporate Event">
+              <div class="group-pkg-icon">💼</div>
+              <div class="group-pkg-name">Corporate Event</div>
+              <div class="group-pkg-desc">
+                Professional, polished looks for corporate occasions.
+              </div>
+              <div class="group-pkg-price">FROM ₦15,000/person</div>
+            </div>
+            <div class="group-pkg" data-package="Custom Group">
+              <div class="group-pkg-icon">✨</div>
+              <div class="group-pkg-name">Custom Group</div>
+              <div class="group-pkg-desc">
+                Bespoke package tailored to your specific needs.
+              </div>
+              <div class="group-pkg-price">Custom Quote</div>
+            </div>
+          </div>
+        </div>
+        <div class="group-form reveal-right">
+          <h3>Group Booking Request</h3>
+          <p>
+            Fill in your details and we'll send a custom quote via WhatsApp.
+          </p>
+          <form id="groupBookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label
+                ><input
+                  type="text"
+                  name="name"
+                  placeholder="Contact person name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>WhatsApp Number</label
+                ><input
+                  type="tel"
+                  name="phone"
+                  placeholder="+234 XXX XXX XXXX"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label
+              ><input type="email" name="email" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label>Event Type</label
+              ><input
+                type="text"
+                name="event"
+                placeholder="e.g. Wedding, Birthday Party, Corporate Dinner"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Event Date</label
+                ><input type="date" name="date" required />
+              </div>
+              <div class="form-group">
+                <label>Number of People</label>
+                <div class="people-counter">
+                  <button type="button" class="counter-btn" id="decreasePeople">
+                    −
+                  </button>
+                  <div class="counter-val" id="peopleCount">2</div>
+                  <button type="button" class="counter-btn" id="increasePeople">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Event Location</label
+              ><input
+                type="text"
+                name="location"
+                placeholder="Venue address or area"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Additional Notes</label
+              ><textarea
+                name="notes"
+                rows="3"
+                placeholder="Any special requests, specific looks, preferred start time..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              style="width: 100%; justify-content: center"
+            >
+              💬 Send Group Booking Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     WHATSAPP TEMPLATES
+════════════════════════════════════════════ -->
+    <section class="wa-section" id="wa-templates">
+      <div class="wa-header reveal">
+        <span class="eyebrow eyebrow-gold" style="display: block"
+          >Quick Communication</span
+        >
+        <h2 class="section-title section-title-white">
+          WhatsApp Message Templates
+        </h2>
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-top: 10px;
+          "
+        >
+          Click any template to customize and send instantly via WhatsApp.
+        </p>
+      </div>
+      <div class="wa-grid" id="waTemplateGrid">
+        <!-- Populated by whatsapp.js -->
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     TRAINING
+════════════════════════════════════════════ -->
+    <section class="training-section" id="training">
       <div class="training-left">
-        <div class="training-eyebrow">Learn the Art</div>
-        <h2>Makeup Training<br />with Lycia</h2>
-        <p>
+        <span class="eyebrow eyebrow-gold">Learn the Art</span>
+        <h2
+          class="section-title section-title-white"
+          style="margin-bottom: 14px"
+        >
+          Makeup Training<br />with Lycia
+        </h2>
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 14px;
+            line-height: 1.85;
+            margin-bottom: 8px;
+          "
+        >
           Want to become a professional makeup artist? Join my hands-on training
           and start your journey today. From beginner basics to advanced
-          techniques.
+          professional techniques.
         </p>
         <div class="training-cards reveal">
           <div class="training-card">
@@ -2664,8 +1676,8 @@
             <div>
               <div class="training-card-title">Beginner Classes</div>
               <div class="training-card-desc">
-                Perfect for those just starting their makeup journey. Master the
-                fundamentals.
+                Perfect for those just starting. Master the fundamentals of
+                professional makeup.
               </div>
             </div>
           </div>
@@ -2674,8 +1686,8 @@
             <div>
               <div class="training-card-title">Advanced Training</div>
               <div class="training-card-desc">
-                Level up your skills with advanced techniques for editorial and
-                bridal looks.
+                Level up with advanced editorial, bridal, and high-definition
+                techniques.
               </div>
             </div>
           </div>
@@ -2685,222 +1697,266 @@
               <div class="training-card-title">Certification Program</div>
               <div class="training-card-desc">
                 Get certified and launch your professional makeup career with
-                confidence.
+                full confidence.
               </div>
             </div>
           </div>
         </div>
-        <br />
         <a
-          href="https://wa.me/2348123456789?text=Hi! I'm interested in your makeup training program."
-          class="btn-primary"
-          style="margin-top: 20px; display: inline-flex"
-          >🎓 Learn More</a
+          href="https://wa.me/2348123456789?text=Hi Lycia! I'm interested in your makeup training program."
+          class="btn btn-gold btn-lg"
+          style="margin-top: 32px; display: inline-flex"
+          >🎓 Enroll Now</a
         >
       </div>
       <div class="training-right reveal-right">
         <img
           src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80&auto=format&fit=crop"
-          alt="Makeup Training"
+          alt="Makeup Training with Lycia"
         />
         <div class="training-badge">
-          <div class="training-badge-number">50+</div>
-          <div class="training-badge-text">Students<br />Trained</div>
+          <div class="training-badge-num">50+</div>
+          <div class="training-badge-lbl">Students<br />Trained</div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="faq-section">
+    <!-- ════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+    <section class="faq-section" id="faq">
       <div class="faq-left reveal-left">
-        <div class="section-eyebrow">FAQ</div>
-        <h2>Frequently Asked Questions</h2>
-        <p>
+        <span class="eyebrow">Got Questions?</span>
+        <h2 class="section-title" style="margin-bottom: 16px">
+          Frequently Asked Questions
+        </h2>
+        <p
+          style="
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.8;
+            margin-bottom: 28px;
+          "
+        >
           Everything you need to know before booking your appointment with
           Lycia's Touch.
         </p>
-        <a
-          href="https://wa.me/2348123456789"
-          class="btn-primary"
-          style="display: inline-flex; gap: 8px"
+        <a href="https://wa.me/2348123456789" class="btn btn-primary btn-sm"
           >💬 Ask a Question</a
         >
-        <div class="faq-img">
+        <div
+          style="
+            margin-top: 32px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+          "
+        >
           <img
             src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80&auto=format&fit=crop"
             alt="Makeup brushes"
+            style="width: 100%; height: 260px; object-fit: cover"
           />
         </div>
       </div>
       <div class="faq-list reveal-right">
         <div class="faq-item open">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             Do you travel to clients?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
+          <div class="faq-a">
             Yes! I offer home service throughout Lagos and nearby areas. A
             travel fee may apply depending on your location. Just let me know
-            your address when booking and I'll provide all the details.
+            your address when booking.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             How much is bridal makeup?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
-            Bridal makeup starts from ₦60,000 and varies based on the look
-            complexity, location, and whether a trial session is included.
-            Contact me via WhatsApp for a custom quote.
+          <div class="faq-a">
+            Bridal makeup starts from ₦60,000 and varies based on complexity,
+            location, and whether a trial is included. Contact me via WhatsApp
+            for a custom quote.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             How do I book an appointment?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
-            The easiest way is via WhatsApp! Click the "Book Now on WhatsApp"
-            button, tell me the service you need, preferred date and time, and
-            your location. I'll confirm availability and lock in your slot.
+          <div class="faq-a">
+            The easiest way is via WhatsApp or using the booking calendar on
+            this page. Tell me your service, preferred date and time, and your
+            location. I'll confirm availability and lock in your slot.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             Do you offer makeup training?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
+          <div class="faq-a">
             Absolutely! I offer beginner, intermediate, and advanced makeup
-            training programs. Classes are available in-person and include
-            hands-on practice. Certificates are awarded upon completion.
+            training programs. Classes are in-person and include hands-on
+            practice. Certificates are awarded upon completion.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             What products do you use?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
+          <div class="faq-a">
             I use only high-quality, skin-friendly products from leading luxury
-            makeup brands. All products are carefully selected to ensure
-            long-lasting, flawless results for all skin types and tones.
+            makeup brands. All products are carefully selected for long-lasting,
+            flawless results for all skin types and tones.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-q">
             How far in advance should I book?
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-answer">
-            For bridal makeup, I recommend booking at least 4–6 weeks in
-            advance. For regular events and occasions, 1–2 weeks is usually
-            sufficient. Weekends book fast, so reach out early!
+          <div class="faq-a">
+            For bridal makeup, book at least 4–6 weeks in advance. For regular
+            events, 1–2 weeks is usually sufficient. Weekends book fast, so
+            reach out early!
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            Do you require a deposit?
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            Yes, a 50% deposit is required to confirm and secure your booking
+            slot. The balance is due on the day of your appointment. Deposits
+            are non-refundable for cancellations within 48 hours.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
     <section class="contact-section" id="contact">
-      <div class="contact-left">
-        <div class="contact-eyebrow">Get In Touch</div>
-        <h2>Let's Create<br />Your Perfect Look</h2>
-        <p>
+      <div class="reveal-left">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 class="section-title" style="margin-bottom: 16px">
+          Let's Create<br />Your Perfect Look
+        </h2>
+        <p
+          style="
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.8;
+            margin-bottom: 32px;
+          "
+        >
           Ready to look and feel amazing? Reach out and let's make it happen.
           I'd love to be part of your special moment.
         </p>
-        <div class="contact-info-list">
-          <div class="contact-info-item">
-            <div class="contact-info-icon">💬</div>
-            <div>
-              <div class="contact-info-label">WhatsApp</div>
-              <div class="contact-info-value">+234 812 345 6789</div>
-            </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💬</div>
+          <div>
+            <div class="contact-info-label">WhatsApp</div>
+            <div class="contact-info-value">+234 812 345 6789</div>
           </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📞</div>
-            <div>
-              <div class="contact-info-label">Phone Call</div>
-              <div class="contact-info-value">+234 812 345 6789</div>
-            </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Phone Call</div>
+            <div class="contact-info-value">+234 812 345 6789</div>
           </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">✉️</div>
-            <div>
-              <div class="contact-info-label">Email</div>
-              <div class="contact-info-value">hello@lyciastouch.com</div>
-            </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">hello@lyciastouch.com</div>
           </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📍</div>
-            <div>
-              <div class="contact-info-label">Location</div>
-              <div class="contact-info-value">Lagos, Nigeria</div>
-            </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">Lagos, Nigeria</div>
           </div>
         </div>
         <div
           style="
-            margin-bottom: 16px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            margin: 28px 0 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--charcoal);
           "
         >
           Let's Connect
         </div>
         <div class="social-links">
-          <a href="#" class="social-link" title="Instagram">📸</a>
-          <a href="#" class="social-link" title="Facebook">👤</a>
-          <a href="#" class="social-link" title="TikTok">🎵</a>
-          <a href="#" class="social-link" title="YouTube">▶</a>
+          <a href="#" class="s-link" title="Instagram">📸</a>
+          <a href="#" class="s-link" title="Facebook">👤</a>
+          <a href="#" class="s-link" title="TikTok">🎵</a>
+          <a href="#" class="s-link" title="YouTube">▶</a>
         </div>
         <div class="contact-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.45932537!2d3.1000000!3d6.524379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1"
-            width="100%"
-            height="100%"
-            style="border: 0; border-radius: 16px"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.4!2d3.1!3d6.52!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>
-      <div class="contact-right reveal-right">
-        <div class="section-eyebrow">Quick Booking</div>
+      <div class="reveal-right">
+        <span class="eyebrow">Quick Booking</span>
         <h3
           style="
-            font-family: &quot;Cormorant Garamond&quot;, serif;
-            font-size: 30px;
+            font-family: var(--font-display);
+            font-size: 32px;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
           "
         >
           Book Your Appointment
         </h3>
-        <form class="contact-form" onsubmit="submitForm(event)">
+        <form id="contactBookingForm">
           <div class="form-row">
             <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="Your first name" required />
+              <label>First Name</label
+              ><input
+                type="text"
+                name="firstName"
+                placeholder="Your first name"
+                required
+              />
             </div>
             <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Your last name" />
+              <label>Last Name</label
+              ><input
+                type="text"
+                name="lastName"
+                placeholder="Your last name"
+              />
             </div>
           </div>
           <div class="form-group">
-            <label>Phone / WhatsApp</label>
-            <input type="tel" placeholder="+234 XXX XXX XXXX" required />
+            <label>Phone / WhatsApp</label
+            ><input
+              type="tel"
+              name="phone"
+              placeholder="+234 XXX XXX XXXX"
+              required
+            />
           </div>
           <div class="form-group">
             <label>Service</label>
-            <select>
+            <select name="service" required>
               <option value="">Select a service...</option>
               <option>Bridal Makeup – From ₦60,000</option>
               <option>Birthday Glam – From ₦25,000</option>
@@ -2913,269 +1969,151 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Preferred Date</label>
-              <input type="date" />
+              <label>Preferred Date</label><input type="date" name="date" />
             </div>
             <div class="form-group">
-              <label>Location</label>
-              <input type="text" placeholder="Your address / area" />
+              <label>Location / Area</label
+              ><input
+                type="text"
+                name="location"
+                placeholder="Your area in Lagos"
+              />
             </div>
           </div>
           <div class="form-group">
-            <label>Additional Notes</label>
-            <textarea
+            <label>Additional Notes</label
+            ><textarea
+              name="notes"
               rows="4"
-              placeholder="Tell me more about your look, event details, or any special requests..."
+              placeholder="Tell me about your look, event details, or special requests..."
             ></textarea>
           </div>
           <button
             type="submit"
-            class="btn-primary"
-            style="
-              border: none;
-              font-size: 13px;
-              padding: 16px 32px;
-              width: 100%;
-              justify-content: center;
-            "
+            class="btn btn-primary btn-lg"
+            style="width: 100%; justify-content: center"
           >
             📅 Send Booking Request
           </button>
         </form>
         <div class="newsletter-box">
-          <h4>Stay Beautiful 💄</h4>
-          <p>Get beauty tips, offers and updates straight to your inbox.</p>
-          <div class="newsletter-input">
-            <input type="email" placeholder="Your email address" />
-            <button class="btn-subscribe">Subscribe</button>
-          </div>
+          <h4
+            style="
+              font-family: var(--font-display);
+              font-size: 24px;
+              font-weight: 600;
+              margin-bottom: 8px;
+            "
+          >
+            Stay Beautiful 💄
+          </h4>
+          <p style="font-size: 13px; color: var(--mid); margin-bottom: 20px">
+            Get beauty tips, offers and updates straight to your inbox.
+          </p>
+          <form class="newsletter-form">
+            <div class="newsletter-row">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit" class="btn btn-primary btn-sm">
+                Subscribe
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
     <footer>
       <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">Lycia's<span>/</span>Touch</div>
+        <div>
+          <div class="footer-logo-wrap">Lycia's<span>/</span>Touch</div>
           <p class="footer-desc">
             Professional makeup artistry that enhances your beauty and boosts
             your confidence. Based in Lagos, Nigeria.
           </p>
           <div class="footer-socials">
-            <a href="#" class="footer-social" title="Instagram">📸</a>
-            <a href="#" class="footer-social" title="Facebook">👤</a>
-            <a href="#" class="footer-social" title="TikTok">🎵</a>
-            <a href="#" class="footer-social" title="YouTube">▶</a>
+            <a href="#" class="ft-social">📸</a
+            ><a href="#" class="ft-social">👤</a>
+            <a href="#" class="ft-social">🎵</a
+            ><a href="#" class="ft-social">▶</a>
           </div>
         </div>
         <div class="footer-col">
           <h5>Quick Links</h5>
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#reels">Reels</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h5>Services</h5>
           <ul>
-            <li><a href="#">Bridal Makeup</a></li>
-            <li><a href="#">Birthday Glam</a></li>
-            <li><a href="#">Photoshoot Makeup</a></li>
-            <li><a href="#">Event Makeup</a></li>
-            <li><a href="#">Home Service</a></li>
-            <li><a href="#">Makeup Training</a></li>
+            <li><a href="#services">Bridal Makeup</a></li>
+            <li><a href="#services">Birthday Glam</a></li>
+            <li><a href="#services">Photoshoot</a></li>
+            <li><a href="#services">Event Makeup</a></li>
+            <li><a href="#services">Home Service</a></li>
+            <li><a href="#training">Makeup Training</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h5>More</h5>
           <ul>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Training</a></li>
-            <li><a href="#">Group Bookings</a></li>
-            <li><a href="#">Gift Vouchers</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#calendar">Book Now</a></li>
+            <li><a href="#lookbook">Look Book</a></li>
+            <li><a href="#group-booking">Group Booking</a></li>
+            <li><a href="#intake">Intake Form</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="admin/index.html">Admin</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h5>Contact Info</h5>
-          <div class="footer-contact-item"><i>📞</i> +234 812 345 6789</div>
-          <div class="footer-contact-item"><i>✉️</i> hello@lyciastouch.com</div>
-          <div class="footer-contact-item"><i>📍</i> Lagos, Nigeria</div>
+          <div class="footer-contact-row"><i>📞</i> +234 812 345 6789</div>
+          <div class="footer-contact-row"><i>✉️</i> hello@lyciastouch.com</div>
+          <div class="footer-contact-row"><i>📍</i> Lagos, Nigeria</div>
           <br />
           <a
             href="https://wa.me/2348123456789"
-            class="btn-whatsapp"
-            style="font-size: 12px; padding: 11px 20px"
+            class="btn btn-whatsapp btn-sm"
+            style="display: inline-flex"
             >💬 WhatsApp Us</a
           >
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2024 Lycia's Touch. All Rights Reserved. Designed with 💖</div>
+        <div>© 2025 Lycia's Touch. All Rights Reserved. Made with 💖</div>
         <div style="display: flex; gap: 16px">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a><a href="#">Terms of Service</a>
         </div>
-        <div
-          class="scroll-top"
+        <button
+          class="scroll-top-btn"
           onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
         >
           ↑
-        </div>
+        </button>
       </div>
     </footer>
 
+    <!-- Mobile sticky booking bar -->
+    <div class="mobile-booking-bar">
+      <a href="#calendar" class="btn btn-primary">📅 Book Appointment</a>
+    </div>
+
     <!-- WhatsApp FAB -->
     <a
-      href="https://wa.me/2348123456789?text=Hi Lycia! I found you online and would love to book an appointment."
+      href="https://wa.me/2348123456789?text=Hi Lycia! I found you online and would love to book."
       class="whatsapp-fab"
       title="Chat on WhatsApp"
       >💬</a
     >
 
-    <script>
-      // Scroll progress
-      window.addEventListener("scroll", () => {
-        const scroll = window.scrollY;
-        const height = document.body.scrollHeight - window.innerHeight;
-        const progress = (scroll / height) * 100;
-        document.getElementById("scrollProgress").style.width = progress + "%";
-        // Nav shadow
-        const nav = document.getElementById("mainNav");
-        nav.classList.toggle("scrolled", scroll > 50);
-      });
-
-      // Mobile menu
-      const hamburger = document.getElementById("hamburger");
-      const mobileMenu = document.getElementById("mobileMenu");
-      hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("open");
-        mobileMenu.classList.toggle("open");
-        document.body.style.overflow = mobileMenu.classList.contains("open")
-          ? "hidden"
-          : "";
-      });
-      function closeMobileMenu() {
-        hamburger.classList.remove("open");
-        mobileMenu.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-
-      // FAQ accordion
-      function toggleFaq(btn) {
-        const item = btn.parentElement;
-        const isOpen = item.classList.contains("open");
-        document
-          .querySelectorAll(".faq-item")
-          .forEach((i) => i.classList.remove("open"));
-        if (!isOpen) item.classList.add("open");
-      }
-
-      // Portfolio filter
-      function filterPortfolio(btn, category) {
-        document
-          .querySelectorAll(".filter-btn")
-          .forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        document.querySelectorAll(".masonry-item").forEach((item) => {
-          if (category === "all" || item.dataset.category === category) {
-            item.style.display = "block";
-            item.style.animation = "fadeIn 0.4s ease";
-          } else {
-            item.style.display = "none";
-          }
-        });
-      }
-
-      // Testimonial slider
-      let currentTestimonial = 0;
-      const testimonials = document.querySelectorAll(".testimonial-card");
-      const testiDots = document.querySelectorAll(".testi-dot");
-      function goToTestimonial(index) {
-        testimonials[currentTestimonial].classList.remove("active");
-        testiDots[currentTestimonial].classList.remove("active");
-        currentTestimonial = index;
-        testimonials[currentTestimonial].classList.add("active");
-        testiDots[currentTestimonial].classList.add("active");
-      }
-      setInterval(() => {
-        goToTestimonial((currentTestimonial + 1) % testimonials.length);
-      }, 5000);
-
-      // Animated counters
-      function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = Math.floor(current);
-          if (current >= target) clearInterval(timer);
-        }, 16);
-      }
-
-      // Scroll reveal
-      const revealEls = document.querySelectorAll(
-        ".reveal, .reveal-left, .reveal-right",
-      );
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Stagger children
-              setTimeout(() => entry.target.classList.add("revealed"), 50);
-              // Counter animation
-              const counters = entry.target.querySelectorAll(".counter");
-              counters.forEach((c) => animateCounter(c));
-            }
-          });
-        },
-        { threshold: 0.15 },
-      );
-      revealEls.forEach((el) => observer.observe(el));
-
-      // Also observe stat items directly
-      document.querySelectorAll(".stat-item").forEach((el, i) => {
-        const counterObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const counter = entry.target.querySelector(".counter");
-                if (counter && !counter.classList.contains("counted")) {
-                  counter.classList.add("counted");
-                  setTimeout(() => animateCounter(counter), i * 200);
-                }
-              }
-            });
-          },
-          { threshold: 0.5 },
-        );
-        counterObserver.observe(el);
-      });
-
-      // Form submission
-      function submitForm(e) {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        btn.textContent = "✅ Request Sent! We'll contact you soon.";
-        btn.style.background = "#4CAF50";
-        setTimeout(() => {
-          btn.textContent = "📅 Send Booking Request";
-          btn.style.background = "var(--rose-gold)";
-          e.target.reset();
-        }, 4000);
-      }
-
-      // CSS for fadeIn
-      const style = document.createElement("style");
-      style.textContent =
-        "@keyframes fadeIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }";
-      document.head.appendChild(style);
-    </script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
