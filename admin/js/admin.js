@@ -1,49 +1,53 @@
 // ============================================================
-// admin/js/admin.js – Full Admin Dashboard Logic
+// admin/js/admin.js – Full Admin Dashboard (self-contained)
 // ============================================================
 
-import { db, storage } from "../../firebase/config.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
+  getFirestore,
   collection,
   addDoc,
   getDocs,
   updateDoc,
   deleteDoc,
   doc,
+  onSnapshot,
   query,
   orderBy,
-  onSnapshot,
   serverTimestamp,
   where,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import {
+  getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
   deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-// ══════════════════════════════════════════════════════════
-// PASSWORD PROTECTION
-// ══════════════════════════════════════════════════════════
-const ADMIN_PASSWORD = "lycia"; // Change this to something strong
+// ── Firebase Init ────────────────────────────────────────
+const app = initializeApp(window.__FIREBASE_CONFIG__);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-function checkAuth() {
-  return sessionStorage.getItem("adminAuth") === "true";
-}
+// ── Admin Password ────────────────────────────────────────
+const ADMIN_PASSWORD = "lycia"; // ← CHANGE THIS BEFORE GOING LIVE
 
+// ════════════════════════════════════════════════════════
+// LOGIN
+// ════════════════════════════════════════════════════════
 function initLogin() {
   const loginScreen = document.getElementById("adminLogin");
   const dashboard = document.getElementById("adminDashboard");
 
-  if (checkAuth()) {
+  if (sessionStorage.getItem("adminAuth") === "true") {
     loginScreen.style.display = "none";
     dashboard.style.display = "flex";
     initDashboard();
     return;
   }
 
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
+  document.getElementById("loginForm")?.addEventListener("submit", (e) => {
     e.preventDefault();
     const pwd = document.getElementById("adminPassword").value;
     const err = document.getElementById("loginError");
@@ -54,35 +58,33 @@ function initLogin() {
       initDashboard();
     } else {
       err.style.display = "block";
-      err.textContent = "Incorrect password. Please try again.";
+      err.textContent = "❌ Incorrect password. Please try again.";
       document.getElementById("adminPassword").value = "";
     }
   });
 }
 
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 // DASHBOARD INIT
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 function initDashboard() {
   initSidebarNav();
-  loadDashboardStats();
+  loadStats();
   loadBookingsTable();
   loadIntakeForms();
   initPortfolioAdmin();
   initReelsAdmin();
   initTestimonialsAdmin();
   initCalendarAdmin();
-  initWaTemplatesAdmin();
   initNewsletterAdmin();
 }
 
-// ══════════════════════════════════════════════════════════
-// SIDEBAR NAVIGATION
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SIDEBAR
+// ════════════════════════════════════════════════════════
 function initSidebarNav() {
   document.querySelectorAll(".sidebar-link[data-page]").forEach((link) => {
     link.addEventListener("click", () => {
-      const page = link.dataset.page;
       document
         .querySelectorAll(".sidebar-link")
         .forEach((l) => l.classList.remove("active"));
@@ -90,258 +92,292 @@ function initSidebarNav() {
       document
         .querySelectorAll(".admin-page")
         .forEach((p) => p.classList.remove("active"));
-      document.getElementById(`page-${page}`)?.classList.add("active");
+      document
+        .getElementById(`page-${link.dataset.page}`)
+        ?.classList.add("active");
       document.querySelector(".topbar-title").textContent =
-        link.querySelector("span")?.textContent || "Dashboard";
-      // Close mobile sidebar
+        link.querySelector("span:last-child")?.textContent || "Dashboard";
       document.getElementById("adminSidebar")?.classList.remove("open");
     });
   });
 
-  // Mobile sidebar toggle
   document.getElementById("sidebarToggle")?.addEventListener("click", () => {
     document.getElementById("adminSidebar")?.classList.toggle("open");
   });
 
-  // Logout
   document.getElementById("logoutBtn")?.addEventListener("click", () => {
     sessionStorage.removeItem("adminAuth");
     location.reload();
   });
 }
 
-// ══════════════════════════════════════════════════════════
-// DASHBOARD STATS
-// ══════════════════════════════════════════════════════════
-async function loadDashboardStats() {
+// ════════════════════════════════════════════════════════
+// STATS
+// ════════════════════════════════════════════════════════
+async function loadStats() {
   try {
-    const [bookings, testimonials, newsletter, portfolio] = await Promise.all([
-      getDocs(collection(db, "bookings")),
-      getDocs(collection(db, "testimonials")),
-      getDocs(collection(db, "newsletter")),
-      getDocs(collection(db, "portfolio")),
-    ]);
+    const [bookSnap, testiSnap, newsSnap, portSnap, reelSnap] =
+      await Promise.all([
+        getDocs(collection(db, "bookings")),
+        getDocs(collection(db, "testimonials")),
+        getDocs(collection(db, "newsletter")),
+        getDocs(collection(db, "portfolio")),
+        getDocs(collection(db, "reels")),
+      ]);
 
-    const allBookings = [];
-    bookings.forEach((d) => allBookings.push(d.data()));
-    const pending = allBookings.filter((b) => b.status === "pending").length;
-    const confirmed = allBookings.filter(
-      (b) => b.status === "confirmed",
-    ).length;
+    const bookings = [];
+    bookSnap.forEach((d) => bookings.push(d.data()));
+    const pending = bookings.filter((b) => b.status === "pending").length;
+    const confirmed = bookings.filter((b) => b.status === "confirmed").length;
 
-    setText("statTotalBookings", allBookings.length);
+    setText("statTotalBookings", bookings.length);
     setText("statPending", pending);
     setText("statConfirmed", confirmed);
-    setText("statTestimonials", testimonials.size);
-    setText("statNewsletter", newsletter.size);
-    setText("statPortfolio", portfolio.size);
+    setText("statTestimonials", testiSnap.size);
+    setText("statNewsletter", newsSnap.size);
+    setText("statNewsletter2", newsSnap.size);
+    setText("statPortfolio", portSnap.size);
 
-    // Recent bookings on dashboard
-    renderRecentBookings(allBookings.slice(-5).reverse());
+    // Pending badge in sidebar
+    const badge = document.getElementById("pendingCount");
+    if (badge) badge.textContent = pending;
+
+    // Recent bookings on overview
+    const recent = [];
+    bookSnap.forEach((d) => recent.push({ id: d.id, ...d.data() }));
+    recent.sort(
+      (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0),
+    );
+    renderRecentBookings(recent.slice(0, 6));
   } catch (e) {
-    console.warn("Stats load error:", e);
+    console.error("Stats error:", e);
   }
-}
-
-function setText(id, val) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = val;
 }
 
 function renderRecentBookings(bookings) {
   const tbody = document.getElementById("recentBookingsTbody");
   if (!tbody) return;
-  tbody.innerHTML =
-    bookings
-      .map(
-        (b) => `
+  if (!bookings.length) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:32px;color:var(--admin-muted);">No bookings yet. Submit a test booking from the website!</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = bookings
+    .map(
+      (b) => `
     <tr>
-      <td>${b.name || "—"}</td>
+      <td><strong>${b.name || "—"}</strong></td>
       <td>${b.service || "—"}</td>
       <td>${b.date || "—"}</td>
-      <td><span class="status-badge status-${b.status || "pending"}">${capitalize(b.status || "pending")}</span></td>
+      <td><span class="status-badge status-${b.status || "pending"}">${cap(b.status || "pending")}</span></td>
       <td>
-        <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name || "")}!" target="_blank" class="action-btn" title="WhatsApp">💬</a>
+        <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name || "")}!"
+           target="_blank" class="action-btn" title="WhatsApp">💬</a>
       </td>
-    </tr>
-  `,
-      )
-      .join("") ||
-    '<tr><td colspan="5" style="text-align:center;color:var(--admin-muted);padding:24px;">No bookings yet</td></tr>';
+    </tr>`,
+    )
+    .join("");
 }
 
-// ══════════════════════════════════════════════════════════
-// BOOKINGS TABLE
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// BOOKINGS TABLE (live)
+// ════════════════════════════════════════════════════════
 function loadBookingsTable() {
-  onSnapshot(
-    query(collection(db, "bookings"), orderBy("createdAt", "desc")),
-    (snap) => {
-      const tbody = document.getElementById("bookingsTbody");
-      if (!tbody) return;
-      const rows = [];
-      snap.forEach((d) => rows.push({ id: d.id, ...d.data() }));
+  const tbody = document.getElementById("bookingsTbody");
+  if (!tbody) return;
 
-      tbody.innerHTML =
-        rows
+  tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--admin-muted);">
+    <div style="width:32px;height:32px;border:3px solid rgba(217,140,154,0.3);border-top-color:var(--rose);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 12px;"></div>Loading bookings...
+  </td></tr>`;
+
+  try {
+    onSnapshot(
+      query(collection(db, "bookings"), orderBy("createdAt", "desc")),
+      (snap) => {
+        if (snap.empty) {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--admin-muted);">No bookings yet.</td></tr>`;
+          return;
+        }
+        const rows = [];
+        snap.forEach((d) => rows.push({ id: d.id, ...d.data() }));
+        tbody.innerHTML = rows
           .map(
             (b) => `
-      <tr>
-        <td><strong>${b.name || "—"}</strong></td>
-        <td>${b.phone || "—"}</td>
-        <td>${b.service || "—"}</td>
-        <td>${b.date || "—"} ${b.time ? `@ ${b.time}` : ""}</td>
-        <td>${b.location || "—"}</td>
-        <td>${b.type === "group" ? `👥 ${b.people} ppl` : "👤"}</td>
-        <td>
-          <select class="status-select" data-id="${b.id}" style="background:var(--admin-bg);color:var(--admin-text);border:1px solid var(--admin-border);border-radius:6px;padding:5px 8px;font-size:12px;cursor:pointer;">
-            ${["pending", "confirmed", "completed", "cancelled"].map((s) => `<option value="${s}" ${b.status === s ? "selected" : ""}>${capitalize(s)}</option>`).join("")}
-          </select>
-        </td>
-        <td>
-          <div class="action-btns">
-            <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name || "")}!" target="_blank" class="action-btn" title="WhatsApp">💬</a>
-            <button class="action-btn delete" onclick="adminDeleteBooking('${b.id}')" title="Delete">🗑</button>
-          </div>
-        </td>
-      </tr>
-    `,
+        <tr>
+          <td><strong>${b.name || "—"}</strong></td>
+          <td>${b.phone || "—"}</td>
+          <td>${b.service || "—"}</td>
+          <td>${b.date || "—"}${b.time ? ` @ ${b.time}` : ""}</td>
+          <td>${b.location || "—"}</td>
+          <td>${b.type === "group" ? `👥 ${b.people || ""}` : "👤 Solo"}</td>
+          <td>
+            <select class="status-select" data-id="${b.id}"
+              style="background:var(--admin-bg);color:var(--admin-text);border:1px solid var(--admin-border);
+                     border-radius:6px;padding:5px 8px;font-size:12px;cursor:pointer;">
+              ${["pending", "confirmed", "completed", "cancelled"]
+                .map(
+                  (s) =>
+                    `<option value="${s}" ${b.status === s ? "selected" : ""}>${cap(s)}</option>`,
+                )
+                .join("")}
+            </select>
+          </td>
+          <td>
+            <div class="action-btns">
+              <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name || "")}!"
+                 target="_blank" class="action-btn" title="WhatsApp">💬</a>
+              <button class="action-btn delete" onclick="adminDeleteDoc('bookings','${b.id}')" title="Delete">🗑</button>
+            </div>
+          </td>
+        </tr>`,
           )
-          .join("") ||
-        '<tr><td colspan="8" style="text-align:center;color:var(--admin-muted);padding:32px;">No bookings yet</td></tr>';
+          .join("");
 
-      // Status change listeners
-      tbody.querySelectorAll(".status-select").forEach((sel) => {
-        sel.addEventListener("change", async () => {
-          await updateDoc(doc(db, "bookings", sel.dataset.id), {
-            status: sel.value,
+        // Status change
+        tbody.querySelectorAll(".status-select").forEach((sel) => {
+          sel.addEventListener("change", async () => {
+            await updateDoc(doc(db, "bookings", sel.dataset.id), {
+              status: sel.value,
+            });
+            toast(`Booking updated to "${sel.value}"`, "success");
+            loadStats();
           });
-          showAdminToast(`Booking updated to ${sel.value}`, "success");
         });
-      });
-    },
-  );
+      },
+    );
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--admin-muted);">Error loading bookings: ${e.message}</td></tr>`;
+  }
 }
 
-window.adminDeleteBooking = async (id) => {
-  if (!confirm("Delete this booking?")) return;
-  await deleteDoc(doc(db, "bookings", id));
-  showAdminToast("Booking deleted", "info");
-};
-
-// ══════════════════════════════════════════════════════════
-// INTAKE FORMS
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// INTAKE FORMS (live)
+// ════════════════════════════════════════════════════════
 function loadIntakeForms() {
-  onSnapshot(
-    query(collection(db, "intakeForms"), orderBy("createdAt", "desc")),
-    (snap) => {
-      const tbody = document.getElementById("intakeTbody");
-      if (!tbody) return;
-      const rows = [];
-      snap.forEach((d) => rows.push({ id: d.id, ...d.data() }));
-      tbody.innerHTML =
-        rows
+  const tbody = document.getElementById("intakeTbody");
+  if (!tbody) return;
+
+  tbody.innerHTML = loadingRow(8);
+
+  try {
+    onSnapshot(
+      query(collection(db, "intakeForms"), orderBy("createdAt", "desc")),
+      (snap) => {
+        if (snap.empty) {
+          tbody.innerHTML = emptyRow(8, "No intake forms yet.");
+          return;
+        }
+        const rows = [];
+        snap.forEach((d) => rows.push({ id: d.id, ...d.data() }));
+        tbody.innerHTML = rows
           .map(
             (f) => `
-      <tr>
-        <td><strong>${f.name || "—"}</strong></td>
-        <td>${f.phone || "—"}</td>
-        <td>${f.occasion || "—"}</td>
-        <td>${f.lookType || "—"}</td>
-        <td>${f.skinTone ? `<span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:${f.skinTone};border:2px solid #fff;box-shadow:0 0 0 1px #ccc;"></span>` : "—"}</td>
-        <td>${f.allergies || "None"}</td>
-        <td>${f.hasInspoPhotos ? "✅ Yes" : "—"}</td>
-        <td>
-          <div class="action-btns">
-            <a href="https://wa.me/${(f.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(f.name || "")}! I've reviewed your intake form." target="_blank" class="action-btn" title="WhatsApp">💬</a>
-            <button class="action-btn delete" onclick="adminDeleteIntake('${f.id}')" title="Delete">🗑</button>
-          </div>
-        </td>
-      </tr>
-    `,
+        <tr>
+          <td><strong>${f.name || "—"}</strong></td>
+          <td>${f.phone || "—"}</td>
+          <td>${f.occasion || "—"}</td>
+          <td>${f.lookType || "—"}</td>
+          <td>${
+            f.skinTone
+              ? `<span style="display:inline-block;width:22px;height:22px;border-radius:50%;
+                background:${f.skinTone};border:2px solid rgba(255,255,255,0.3);
+                box-shadow:0 0 0 1px rgba(0,0,0,0.2);" title="${f.skinTone}"></span>`
+              : "—"
+          }</td>
+          <td>${f.allergies || "None"}</td>
+          <td>${f.hasInspoPhotos ? "✅ Yes" : "—"}</td>
+          <td>
+            <div class="action-btns">
+              <a href="https://wa.me/${(f.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(f.name || "")}! I've reviewed your intake form."
+                 target="_blank" class="action-btn" title="WhatsApp">💬</a>
+              <button class="action-btn delete" onclick="adminDeleteDoc('intakeForms','${f.id}')" title="Delete">🗑</button>
+            </div>
+          </td>
+        </tr>`,
           )
-          .join("") ||
-        '<tr><td colspan="8" style="text-align:center;color:var(--admin-muted);padding:32px;">No intake forms yet</td></tr>';
-    },
-  );
+          .join("");
+      },
+    );
+  } catch (e) {
+    tbody.innerHTML = errorRow(8, e.message);
+  }
 }
 
-window.adminDeleteIntake = async (id) => {
-  if (!confirm("Delete this intake form?")) return;
-  await deleteDoc(doc(db, "intakeForms", id));
-  showAdminToast("Intake form deleted", "info");
-};
-
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 // PORTFOLIO ADMIN
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 function initPortfolioAdmin() {
+  const grid = document.getElementById("portfolioAdminGrid");
   const form = document.getElementById("addPortfolioForm");
+  const fileInput = document.getElementById("portfolioFileInput");
+  const zone = document.getElementById("portfolioUploadZone");
   if (!form) return;
 
-  // Load existing
-  onSnapshot(
-    query(collection(db, "portfolio"), orderBy("order", "asc")),
-    (snap) => {
-      const grid = document.getElementById("portfolioAdminGrid");
-      if (!grid) return;
-      const items = [];
-      snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
-      grid.innerHTML =
-        items
+  // Live list
+  if (grid) {
+    grid.innerHTML = loadingGrid();
+    onSnapshot(
+      query(collection(db, "portfolio"), orderBy("order", "asc")),
+      (snap) => {
+        if (snap.empty) {
+          grid.innerHTML = `<p style="color:var(--admin-muted);text-align:center;padding:32px;grid-column:1/-1;">No portfolio images yet. Upload your first one!</p>`;
+          return;
+        }
+        const items = [];
+        snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+        grid.innerHTML = items
           .map(
             (item) => `
-      <div class="media-card">
-        <img class="media-thumb" src="${item.imageUrl || ""}" alt="${item.title || ""}">
-        <div class="media-body">
-          <div class="media-title">${item.title || "Untitled"}</div>
-          <div class="media-meta">${capitalize(item.category || "—")}</div>
-          <div class="media-actions">
-            <button class="admin-btn admin-btn-red" onclick="adminDeletePortfolio('${item.id}','${item.imagePath || ""}')">🗑 Delete</button>
+        <div class="media-card">
+          <img class="media-thumb" src="${item.imageUrl || ""}" alt="${item.title || ""}"
+               onerror="this.style.background='#333';this.style.height='120px'">
+          <div class="media-body">
+            <div class="media-title">${item.title || "Untitled"}</div>
+            <div class="media-meta">${cap(item.category || "—")} · Order: ${item.order ?? 0}</div>
+            <div class="media-actions">
+              <button class="admin-btn admin-btn-red"
+                onclick="adminDeletePortfolio('${item.id}','${item.imagePath || ""}')">🗑 Delete</button>
+            </div>
           </div>
-        </div>
-      </div>
-    `,
+        </div>`,
           )
-          .join("") ||
-        '<p style="color:var(--admin-muted);text-align:center;padding:24px;">No portfolio items yet</p>';
-    },
-  );
+          .join("");
+      },
+    );
+  }
 
-  // Upload zone
-  const uploadZone = document.getElementById("portfolioUploadZone");
-  const fileInput = document.getElementById("portfolioFileInput");
-  uploadZone?.addEventListener("click", () => fileInput?.click());
-  uploadZone?.addEventListener("dragover", (e) => {
+  // Upload zone click & drag
+  zone?.addEventListener("click", () => fileInput?.click());
+  zone?.addEventListener("dragover", (e) => {
     e.preventDefault();
-    uploadZone.classList.add("dragging");
+    zone.classList.add("dragging");
   });
-  uploadZone?.addEventListener("dragleave", () =>
-    uploadZone.classList.remove("dragging"),
-  );
-  uploadZone?.addEventListener("drop", (e) => {
+  zone?.addEventListener("dragleave", () => zone.classList.remove("dragging"));
+  zone?.addEventListener("drop", (e) => {
     e.preventDefault();
-    uploadZone.classList.remove("dragging");
-    if (e.dataTransfer.files[0]) handlePortfolioFile(e.dataTransfer.files[0]);
+    zone.classList.remove("dragging");
+    if (e.dataTransfer.files[0]) handlePortfolioUpload(e.dataTransfer.files[0]);
   });
   fileInput?.addEventListener("change", (e) => {
-    if (e.target.files[0]) handlePortfolioFile(e.target.files[0]);
+    if (e.target.files[0]) handlePortfolioUpload(e.target.files[0]);
   });
 
-  async function handlePortfolioFile(file) {
-    const title = document.getElementById("portfolioTitle")?.value || file.name;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (fileInput?.files[0]) handlePortfolioUpload(fileInput.files[0]);
+  });
+
+  async function handlePortfolioUpload(file) {
+    const btn = document.getElementById("addPortfolioBtn");
+    const title =
+      document.getElementById("portfolioTitle")?.value ||
+      file.name.replace(/\.[^/.]+$/, "");
     const category =
       document.getElementById("portfolioCategory")?.value || "all";
     const order =
       parseInt(document.getElementById("portfolioOrder")?.value) || 0;
 
-    const btn = document.getElementById("addPortfolioBtn");
-    if (btn) {
-      btn.disabled = true;
-      btn.textContent = "Uploading...";
-    }
-
+    btn.disabled = true;
+    btn.textContent = "⏳ Uploading...";
     try {
       const storageRef = ref(storage, `portfolio/${Date.now()}_${file.name}`);
       await uploadBytes(storageRef, file);
@@ -354,76 +390,84 @@ function initPortfolioAdmin() {
         imagePath: storageRef.fullPath,
         createdAt: serverTimestamp(),
       });
-      showAdminToast("Portfolio image uploaded!", "success");
+      toast("✅ Portfolio image uploaded!", "success");
       form.reset();
     } catch (e) {
-      showAdminToast("Upload failed: " + e.message, "error");
+      toast("❌ Upload failed: " + e.message, "error");
+      console.error(e);
     }
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = "➕ Add Image";
-    }
+    btn.disabled = false;
+    btn.textContent = "➕ Add Image";
   }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (fileInput?.files[0]) handlePortfolioFile(fileInput.files[0]);
-  });
 }
 
 window.adminDeletePortfolio = async (id, path) => {
-  if (!confirm("Delete this portfolio image?")) return;
+  if (!confirm("Delete this portfolio image? This cannot be undone.")) return;
   try {
     await deleteDoc(doc(db, "portfolio", id));
     if (path) await deleteObject(ref(storage, path)).catch(() => {});
-    showAdminToast("Image deleted", "info");
+    toast("Image deleted", "info");
   } catch (e) {
-    showAdminToast("Delete failed", "error");
+    toast("Delete failed: " + e.message, "error");
   }
 };
 
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 // REELS ADMIN
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 function initReelsAdmin() {
+  const grid = document.getElementById("reelsAdminGrid");
   const form = document.getElementById("addReelForm");
-  if (!form) return;
-
-  // Load existing reels
-  onSnapshot(
-    query(collection(db, "reels"), orderBy("order", "asc")),
-    (snap) => {
-      const grid = document.getElementById("reelsAdminGrid");
-      if (!grid) return;
-      const reels = [];
-      snap.forEach((d) => reels.push({ id: d.id, ...d.data() }));
-      grid.innerHTML =
-        reels
-          .map(
-            (r) => `
-      <div class="media-card">
-        <div class="media-thumb media-thumb-portrait" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:40px;">
-          ${r.thumbnailUrl ? `<img src="${r.thumbnailUrl}" style="width:100%;height:100%;object-fit:cover;display:block;">` : "🎬"}
-        </div>
-        <div class="media-body">
-          <div class="media-title">${r.title || "Untitled"}</div>
-          <div class="media-meta">${r.category || "—"} · Order: ${r.order ?? "—"}</div>
-          <div class="media-meta" style="word-break:break-all;font-size:10.5px;">${(r.videoUrl || "").substring(0, 50)}...</div>
-          <div class="media-actions">
-            <button class="admin-btn admin-btn-red" onclick="adminDeleteReel('${r.id}','${r.videoPath || ""}','${r.thumbPath || ""}')">🗑 Delete</button>
-          </div>
-        </div>
-      </div>
-    `,
-          )
-          .join("") ||
-        '<p style="color:var(--admin-muted);text-align:center;padding:24px;">No reels yet. Add up to 9.</p>';
-    },
-  );
-
-  // Upload
   const videoInput = document.getElementById("reelVideoInput");
   const thumbInput = document.getElementById("reelThumbInput");
+  if (!form) return;
+
+  // Live list
+  if (grid) {
+    grid.innerHTML = loadingGrid();
+    onSnapshot(
+      query(collection(db, "reels"), orderBy("order", "asc")),
+      (snap) => {
+        if (snap.empty) {
+          grid.innerHTML = `<p style="color:var(--admin-muted);text-align:center;padding:32px;grid-column:1/-1;">No reels yet. Add your first reel!</p>`;
+          return;
+        }
+        const reels = [];
+        snap.forEach((d) => reels.push({ id: d.id, ...d.data() }));
+        grid.innerHTML = reels
+          .map(
+            (r) => `
+        <div class="media-card">
+          <div class="media-thumb media-thumb-portrait"
+               style="background:#111;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;overflow:hidden;">
+            ${
+              r.thumbnailUrl
+                ? `<img src="${r.thumbnailUrl}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
+                : "🎬"
+            }
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</div>
+            </div>
+          </div>
+          <div class="media-body">
+            <div class="media-title">${r.title || "Untitled"}</div>
+            <div class="media-meta">${r.category || "—"} · Order: ${r.order ?? "—"}</div>
+            <div class="media-meta" style="font-size:10.5px;word-break:break-all;opacity:0.6;">
+              ${r.videoUrl ? r.videoUrl.substring(0, 45) + "..." : "No video URL"}
+            </div>
+            <div class="media-actions" style="margin-top:12px;">
+              <button class="admin-btn admin-btn-red"
+                onclick="adminDeleteReel('${r.id}','${r.videoPath || ""}','${r.thumbPath || ""}')">🗑 Delete</button>
+            </div>
+          </div>
+        </div>`,
+          )
+          .join("");
+      },
+    );
+  }
+
+  // Upload zone clicks
   document
     .getElementById("reelVideoZone")
     ?.addEventListener("click", () => videoInput?.click());
@@ -432,56 +476,56 @@ function initReelsAdmin() {
     ?.addEventListener("click", () => thumbInput?.click());
 
   videoInput?.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) document.getElementById("reelVideoName").textContent = file.name;
+    const f = e.target.files[0];
+    if (f) {
+      const el = document.getElementById("reelVideoName");
+      if (el) el.textContent = "📎 " + f.name;
+    }
   });
   thumbInput?.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      document.getElementById("reelThumbName").textContent = file.name;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        const prev = document.getElementById("reelThumbPreview");
-        if (prev) {
-          prev.src = ev.target.result;
-          prev.style.display = "block";
-        }
+    const f = e.target.files[0];
+    if (!f) return;
+    const el = document.getElementById("reelThumbName");
+    if (el) el.textContent = "📎 " + f.name;
+    const prev = document.getElementById("reelThumbPreview");
+    if (prev) {
+      const r = new FileReader();
+      r.onload = (ev) => {
+        prev.src = ev.target.result;
+        prev.style.display = "block";
       };
-      reader.readAsDataURL(file);
+      r.readAsDataURL(f);
     }
   });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = document.getElementById("addReelBtn");
-    btn.disabled = true;
-    btn.textContent = "Uploading...";
-
     const title = document.getElementById("reelTitle")?.value || "";
     const category = document.getElementById("reelCategory")?.value || "Beauty";
-    const order = parseInt(document.getElementById("reelOrder")?.value) || 0;
-    const youtubeUrl = document.getElementById("reelYoutubeUrl")?.value || "";
+    const order = parseInt(document.getElementById("reelOrder")?.value) || 1;
+    const ytUrl = document.getElementById("reelYoutubeUrl")?.value || "";
+
+    btn.disabled = true;
+    btn.textContent = "⏳ Uploading...";
 
     try {
-      let videoUrl = youtubeUrl;
-      let videoPath = "";
-      let thumbnailUrl = "";
-      let thumbPath = "";
+      let videoUrl = ytUrl,
+        videoPath = "",
+        thumbnailUrl = "",
+        thumbPath = "";
 
-      // Upload video file if no YouTube URL
-      if (!youtubeUrl && videoInput?.files[0]) {
-        const vFile = videoInput.files[0];
-        const vRef = ref(storage, `reels/videos/${Date.now()}_${vFile.name}`);
-        await uploadBytes(vRef, vFile);
+      if (!ytUrl && videoInput?.files[0]) {
+        const vf = videoInput.files[0];
+        const vRef = ref(storage, `reels/videos/${Date.now()}_${vf.name}`);
+        await uploadBytes(vRef, vf);
         videoUrl = await getDownloadURL(vRef);
         videoPath = vRef.fullPath;
       }
-
-      // Upload thumbnail
       if (thumbInput?.files[0]) {
-        const tFile = thumbInput.files[0];
-        const tRef = ref(storage, `reels/thumbs/${Date.now()}_${tFile.name}`);
-        await uploadBytes(tRef, tFile);
+        const tf = thumbInput.files[0];
+        const tRef = ref(storage, `reels/thumbs/${Date.now()}_${tf.name}`);
+        await uploadBytes(tRef, tf);
         thumbnailUrl = await getDownloadURL(tRef);
         thumbPath = tRef.fullPath;
       }
@@ -496,14 +540,17 @@ function initReelsAdmin() {
         thumbPath,
         createdAt: serverTimestamp(),
       });
-      showAdminToast("Reel added successfully!", "success");
+
+      toast("✅ Reel added successfully!", "success");
       form.reset();
-      document.getElementById("reelVideoName").textContent = "";
-      document.getElementById("reelThumbName").textContent = "";
+      ["reelVideoName", "reelThumbName"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = "";
+      });
       const prev = document.getElementById("reelThumbPreview");
       if (prev) prev.style.display = "none";
     } catch (err) {
-      showAdminToast("Upload failed: " + err.message, "error");
+      toast("❌ Upload failed: " + err.message, "error");
       console.error(err);
     }
     btn.disabled = false;
@@ -511,79 +558,88 @@ function initReelsAdmin() {
   });
 }
 
-window.adminDeleteReel = async (id, videoPath, thumbPath) => {
-  if (!confirm("Delete this reel?")) return;
+window.adminDeleteReel = async (id, vPath, tPath) => {
+  if (!confirm("Delete this reel? This cannot be undone.")) return;
   try {
     await deleteDoc(doc(db, "reels", id));
-    if (videoPath) await deleteObject(ref(storage, videoPath)).catch(() => {});
-    if (thumbPath) await deleteObject(ref(storage, thumbPath)).catch(() => {});
-    showAdminToast("Reel deleted", "info");
+    if (vPath) await deleteObject(ref(storage, vPath)).catch(() => {});
+    if (tPath) await deleteObject(ref(storage, tPath)).catch(() => {});
+    toast("Reel deleted", "info");
   } catch (e) {
-    showAdminToast("Delete failed", "error");
+    toast("Delete failed: " + e.message, "error");
   }
 };
 
-// ══════════════════════════════════════════════════════════
-// TESTIMONIALS ADMIN
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// TESTIMONIALS ADMIN (live)
+// ════════════════════════════════════════════════════════
 function initTestimonialsAdmin() {
+  const tbody = document.getElementById("testimonialsTbody");
+  if (!tbody) return;
+
+  tbody.innerHTML = loadingRow(7);
+
   onSnapshot(
     query(collection(db, "testimonials"), orderBy("createdAt", "desc")),
     (snap) => {
-      const tbody = document.getElementById("testimonialsTbody");
-      if (!tbody) return;
+      if (snap.empty) {
+        tbody.innerHTML = emptyRow(7, "No testimonials yet.");
+        return;
+      }
       const items = [];
       snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
-      tbody.innerHTML =
-        items
-          .map(
-            (t) => `
+      tbody.innerHTML = items
+        .map(
+          (t) => `
       <tr>
         <td><strong>${t.name || "—"}</strong></td>
         <td>${t.role || "—"}</td>
         <td>${t.service || "—"}</td>
-        <td>${"★".repeat(t.rating || 5)}</td>
-        <td style="max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.review || "—"}</td>
-        <td><span class="status-badge ${t.approved ? "status-confirmed" : "status-pending"}">${t.approved ? "Approved" : "Pending"}</span></td>
+        <td style="color:var(--gold);">${"★".repeat(t.rating || 5)}</td>
+        <td style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
+            title="${(t.review || "").replace(/"/g, "'")}">
+          ${t.review ? t.review.substring(0, 60) + "..." : "—"}
+        </td>
+        <td><span class="status-badge ${t.approved ? "status-confirmed" : "status-pending"}">
+          ${t.approved ? "✅ Live" : "⏳ Pending"}
+        </span></td>
         <td>
           <div class="action-btns">
-            ${!t.approved ? `<button class="action-btn approve" onclick="adminApproveTestimonial('${t.id}')" title="Approve">✅</button>` : ""}
-            <button class="action-btn delete" onclick="adminDeleteTestimonial('${t.id}')" title="Delete">🗑</button>
+            ${
+              !t.approved
+                ? `<button class="action-btn approve"
+                   onclick="adminApproveTestimonial('${t.id}')" title="Approve & publish">✅</button>`
+                : ""
+            }
+            <button class="action-btn delete"
+              onclick="adminDeleteDoc('testimonials','${t.id}')" title="Delete">🗑</button>
           </div>
         </td>
-      </tr>
-    `,
-          )
-          .join("") ||
-        '<tr><td colspan="7" style="text-align:center;color:var(--admin-muted);padding:32px;">No testimonials yet</td></tr>';
+      </tr>`,
+        )
+        .join("");
     },
   );
 }
 
 window.adminApproveTestimonial = async (id) => {
   await updateDoc(doc(db, "testimonials", id), { approved: true });
-  showAdminToast("Testimonial approved and now live!", "success");
+  toast("✅ Testimonial approved and now live on the site!", "success");
 };
 
-window.adminDeleteTestimonial = async (id) => {
-  if (!confirm("Delete this testimonial?")) return;
-  await deleteDoc(doc(db, "testimonials", id));
-  showAdminToast("Testimonial deleted", "info");
-};
-
-// ══════════════════════════════════════════════════════════
-// CALENDAR ADMIN (View + Block Dates)
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// CALENDAR ADMIN
+// ════════════════════════════════════════════════════════
 function initCalendarAdmin() {
-  let year = new Date().getFullYear();
-  let month = new Date().getMonth();
+  let year = new Date().getFullYear(),
+    month = new Date().getMonth();
 
   async function renderAdminCal() {
-    const calGrid = document.getElementById("adminCalGrid");
-    const calTitle = document.getElementById("adminCalTitle");
-    if (!calGrid || !calTitle) return;
+    const grid = document.getElementById("adminCalGrid");
+    const title = document.getElementById("adminCalTitle");
+    if (!grid || !title) return;
 
-    const monthNames = [
+    const months = [
       "January",
       "February",
       "March",
@@ -597,71 +653,89 @@ function initCalendarAdmin() {
       "November",
       "December",
     ];
-    calTitle.textContent = `${monthNames[month]} ${year}`;
+    title.textContent = `${months[month]} ${year}`;
 
-    // Load booked dates
-    const snap = await getDocs(collection(db, "bookings"));
-    const bookedMap = {};
-    snap.forEach((d) => {
-      const b = d.data();
-      if (b.date && b.status !== "cancelled") {
-        bookedMap[b.date] = (bookedMap[b.date] || 0) + 1;
-      }
-    });
+    let bookedMap = {};
+    try {
+      const snap = await getDocs(collection(db, "bookings"));
+      snap.forEach((d) => {
+        const b = d.data();
+        if (b.date && b.status !== "cancelled")
+          bookedMap[b.date] = (bookedMap[b.date] || 0) + 1;
+      });
+    } catch (e) {}
 
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    calGrid.innerHTML = "";
+    grid.innerHTML = "";
     for (let i = 0; i < firstDay; i++) {
-      calGrid.innerHTML += `<div class="admin-cal-day empty"></div>`;
+      const e = document.createElement("div");
+      e.className = "admin-cal-day empty";
+      grid.appendChild(e);
     }
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
       const cellDate = new Date(year, month, d);
       const count = bookedMap[dateStr] || 0;
       const isPast = cellDate < today;
-
-      calGrid.innerHTML += `
-        <div class="admin-cal-day ${isPast ? "past" : count > 0 ? "booked" : "available"}"
-          title="${count > 0 ? `${count} booking(s)` : "Available"}"
-          ${!isPast ? `onclick="adminCalDayClick('${dateStr}', ${count})"` : ""}>
-          ${d}${count > 0 ? `<div style="font-size:8px;color:var(--rose);font-weight:700;">${count}</div>` : ""}
-        </div>`;
+      const cell = document.createElement("div");
+      cell.className = `admin-cal-day ${isPast ? "past" : count > 0 ? "booked" : "available"}`;
+      cell.title = count > 0 ? `${count} booking(s)` : "Available";
+      cell.innerHTML = `${d}${count > 0 ? `<div style="font-size:8px;color:var(--rose);font-weight:700;line-height:1;">${count}</div>` : ""}`;
+      if (!isPast)
+        cell.addEventListener("click", () => loadDayBookings(dateStr));
+      grid.appendChild(cell);
     }
   }
 
-  window.adminCalDayClick = (dateStr, count) => {
-    document.getElementById("adminCalSelectedDate").textContent = dateStr;
-    loadDayBookings(dateStr);
-  };
-
   async function loadDayBookings(dateStr) {
     const wrap = document.getElementById("dayBookingsWrap");
+    const dateLabel = document.getElementById("adminCalSelectedDate");
     if (!wrap) return;
-    wrap.innerHTML =
-      '<div style="color:var(--admin-muted);font-size:13px;">Loading...</div>';
-    const snap = await getDocs(collection(db, "bookings"));
-    const dayBookings = [];
-    snap.forEach((d) => {
-      const b = d.data();
-      if (b.date === dateStr) dayBookings.push({ id: d.id, ...b });
-    });
-    wrap.innerHTML = dayBookings.length
-      ? dayBookings
-          .map(
-            (b) => `
-      <div style="background:var(--admin-bg);border:1px solid var(--admin-border);border-radius:10px;padding:14px;margin-bottom:10px;">
-        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">${b.name}</div>
-        <div style="font-size:12px;color:var(--admin-muted);">${b.service} · ${b.time || "—"} · <span class="status-badge status-${b.status}">${capitalize(b.status)}</span></div>
-        <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name)}!" target="_blank" class="admin-btn admin-btn-green" style="margin-top:10px;font-size:11px;">💬 WhatsApp</a>
-      </div>
-    `,
-          )
-          .join("")
-      : '<div style="color:var(--admin-muted);font-size:13px;text-align:center;padding:20px;">No bookings for this date</div>';
+    if (dateLabel) dateLabel.textContent = dateStr;
+    wrap.innerHTML = `<div style="color:var(--admin-muted);font-size:13px;text-align:center;padding:16px;">
+      <div style="width:24px;height:24px;border:2px solid rgba(217,140,154,0.3);border-top-color:var(--rose);
+        border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 8px;"></div>Loading...
+    </div>`;
+
+    try {
+      const snap = await getDocs(collection(db, "bookings"));
+      const dayItems = [];
+      snap.forEach((d) => {
+        const b = d.data();
+        if (b.date === dateStr) dayItems.push({ id: d.id, ...b });
+      });
+
+      if (!dayItems.length) {
+        wrap.innerHTML = `<div style="color:var(--admin-muted);font-size:13px;text-align:center;padding:24px;">No bookings on this date ✅</div>`;
+        return;
+      }
+      wrap.innerHTML = dayItems
+        .map(
+          (b) => `
+        <div style="background:var(--admin-bg);border:1px solid var(--admin-border);
+                    border-radius:10px;padding:14px 16px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+            <strong style="font-size:14px;">${b.name || "—"}</strong>
+            <span class="status-badge status-${b.status || "pending"}">${cap(b.status || "pending")}</span>
+          </div>
+          <div style="font-size:12.5px;color:var(--admin-muted);margin-bottom:4px;">
+            💄 ${b.service || "—"} &nbsp;·&nbsp; ⏰ ${b.time || "No time set"}
+          </div>
+          <div style="font-size:12.5px;color:var(--admin-muted);margin-bottom:12px;">
+            📞 ${b.phone || "—"} &nbsp;·&nbsp; 📍 ${b.location || "—"}
+          </div>
+          <a href="https://wa.me/${(b.phone || "").replace(/\D/g, "")}?text=Hi ${encodeURIComponent(b.name || "")}!"
+             target="_blank" class="admin-btn admin-btn-green" style="font-size:11px;">💬 WhatsApp</a>
+        </div>`,
+        )
+        .join("");
+    } catch (e) {
+      wrap.innerHTML = `<div style="color:var(--red);font-size:13px;padding:16px;">Error: ${e.message}</div>`;
+    }
   }
 
   document.getElementById("adminCalPrev")?.addEventListener("click", () => {
@@ -684,97 +758,136 @@ function initCalendarAdmin() {
   renderAdminCal();
 }
 
-// ══════════════════════════════════════════════════════════
-// WHATSAPP TEMPLATES ADMIN
-// ══════════════════════════════════════════════════════════
-function initWaTemplatesAdmin() {
-  // Templates are handled by the whatsapp.js module on frontend
-  // Admin can view and customize templates stored in Firestore
-  const saveBtn = document.getElementById("saveWaTemplates");
-  saveBtn?.addEventListener("click", async () => {
-    showAdminToast("Templates saved (edit whatsapp.js to update)", "info");
-  });
-}
-
-// ══════════════════════════════════════════════════════════
-// NEWSLETTER ADMIN
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// NEWSLETTER ADMIN (live)
+// ════════════════════════════════════════════════════════
 function initNewsletterAdmin() {
+  const tbody = document.getElementById("newsletterTbody");
+  if (!tbody) return;
+
+  tbody.innerHTML = loadingRow(4);
+
   onSnapshot(collection(db, "newsletter"), (snap) => {
-    const tbody = document.getElementById("newsletterTbody");
     setText("statNewsletter", snap.size);
-    if (!tbody) return;
+    setText("statNewsletter2", snap.size);
+    if (snap.empty) {
+      tbody.innerHTML = emptyRow(4, "No subscribers yet.");
+      return;
+    }
     const emails = [];
     snap.forEach((d) => emails.push({ id: d.id, ...d.data() }));
-    tbody.innerHTML =
-      emails
-        .map(
-          (e, i) => `
+    emails.sort(
+      (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0),
+    );
+    tbody.innerHTML = emails
+      .map(
+        (e, i) => `
       <tr>
         <td>${i + 1}</td>
         <td>${e.email}</td>
-        <td>${e.createdAt?.toDate?.().toLocaleDateString() || "—"}</td>
-        <td><button class="action-btn delete" onclick="adminDeleteNewsletter('${e.id}')">🗑</button></td>
-      </tr>
-    `,
-        )
-        .join("") ||
-      '<tr><td colspan="4" style="text-align:center;color:var(--admin-muted);padding:24px;">No subscribers yet</td></tr>';
+        <td>${e.createdAt?.toDate ? e.createdAt.toDate().toLocaleDateString("en-NG") : "—"}</td>
+        <td>
+          <button class="action-btn delete"
+            onclick="adminDeleteDoc('newsletter','${e.id}')" title="Remove">🗑</button>
+        </td>
+      </tr>`,
+      )
+      .join("");
   });
 
   // Export CSV
   document
     .getElementById("exportNewsletterBtn")
     ?.addEventListener("click", async () => {
-      const snap = await getDocs(collection(db, "newsletter"));
-      const rows = ["Email,Date"];
-      snap.forEach((d) => {
-        const e = d.data();
-        rows.push(
-          `${e.email},${e.createdAt?.toDate?.().toLocaleDateString() || ""}`,
-        );
-      });
-      const blob = new Blob([rows.join("\n")], { type: "text/csv" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "lyciastouch-subscribers.csv";
-      a.click();
-      showAdminToast("CSV exported!", "success");
+      try {
+        const snap = await getDocs(collection(db, "newsletter"));
+        const rows = ["Email,Date Subscribed"];
+        snap.forEach((d) => {
+          const e = d.data();
+          rows.push(
+            `${e.email},${e.createdAt?.toDate?.().toLocaleDateString() || ""}`,
+          );
+        });
+        const blob = new Blob([rows.join("\n")], { type: "text/csv" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "lyciastouch-subscribers.csv";
+        a.click();
+        toast("✅ CSV exported!", "success");
+      } catch (e) {
+        toast("Export failed: " + e.message, "error");
+      }
     });
 }
 
-window.adminDeleteNewsletter = async (id) => {
-  await deleteDoc(doc(db, "newsletter", id));
-  showAdminToast("Subscriber removed", "info");
+// ════════════════════════════════════════════════════════
+// SHARED HELPERS
+// ════════════════════════════════════════════════════════
+window.adminDeleteDoc = async (colName, id) => {
+  if (!confirm(`Delete this item from "${colName}"? This cannot be undone.`))
+    return;
+  try {
+    await deleteDoc(doc(db, colName, id));
+    toast("Item deleted", "info");
+  } catch (e) {
+    toast("Delete failed: " + e.message, "error");
+  }
 };
 
-// ══════════════════════════════════════════════════════════
-// HELPERS
-// ══════════════════════════════════════════════════════════
-function capitalize(str) {
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+function cap(str) {
   return str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
 }
 
-function showAdminToast(msg, type = "info") {
-  let toast = document.getElementById("adminToast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "adminToast";
-    toast.style.cssText =
-      "position:fixed;bottom:24px;right:24px;background:#1f1f28;color:#e8e8f0;padding:14px 22px;border-radius:12px;font-size:13px;font-weight:500;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(8px);transition:all 0.3s;max-width:300px;";
-    document.body.appendChild(toast);
+function loadingRow(cols) {
+  return `<tr><td colspan="${cols}" style="text-align:center;padding:40px;color:var(--admin-muted);">
+    <div style="width:32px;height:32px;border:3px solid rgba(217,140,154,0.2);border-top-color:var(--rose);
+      border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 12px;"></div>Loading data...
+  </td></tr>`;
+}
+function emptyRow(cols, msg) {
+  return `<tr><td colspan="${cols}" style="text-align:center;padding:40px;color:var(--admin-muted);">${msg}</td></tr>`;
+}
+function errorRow(cols, msg) {
+  return `<tr><td colspan="${cols}" style="text-align:center;padding:40px;color:var(--red);">Error: ${msg}</td></tr>`;
+}
+function loadingGrid() {
+  return `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--admin-muted);">
+    <div style="width:32px;height:32px;border:3px solid rgba(217,140,154,0.2);border-top-color:var(--rose);
+      border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 12px;"></div>Loading...
+  </div>`;
+}
+
+function toast(msg, type = "info") {
+  let t = document.getElementById("adminToast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "adminToast";
+    t.style.cssText = `position:fixed;bottom:24px;right:24px;background:#1f1f28;color:#e8e8f0;
+      padding:14px 22px;border-radius:12px;font-size:13px;font-weight:500;z-index:9999;
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(8px);
+      transition:all 0.3s;max-width:320px;font-family:'Inter',sans-serif;`;
+    document.body.appendChild(t);
   }
   const colors = { success: "#22c55e", error: "#ef4444", info: "#D98C9A" };
-  toast.style.borderLeft = `4px solid ${colors[type] || colors.info}`;
-  toast.textContent = msg;
-  toast.style.opacity = "1";
-  toast.style.transform = "translateY(0)";
-  clearTimeout(toast._t);
-  toast._t = setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateY(8px)";
-  }, 3500);
+  t.style.borderLeft = `4px solid ${colors[type] || colors.info}`;
+  t.textContent = msg;
+  t.style.opacity = "1";
+  t.style.transform = "translateY(0)";
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => {
+    t.style.opacity = "0";
+    t.style.transform = "translateY(8px)";
+  }, 4000);
 }
+
+// Add spin keyframe
+const s = document.createElement("style");
+s.textContent = "@keyframes spin { to { transform: rotate(360deg); } }";
+document.head.appendChild(s);
 
 // ── Boot ──────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", initLogin);
