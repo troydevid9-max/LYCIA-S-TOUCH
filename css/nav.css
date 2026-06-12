@@ -26,13 +26,13 @@
 /* ── Main Nav ── */
 #mainNav {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(255,248,245,0.93);
+  background: rgba(255,248,245,0.96);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(217,140,154,0.12);
   padding: 0 48px;
   display: flex; align-items: center; justify-content: space-between;
-  height: 72px;
+  height: 68px;
   transition: box-shadow 0.3s;
 }
 #mainNav.scrolled { box-shadow: 0 4px 30px rgba(217,140,154,0.12); }
@@ -41,12 +41,12 @@
 .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
 .nav-logo-main {
   font-family: var(--font-display);
-  font-size: 30px; font-style: italic; font-weight: 600;
+  font-size: 28px; font-style: italic; font-weight: 600;
   color: var(--charcoal);
 }
 .nav-logo-main span { color: var(--rose-gold); }
 .nav-logo-sub {
-  font-size: 8.5px; letter-spacing: 3.5px; text-transform: uppercase;
+  font-size: 8px; letter-spacing: 3.5px; text-transform: uppercase;
   font-weight: 600; color: var(--gold);
   font-family: var(--font-body); font-style: normal;
   margin-top: -2px;
@@ -57,7 +57,7 @@
   display: flex; gap: 34px; align-items: center;
 }
 .nav-links a {
-  font-size: 11.5px; font-weight: 600;
+  font-size: 11px; font-weight: 600;
   letter-spacing: 0.8px; text-transform: uppercase;
   color: var(--charcoal);
   position: relative; transition: color 0.2s;
@@ -74,21 +74,16 @@
 .nav-links a:hover::after,
 .nav-links a.active::after { width: 100%; }
 
-/* Right side */
-.nav-right { display: flex; align-items: center; gap: 18px; }
-.cart-wrap { position: relative; cursor: pointer; font-size: 21px; color: var(--charcoal); }
-.cart-badge {
-  position: absolute; top: -6px; right: -7px;
-  background: var(--rose-gold); color: white;
-  font-size: 9px; width: 17px; height: 17px;
-  border-radius: 50%; display: flex;
-  align-items: center; justify-content: center;
-  font-weight: 700;
-}
+/* Right side — cart icon removed */
+.nav-right { display: flex; align-items: center; gap: 14px; }
 
 /* Hamburger */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; padding: 4px; }
-.hamburger span { width: 26px; height: 2px; background: var(--charcoal); transition: all 0.3s; display: block; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; z-index: 1100; padding: 6px;
+  background: none; border: none;
+}
+.hamburger span { width: 24px; height: 2px; background: var(--charcoal); transition: all 0.3s; display: block; border-radius: 2px; }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -96,20 +91,21 @@
 /* Mobile Menu */
 .mobile-menu {
   position: fixed; inset: 0;
-  background: rgba(255,248,245,0.97);
+  background: rgba(255,248,245,0.98);
   backdrop-filter: blur(24px);
   z-index: 999;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 28px;
+  gap: 24px;
   opacity: 0; pointer-events: none;
   transition: opacity 0.3s;
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: 34px; font-weight: 500;
+  font-size: 30px; font-weight: 500;
   color: var(--charcoal); transition: color 0.2s;
+  text-align: center;
 }
 .mobile-menu a:hover { color: var(--rose-gold); }
 .mobile-menu .btn { font-size: 13px; padding: 14px 36px; margin-top: 10px; }
@@ -120,16 +116,28 @@
   position: fixed; bottom: 0; left: 0; right: 0;
   background: white;
   border-top: 1px solid var(--light);
-  padding: 12px 20px;
+  padding: 10px 20px;
   z-index: 980;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
 }
-.mobile-booking-bar .btn { width: 100%; justify-content: center; }
+.mobile-booking-bar .btn { width: 100%; justify-content: center; font-size: 12px; }
 
+/* ── Tablet (≤900px) ── */
 @media (max-width: 900px) {
-  #mainNav { padding: 0 20px; }
+  #mainNav { padding: 0 18px; height: 62px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mobile-booking-bar { display: block; }
-  body { padding-bottom: 70px; }
+  body { padding-bottom: 68px; }
+  .nav-logo-main { font-size: 24px; }
+  .nav-logo-sub { font-size: 7px; letter-spacing: 2.5px; }
+}
+
+/* ── Small mobile (≤480px) ── */
+@media (max-width: 480px) {
+  #mainNav { padding: 0 14px; height: 58px; }
+  .nav-logo-main { font-size: 22px; }
+  .mobile-menu a { font-size: 26px; }
+  .mobile-menu { gap: 20px; }
+  .announcement-bar { font-size: 10px; letter-spacing: 1.2px; padding: 7px 0; }
 }
