@@ -73,9 +73,6 @@
       </div>
 
       <div class="sidebar-section-label">Communication</div>
-      <div class="sidebar-link" data-page="whatsapp">
-        <span class="icon">💬</span><span>WhatsApp Templates</span>
-      </div>
       <div class="sidebar-link" data-page="newsletter">
         <span class="icon">📧</span><span>Newsletter</span>
       </div>
@@ -338,105 +335,6 @@
               <thead><tr><th>Name</th><th>Role</th><th>Service</th><th>Rating</th><th>Review</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody id="testimonialsTbody"><tr><td colspan="7" style="text-align:center;padding:32px;color:var(--admin-muted);">Loading...</td></tr></tbody>
             </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ════════ WHATSAPP PAGE ════════ -->
-      <div class="admin-page" id="page-whatsapp">
-        <div style="margin-bottom:28px;"><h1 style="font-size:22px;font-weight:800;margin-bottom:4px;">WhatsApp Templates</h1><p style="font-size:13px;color:var(--admin-muted);">Pre-built message templates for quick client communication.</p></div>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
-          <div class="panel">
-            <div class="panel-header"><div class="panel-title">📅 Booking Confirmation</div></div>
-            <div class="wa-template-card">
-              <textarea rows="8">Hi {{clientName}}! 🌸
-
-Your appointment with Lycia's Touch has been *confirmed*!
-
-📅 Date: {{date}}
-⏰ Time: {{time}}
-💄 Service: {{service}}
-
-Please arrive 10 minutes early. A 50% deposit of {{deposit}} is required.
-
-Looking forward to making you look amazing! ✨ — Lycia 💋</textarea>
-              <div class="wa-variables">
-                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
-                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
-                <button class="wa-var" onclick="insertVar(this,'time')">{{time}}</button>
-                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
-                <button class="wa-var" onclick="insertVar(this,'deposit')">{{deposit}}</button>
-              </div>
-            </div>
-            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
-          </div>
-          <div class="panel">
-            <div class="panel-header"><div class="panel-title">⏰ Appointment Reminder</div></div>
-            <div class="wa-template-card">
-              <textarea rows="8">Hi {{clientName}}! 💕
-
-Just a friendly reminder — your appointment is *tomorrow*!
-
-📅 Date: {{date}}
-⏰ Time: {{time}}
-💄 Service: {{service}}
-
-Please come with a clean face. Bring inspo photos if you have any! 📸
-
-See you soon! ✨ — Lycia</textarea>
-              <div class="wa-variables">
-                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
-                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
-                <button class="wa-var" onclick="insertVar(this,'time')">{{time}}</button>
-                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
-              </div>
-            </div>
-            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
-          </div>
-          <div class="panel">
-            <div class="panel-header"><div class="panel-title">💖 Post-Session Follow-Up</div></div>
-            <div class="wa-template-card">
-              <textarea rows="8">Hi {{clientName}}! 🌸
-
-It was such a pleasure having you at Lycia's Touch! I hope you're still getting compliments 😄✨
-
-I'd love to hear your feedback! Could you leave a quick review?
-
-Also, don't forget to tag me in your photos! 📸
-Instagram: @lyciastouch
-
-Thank you so much! — Lycia 💋</textarea>
-              <div class="wa-variables">
-                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
-              </div>
-            </div>
-            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
-          </div>
-          <div class="panel">
-            <div class="panel-header"><div class="panel-title">👥 Group Booking Quote</div></div>
-            <div class="wa-template-card">
-              <textarea rows="8">Hi {{clientName}}! 💕
-
-Thank you for your group booking inquiry!
-
-👥 People: {{people}}
-💄 Service: {{service}}
-📅 Date: {{date}}
-📍 Location: {{location}}
-💰 Total Estimate: {{totalPrice}}
-
-Deposit of 50% required to confirm.
-
-I'm excited to glam your squad! ✨ — Lycia 💋</textarea>
-              <div class="wa-variables">
-                <button class="wa-var" onclick="insertVar(this,'clientName')">{{clientName}}</button>
-                <button class="wa-var" onclick="insertVar(this,'people')">{{people}}</button>
-                <button class="wa-var" onclick="insertVar(this,'service')">{{service}}</button>
-                <button class="wa-var" onclick="insertVar(this,'date')">{{date}}</button>
-                <button class="wa-var" onclick="insertVar(this,'totalPrice')">{{totalPrice}}</button>
-              </div>
-            </div>
-            <button class="admin-btn admin-btn-green" onclick="sendAdminWa(this)" style="margin-top:12px;">💬 Open in WhatsApp</button>
           </div>
         </div>
       </div>

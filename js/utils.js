@@ -2,17 +2,35 @@
 // js/utils.js – Core Utilities
 // ============================================================
 
-import { db, storage } from '../firebase/config.js';
-import {
-  collection, addDoc, getDocs, updateDoc, deleteDoc,
-  doc, query, orderBy, onSnapshot, serverTimestamp, where
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import {
-  ref, uploadBytes, getDownloadURL, deleteObject
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { initializeApp }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc,
+         doc, query, orderBy, onSnapshot, serverTimestamp, where }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const _app = initializeApp(window.__FIREBASE_CONFIG__);
+export const db = getFirestore(_app);
 
 // ── Exports for Firestore ──────────────────────────────────
-export { db, storage, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot, serverTimestamp, where, ref, uploadBytes, getDownloadURL, deleteObject };
+export { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot, serverTimestamp, where };
+
+// ── Cloudinary Upload (replaces Firebase Storage) ─────────
+const CLOUDINARY_CLOUD = "dhp6yr5qe";
+const CLOUDINARY_PRESET = "lycia's-touch";
+
+export async function uploadToCloudinary(file, folder = "lycias-touch") {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_PRESET);
+  formData.append("folder", folder);
+  const resourceType = file.type.startsWith("video/") ? "video" : "image";
+  const res = await fetch(
+    \`https://api.cloudinary.com/v1_1/\${CLOUDINARY_CLOUD}/\${resourceType}/upload\`,
+    { method: "POST", body: formData }
+  );
+  if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message || "Upload failed"); }
+  const data = await res.json();
+  return { url: data.secure_url, publicId: data.public_id };
+}
 
 // ── Toast Notification ────────────────────────────────────
 export function showToast(msg, type = 'info', duration = 3500) {
@@ -156,11 +174,10 @@ export function formatNaira(amount) {
   return '₦' + Number(amount).toLocaleString('en-NG');
 }
 
-// ── Upload File to Storage ────────────────────────────────
+// ── Upload File (via Cloudinary) ─────────────────────────
 export async function uploadFile(file, folder) {
-  const storageRef = ref(storage, `${folder}/${Date.now()}_${file.name}`);
-  await uploadBytes(storageRef, file);
-  return getDownloadURL(storageRef);
+  const { url } = await uploadToCloudinary(file, folder);
+  return url;
 }
 
 // ── Build WhatsApp URL ────────────────────────────────────

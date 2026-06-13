@@ -38,7 +38,7 @@
 #mainNav.scrolled { box-shadow: 0 4px 30px rgba(217,140,154,0.12); }
 
 /* Logo */
-.nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+.nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; flex-shrink: 0; }
 .nav-logo-main {
   font-family: var(--font-display);
   font-size: 28px; font-style: italic; font-weight: 600;
@@ -46,7 +46,7 @@
 }
 .nav-logo-main span { color: var(--rose-gold); }
 .nav-logo-sub {
-  font-size: 8px; letter-spacing: 3.5px; text-transform: uppercase;
+  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
   font-weight: 600; color: var(--gold);
   font-family: var(--font-body); font-style: normal;
   margin-top: -2px;
@@ -54,13 +54,14 @@
 
 /* Links */
 .nav-links {
-  display: flex; gap: 34px; align-items: center;
+  display: flex; gap: 30px; align-items: center;
 }
 .nav-links a {
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.8px; text-transform: uppercase;
   color: var(--charcoal);
   position: relative; transition: color 0.2s;
+  white-space: nowrap;
 }
 .nav-links a::after {
   content: '';
@@ -74,8 +75,8 @@
 .nav-links a:hover::after,
 .nav-links a.active::after { width: 100%; }
 
-/* Right side — cart icon removed */
-.nav-right { display: flex; align-items: center; gap: 14px; }
+/* Right side — NO cart */
+.nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 
 /* Hamburger */
 .hamburger {
@@ -83,7 +84,10 @@
   cursor: pointer; z-index: 1100; padding: 6px;
   background: none; border: none;
 }
-.hamburger span { width: 24px; height: 2px; background: var(--charcoal); transition: all 0.3s; display: block; border-radius: 2px; }
+.hamburger span {
+  width: 24px; height: 2px; background: var(--charcoal);
+  transition: all 0.3s; display: block; border-radius: 2px;
+}
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -93,6 +97,7 @@
   position: fixed; inset: 0;
   background: rgba(255,248,245,0.98);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   z-index: 999;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -103,12 +108,12 @@
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: 30px; font-weight: 500;
+  font-size: 32px; font-weight: 500;
   color: var(--charcoal); transition: color 0.2s;
   text-align: center;
 }
 .mobile-menu a:hover { color: var(--rose-gold); }
-.mobile-menu .btn { font-size: 13px; padding: 14px 36px; margin-top: 10px; }
+.mobile-menu .btn { font-size: 13px; padding: 14px 40px; margin-top: 8px; }
 
 /* Sticky mobile booking bar */
 .mobile-booking-bar {
@@ -116,28 +121,29 @@
   position: fixed; bottom: 0; left: 0; right: 0;
   background: white;
   border-top: 1px solid var(--light);
-  padding: 10px 20px;
+  padding: 10px 16px;
   z-index: 980;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
 }
-.mobile-booking-bar .btn { width: 100%; justify-content: center; font-size: 12px; }
+.mobile-booking-bar .btn { width: 100%; justify-content: center; font-size: 12px; padding: 12px; }
 
 /* ── Tablet (≤900px) ── */
 @media (max-width: 900px) {
-  #mainNav { padding: 0 18px; height: 62px; }
+  #mainNav { padding: 0 16px; height: 60px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mobile-booking-bar { display: block; }
-  body { padding-bottom: 68px; }
+  body { padding-bottom: 64px; }
   .nav-logo-main { font-size: 24px; }
-  .nav-logo-sub { font-size: 7px; letter-spacing: 2.5px; }
+  .nav-logo-sub { font-size: 7.5px; letter-spacing: 2px; }
+  .nav-right .btn { display: none; }
 }
 
-/* ── Small mobile (≤480px) ── */
+/* ── Mobile (≤480px) ── */
 @media (max-width: 480px) {
-  #mainNav { padding: 0 14px; height: 58px; }
+  #mainNav { padding: 0 14px; height: 56px; }
   .nav-logo-main { font-size: 22px; }
-  .mobile-menu a { font-size: 26px; }
+  .mobile-menu a { font-size: 28px; }
   .mobile-menu { gap: 20px; }
-  .announcement-bar { font-size: 10px; letter-spacing: 1.2px; padding: 7px 0; }
+  .announcement-bar { font-size: 9.5px; letter-spacing: 1.2px; padding: 7px 0; }
 }

@@ -17,18 +17,36 @@ import {
   serverTimestamp,
   where,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+// Storage: replaced by Cloudinary
 
 // ── Firebase Init ────────────────────────────────────────
 const app = initializeApp(window.__FIREBASE_CONFIG__);
 const db = getFirestore(app);
-const storage = getStorage(app);
+// No Firebase Storage — using Cloudinary
+
+// ── Cloudinary Config (replaces Firebase Storage) ────────
+const CLOUDINARY_CLOUD = "dhp6yr5qe";
+const CLOUDINARY_PRESET = "lycia's-touch";
+
+async function uploadToCloudinary(file, folder = "lycias-touch") {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_PRESET);
+  formData.append("folder", folder);
+
+  const resourceType = file.type.startsWith("video/") ? "video" : "image";
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/${resourceType}/upload`,
+    { method: "POST", body: formData }
+  );
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error?.message || "Cloudinary upload failed");
+  }
+  const data = await res.json();
+  return { url: data.secure_url, publicId: data.public_id };
+}
+
 
 // ── Admin Password ────────────────────────────────────────
 const ADMIN_PASSWORD = "lycia"; // ← CHANGE THIS BEFORE GOING LIVE
@@ -379,19 +397,19 @@ function initPortfolioAdmin() {
     btn.disabled = true;
     btn.textContent = "⏳ Uploading...";
     try {
-      const storageRef = ref(storage, `portfolio/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, file);
-      const imageUrl = await getDownloadURL(storageRef);
+      const { url: imageUrl, publicId } = await uploadToCloudinary(file, "lycias-touch/portfolio");
       await addDoc(collection(db, "portfolio"), {
         title,
         category,
         imageUrl,
         order,
-        imagePath: storageRef.fullPath,
+        imagePath: publicId,
         createdAt: serverTimestamp(),
       });
       toast("✅ Portfolio image uploaded!", "success");
       form.reset();
+      const zone = document.getElementById("portfolioUploadZone");
+      if (zone) zone.innerHTML = `<div style="font-size:32px;margin-bottom:8px;">🖼</div><div>Upload Image</div><div style="font-size:11px;opacity:0.6;">Click or drag to upload · JPG, PNG, WebP</div>`;
     } catch (e) {
       toast("❌ Upload failed: " + e.message, "error");
       console.error(e);
@@ -405,8 +423,8 @@ window.adminDeletePortfolio = async (id, path) => {
   if (!confirm("Delete this portfolio image? This cannot be undone.")) return;
   try {
     await deleteDoc(doc(db, "portfolio", id));
-    if (path) await deleteObject(ref(storage, path)).catch(() => {});
-    toast("Image deleted", "info");
+    // Note: Cloudinary assets can be managed at cloudinary.com/console
+    toast("Image removed from site", "info");
   } catch (e) {
     toast("Delete failed: " + e.message, "error");
   }
@@ -517,17 +535,16 @@ function initReelsAdmin() {
 
       if (!ytUrl && videoInput?.files[0]) {
         const vf = videoInput.files[0];
-        const vRef = ref(storage, `reels/videos/${Date.now()}_${vf.name}`);
-        await uploadBytes(vRef, vf);
-        videoUrl = await getDownloadURL(vRef);
-        videoPath = vRef.fullPath;
+        toast("⏳ Uploading video (this may take a moment)...", "info");
+        const { url: vUrl, publicId: vId } = await uploadToCloudinary(vf, "lycias-touch/reels");
+        videoUrl = vUrl;
+        videoPath = vId;
       }
       if (thumbInput?.files[0]) {
         const tf = thumbInput.files[0];
-        const tRef = ref(storage, `reels/thumbs/${Date.now()}_${tf.name}`);
-        await uploadBytes(tRef, tf);
-        thumbnailUrl = await getDownloadURL(tRef);
-        thumbPath = tRef.fullPath;
+        const { url: tUrl, publicId: tId } = await uploadToCloudinary(tf, "lycias-touch/thumbs");
+        thumbnailUrl = tUrl;
+        thumbPath = tId;
       }
 
       await addDoc(collection(db, "reels"), {
@@ -562,9 +579,8 @@ window.adminDeleteReel = async (id, vPath, tPath) => {
   if (!confirm("Delete this reel? This cannot be undone.")) return;
   try {
     await deleteDoc(doc(db, "reels", id));
-    if (vPath) await deleteObject(ref(storage, vPath)).catch(() => {});
-    if (tPath) await deleteObject(ref(storage, tPath)).catch(() => {});
-    toast("Reel deleted", "info");
+    // Cloudinary assets manageable at cloudinary.com/console
+    toast("Reel removed from site", "info");
   } catch (e) {
     toast("Delete failed: " + e.message, "error");
   }
