@@ -155,7 +155,7 @@ export function initCalendarBookingForm() {
       renderCalendar();
       // Also send via WhatsApp
       const waMsg = `Hi Lycia! I'd like to book an appointment.\n\n📅 Date: ${selectedDate}\n⏰ Time: ${selectedTime}\n💄 Service: ${data.service}\n👤 Name: ${data.name}\n📞 Phone: ${data.phone}`;
-      setTimeout(() => window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
+      setTimeout(() => window.open(`https://wa.me/2349134061048?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
     } catch(err) {
       showToast('Something went wrong. Please try WhatsApp directly.', 'error');
       console.error(err);
@@ -284,7 +284,7 @@ export function initGroupBooking() {
       showToast('✅ Group booking request sent!', 'success', 5000);
       form.reset();
       const waMsg = `Hi Lycia! I'd like to book a group appointment.\n\n👥 People: ${peopleCount}\n📦 Package: ${selectedPackage}\n📅 Date: ${data.date}\n🎉 Event: ${data.event}\n📍 Location: ${data.location}\n👤 Name: ${data.name}`;
-      setTimeout(() => window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
+      setTimeout(() => window.open(`https://wa.me/2349134061048?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
     } catch(err) {
       showToast('Submission failed. Please try again.', 'error');
     }

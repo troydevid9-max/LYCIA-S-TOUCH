@@ -211,5 +211,5 @@ export function sendWaTemplate(template, data) {
   Object.entries(data).forEach(([k, v]) => {
     msg = msg.replaceAll(`{{${k}}}`, v);
   });
-  window.open(buildWaURL('2348123456789', msg), '_blank');
+  window.open(buildWaURL('2349134061048', msg), '_blank');
 }

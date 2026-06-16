@@ -489,7 +489,7 @@ function initCalendarBookingForm() {
       document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
       document.getElementById('selectedDateDisplay').style.display = 'none';
       renderCalendar();
-      setTimeout(() => window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
+      setTimeout(() => window.open(`https://wa.me/2349134061048?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
     } catch(err) {
       console.error(err);
       showToast('❌ Error saving booking. Please try WhatsApp directly.', 'error');
@@ -562,7 +562,7 @@ function initGroupBooking() {
       showToast('✅ Group booking request sent!', 'success', 5000);
       form.reset(); people = 2; document.getElementById('peopleCount').textContent = '2';
       const waMsg = `Hi Lycia! Group booking inquiry:\n\n👥 People: ${data.people}\n📦 Package: ${data.package || 'TBD'}\n📅 Date: ${data.date}\n🎉 Event: ${data.event}\n📍 Location: ${data.location}\n👤 Name: ${data.name}`;
-      setTimeout(() => window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
+      setTimeout(() => window.open(`https://wa.me/2349134061048?text=${encodeURIComponent(waMsg)}`, '_blank'), 1500);
     } catch(err) { console.error(err); showToast('❌ Submission failed. Please try WhatsApp.', 'error'); }
     btn.disabled = false; btn.textContent = '💬 Send Group Booking Request';
   });
@@ -724,7 +724,7 @@ window.openWaTemplate = function(key) {
 
 window.sendWaTpl = function(key) {
   const msg = document.getElementById('waPrev')?.textContent;
-  if (msg) window.open(`https://wa.me/2348123456789?text=${encodeURIComponent(msg)}`, '_blank');
+  if (msg) window.open(`https://wa.me/2349134061048?text=${encodeURIComponent(msg)}`, '_blank');
 };
 
 // ════════════════════════════════════════════════════════

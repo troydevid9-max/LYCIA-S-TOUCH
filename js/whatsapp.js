@@ -2,7 +2,7 @@
 // js/whatsapp.js – WhatsApp Template System
 // ============================================================
 
-const WA_NUMBER = '2348123456789';
+const WA_NUMBER = '2349134061048';
 
 export const templates = {
   bookingConfirmation: {
