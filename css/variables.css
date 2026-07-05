@@ -53,6 +53,24 @@ ul { list-style: none; }
 button { cursor: pointer; font-family: var(--font-body); }
 input, select, textarea { font-family: var(--font-body); }
 
+/* Fix for the classic CSS Grid/Flexbox "blowout" bug: by default, grid and
+   flex items refuse to shrink below their content's natural (min-content)
+   width, even when the column is set to something flexible like 1fr. On
+   narrow/mobile screens this forces rows to render a few pixels wider than
+   the viewport, causing the whole page to gain a small horizontal overflow
+   (visible as clipped edges / a tiny scrollable gap on the right). This
+   override lets every grid item shrink to fit its track instead of forcing
+   the page wider than the screen. */
+.ba-grid > *, .booking-banner > *, .cal-days-header > *, .cal-grid > *,
+.calendar-wrap > *, .contact-section > *, .faq-section > *, .footer-top > *,
+.group-grid > *, .group-packages > *, .inspo-preview > *, .insta-grid > *,
+.intake-grid > *, .lookbook-grid > *, .portfolio-mini > *, .preview-grid > *,
+.reels-grid > *, .services-mini > *, .stats-section > *,
+.testi-submit-grid > *, .testimonials-section > *, .time-slots > *,
+.training-section > *, .why-grid > *, .form-row > * {
+  min-width: 0;
+}
+
 /* ── Scroll Progress Bar ── */
 #scrollProgress {
   position: fixed;
