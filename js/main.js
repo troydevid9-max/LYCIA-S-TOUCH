@@ -3,24 +3,34 @@
 // ============================================================
 
 // ── Firebase SDK from CDN ────────────────────────────────
-import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, onSnapshot,
-         query, orderBy, where, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-
-// ── Init Firebase ────────────────────────────────────────
+// Loaded lazily via dynamic import() (not a static top-level import) so that
+// a slow or blocked CDN request (e.g. on an unstable mobile connection)
+// can NEVER prevent the rest of the site's JS (menu, counters, FAQ, reveal
+// animations, etc.) from running. Every Firebase-backed feature below
+// already checks `db` before using it, so it degrades gracefully while
+// everything else keeps working.
 let app, db, storage;
-try {
-  app     = initializeApp(window.__FIREBASE_CONFIG__);
-  db      = getFirestore(app);
-  storage = getStorage(app);
-} catch(e) {
-  console.warn('Firebase init failed:', e.message);
-  // Stub db/storage so the rest of the site still works
-  db      = null;
-  storage = null;
+let collection, addDoc, getDocs, onSnapshot, query, orderBy, where, serverTimestamp;
+let ref, uploadBytes, getDownloadURL;
+
+async function loadFirebase() {
+  try {
+    const [appMod, firestoreMod, storageMod] = await Promise.all([
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js"),
+    ]);
+    ({ collection, addDoc, getDocs, onSnapshot, query, orderBy, where, serverTimestamp } = firestoreMod);
+    ({ ref, uploadBytes, getDownloadURL } = storageMod);
+
+    app     = appMod.initializeApp(window.__FIREBASE_CONFIG__);
+    db      = firestoreMod.getFirestore(app);
+    storage = storageMod.getStorage(app);
+  } catch (e) {
+    console.warn('Firebase failed to load (site still works without it):', e.message);
+    db      = null;
+    storage = null;
+  }
 }
 
 // Safe Firestore wrappers so site works even without Firebase
@@ -730,23 +740,30 @@ window.sendWaTpl = function(key) {
 // ════════════════════════════════════════════════════════
 // BOOT
 // ════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
+  // UI-only features: must run no matter what happens with Firebase/network.
   initScrollProgress();
   initMobileMenu();
   initReveal();
   initCounters();
   initFaq();
-  initPortfolio();
   initReels();
   initLookbook();
   initBeforeAfter();
   initWaTemplates();
-  await initTestimonials();
-  await initCalendar();
   initCalendarBookingForm();
   initContactForm();
   initGroupBooking();
   initIntakeForm();
   initTestimonialSubmit();
   initNewsletter();
+
+  // Firebase-dependent features: load the SDK lazily, then wire these up.
+  // If the CDN request fails/is slow, everything above still works, and
+  // these already fall back gracefully (static testimonials, empty states).
+  loadFirebase().then(() => {
+    initPortfolio();
+    initTestimonials();
+    initCalendar();
+  });
 });
